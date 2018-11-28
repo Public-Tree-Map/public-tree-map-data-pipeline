@@ -276,10 +276,10 @@ Tristania laurina,exotic,5461008,http://eol.org/pages/5461008/overview
 Ulmus parvifolia,exotic,595062,http://eol.org/pages/595062/overview
 Ulmus parvifolia 'Allee',exotic,,http://eol.org/pages/595062/overview
 Ulmus parvifolia 'Drake',exotic,,http://eol.org/pages/595062/overview
-Ulmus propinqua 'Emerald Sunshine',,,
+Ulmus propinqua 'Emerald Sunshine',exotic,,
 Ulmus pumila,exotic,594950,http://www.eol.org/pages/594950/overview
 Umbellularia californica,native,596841,http://eol.org/pages/596841/overview
-Viburnum spp.,,37657,http://eol.org/pages/37657/overview
+Viburnum spp.,exotic,37657,http://eol.org/pages/37657/overview
 Washingtonia filifera,native,1127834,http://www.eol.org/pages/1127834/overview
 Washingtonia filifera X robusta,exotic,,
 Washingtonia robusta,exotic,1127833,http://eol.org/pages/1127833/overview
@@ -288,3 +288,10 @@ Wodyetia bifurcata,exotic,1127809,http://eol.org/pages/1127809/overview
 Yucca gloriosa,exotic,1083624,http://www.eol.org/pages/1083624/overview
 Yucca spp.,exotic,33611,http://eol.org/pages/33611/overview
 Zelkova serrata,exotic,484119,http://eol.org/pages/484119/overview
+Other tree,exotic
+No Replant,exotic
+Stump,exotic
+Stump - not accessible,exotic
+Unidentified spp.,exotic
+Unsuitable site,exotic
+Vacant site,exotic
