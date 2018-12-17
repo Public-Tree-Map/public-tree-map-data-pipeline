@@ -49,6 +49,28 @@ describe("getMediaURL", function() {
 
     expect(actual).to.equal(EXPECTED_FILE);
   });
+  it("Should parse mediaURL from json different pattern", function() {
+    const EXPECTED_FILE =
+      "http://www.boldsystems.org/pics/SAFH/OM2818.Olea.europa.africana.1+1284733982.JPG";
+    const TESTDATA = `{"taxonConcept":{"identifier":579181,"scientificName":"Olea europaea L.","richness_score":null,"dataObjects":[{"identifier":"EOL-media-539-SAFH/OM2818.Olea.europa.africana.1+1284733982.JPG","dataObjectVersionID":6013373,"dataType":"http://purl.org/dc/dcmitype/StillImage","dataSubtype":"jpg","vettedStatus":"Trusted","dataRatings":[],"dataRating":"2.5","mimeType":"image/jpeg","created":"2018-05-14T22:03:08.000Z","modified":"2018-10-20T01:11:28.000Z","license":"http://creativecommons.org/licenses/by-nc-sa/3.0/","license_id":5,"rightsHolder":"University of Johannesburg. Olivier Maurin. Year: 2011.","source":"http://www.boldsystems.org/index.php/Taxbrowser_Taxonpage?taxid=191897","mediaURL":"http://www.boldsystems.org/pics/SAFH/OM2818.Olea.europa.africana.1+1284733982.JPG","description":"Specimen..","eolMediaURL":"https://content.eol.org/data/media/7a/61/d8/539.SAFH_OM2818_Olea_europa_africana_1_1284733982_JPG.jpg","eolThumbnailURL":"https://content.eol.org/data/media/7a/61/d8/539.SAFH_OM2818_Olea_europa_africana_1_1284733982_JPG.98x68.jpg","agents":[{"full_name":"Olivier Maurin","homepage":null,"role":"photographer"},{"full_name":"Barcode of Life Data Systems","homepage":null,"role":"provider"}]}],"licenses":[]}}`;
+    const data = JSON.parse(TESTDATA);
+
+    const actual = getMediaURL(data);
+
+    expect(actual).to.equal(EXPECTED_FILE);
+  });
+
+  it("Valid JSON, no URL to be found", function() {
+    const EXPECTED_FILE =
+      "";
+    const TESTDATA = '{"taxonConcept":{"identifier":486203,"scientificName":"Pittosporum napaulense (DC.) Rehder \u0026 E.H. Wilson","richness_score":null,"licenses":[]}}';
+    const data = JSON.parse(TESTDATA);
+
+    const actual = getMediaURL(data);
+
+    expect(actual).to.equal(EXPECTED_FILE);
+  });
+  //{"taxonConcept":{"identifier":486203,"scientificName":"Pittosporum napaulense (DC.) Rehder \u0026 E.H. Wilson","richness_score":null,"licenses":[]}}
 });
 
 describe("getKabobedName", function() {
