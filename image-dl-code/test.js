@@ -8,7 +8,8 @@ const {
   getMediaURL,
   getKabobedName,
   getUnKabobedName,
-  HttpPicker
+  HttpPicker,
+  LogObjects
 } = require("./functions");
 
 describe("getMediaURL", function() {
@@ -112,5 +113,22 @@ describe("HttpPicker", function() {
     const URL = "https://foo.com";
     const actual = httpPicker.gethttp(URL);
     expect(actual).to.equal(https);
+  });
+});
+describe("LogObjects", function() {
+  it("push one item", function() {
+    const myLogger = new LogObjects();
+    myLogger.log({ one: 1, two: 2 });
+    expect(myLogger.toString()).to.equal("one,two\n1,2");
+  });
+  it("push two items", function() {
+    const myLogger = new LogObjects();
+    myLogger.log({ one: 1, two: 2 });
+    myLogger.log({ one: 11, two: 12 });
+    expect(myLogger.toString()).to.equal("one,two\n1,2\n11,12");
+  });
+  it("push no items", function() {
+    const myLogger = new LogObjects();
+    expect(myLogger.toString()).to.equal("");
   });
 });
