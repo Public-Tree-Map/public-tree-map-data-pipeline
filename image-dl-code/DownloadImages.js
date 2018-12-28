@@ -5,70 +5,101 @@
   const path = require("path");
   const fs = require("fs");
 
-  const { HttpPicker, getMediaURL, getKabobedName } = require("./functions");
+  const {
+    HttpPicker,
+    getMediaURL,
+    getKabobedName,
+    LogObjects
+  } = require("./functions");
   const { parseCsv } = require("./shared");
 
-  const DownloadImages = function(
+  const DownloadImages = function({
     inputFileName,
     outFileName,
+    errorFilename,
     pngsPath,
-    logObjects
-  ) {
+    logLevel
+  }) {
     this.inputFileName = inputFileName;
     this.outFileName = outFileName;
+    this.errorFilename = errorFilename;
     this.pngsPath = pngsPath;
-    this.logObjects = logObjects;
+    this.logObjects = new LogObjects(logLevel);
   };
 
   DownloadImages.prototype.run = async function() {
     const httpPicker = new HttpPicker(http, https);
 
-    // load contents of file into an array of objects
-    const list = parseCsv(this.inputFileName);
-    for (const item of list) {
-      let status, mediaURL;
-      if (item.EOL_ID) {
-        try {
-          const fetchUrl = this.makeFetchUrl(item.EOL_ID);
-          const response = await fetch(fetchUrl);
-          const { status } = response;
-          if (status == 200) {
-            const json = await response.json();
-            mediaURL = getMediaURL(json);
-            if (mediaURL) {
-              await writeImageFile(
-                mediaURL,
-                item,
-                httpPicker,
-                this.logObjects,
-                this.pngsPath
-              );
+    try {
+      await ensureDirectories(this.pngsPath);
+
+      // load contents of file into an array of objects
+      const list = parseCsv(this.inputFileName);
+      for (const item of list) {
+        let status, mediaURL;
+        if (item.EOL_ID) {
+          try {
+            const fetchUrl = this.makeFetchUrl(item.EOL_ID);
+            const response = await fetch(fetchUrl);
+            const { status } = response;
+            if (status == 200) {
+              const json = await response.json();
+              mediaURL = await getMediaURL(json);
+              if (mediaURL) {
+                await writeImageFile(
+                  mediaURL,
+                  item,
+                  httpPicker,
+                  this.logObjects,
+                  this.pngsPath
+                );
+              } else {
+                throw new Error(
+                  `No mediaURL for EOL_ID ${item.EOL_ID}; URL: ${fetchUrl}`
+                );
+              }
             } else {
               throw new Error(
-                `No mediaURL for EOL_ID ${item.EOL_ID}; URL: ${fetchUrl}`
+                `status: ${status}; EOL_ID: ${item.EOL_ID}; URL: ${fetchUrl}`
               );
             }
-          } else {
-            throw new Error(
-              `status: ${status}; EOL_ID: ${item.EOL_ID}; URL: ${fetchUrl}`
-            );
+          } catch (err) {
+            await this.logObjects.error({
+              ...item,
+              responseCode: status,
+              firstCode: "",
+              mediaURL,
+              writtenFile: "",
+              error: err.message
+            });
           }
-        } catch (err) {
-          this.logObjects.error({
+        } else {
+          await this.logObjects.error({
             ...item,
             responseCode: status,
             firstCode: "",
             mediaURL,
             writtenFile: "",
-            error: err.message
+            error: "No EOL ID"
           });
         }
       }
+      writeTextFile(this.outFileName, this.logObjects.getLogged());
+      writeTextFile(this.errorFilename, this.logObjects.getError());
+    } catch (err) {
+      console.log(err.message);
     }
-    console.log(this.logObjects.toString());
   };
   DownloadImages.prototype.makeFetchUrl = function(EolId) {
     return `http://eol.org/api/pages/1.0.json?id=${EolId}&details=true&taxonomy=false&images_per_page=1`;
+  };
+
+  const writeTextFile = function(filename, contents) {
+    if (filename) {
+      fs.writeFileSync(filename, contents);
+      console.log(`Wrote ${filename}`);
+    }
+    return true;
   };
 
   const writeImageFile = async function(
@@ -79,8 +110,9 @@
     pngsPath
   ) {
     // Do we want to use EOL_ID or botanical_name to name the jpg files?
-    return await httpPicker
-      .gethttp(mediaURL)
+    const myHttp = await httpPicker.gethttp(mediaURL);
+    return await myHttp
+      //.gethttp(mediaURL)
       .get(mediaURL, async function(response) {
         switch (response.statusCode) {
           case 200: {
@@ -132,7 +164,7 @@
               response.statusCode,
               pngsPath,
               logObjects,
-              `Unexpected Status`
+              "Unexpected Status"
             );
           }
         }
@@ -148,11 +180,10 @@
     logObjects
   ) {
     const ext = path.extname(mediaURL);
-    //console.log(`PATH: ${pngsPath}`)
     const ourFileName = `${pngsPath}/${getKabobedName(
       item.botanical_name
     )}${ext}`;
-    logObjects.log({
+    await logObjects.log({
       ...item,
       responseCode: 200,
       firstCode,
@@ -160,8 +191,8 @@
       writtenFile: ourFileName,
       error: ""
     });
-    var file = fs.createWriteStream(ourFileName);
-    return response.pipe(file);
+    var file = await fs.createWriteStream(ourFileName);
+    return await response.pipe(file);
   };
 
   const writeOtherToFile = async function(
@@ -175,7 +206,7 @@
     const ourFileName = `${pngsPath}/other/${getKabobedName(
       item.botanical_name
     )}_${response.statusCode}.html`;
-    logObjects.error({
+    await logObjects.error({
       ...item,
       responseCode: response.statusCode,
       firstCode,
@@ -183,8 +214,20 @@
       writtenFile: ourFileName,
       error
     });
-    var file = fs.createWriteStream(ourFileName);
-    return response.pipe(file);
+    var file = await fs.createWriteStream(ourFileName);
+    return await response.pipe(file);
+  };
+
+  const ensureDirectories = async function(basePath) {
+    if (!fs.existsSync(basePath)) {
+      await fs.mkdirSync(basePath);
+    }
+    if (!fs.existsSync(`${basePath}/other`)) {
+      await fs.mkdirSync(`${basePath}/other`);
+    }
+    if (!fs.existsSync(`${basePath}/csv`)) {
+      await fs.mkdirSync(`${basePath}/csv`);
+    }
   };
 
   module.exports = DownloadImages;

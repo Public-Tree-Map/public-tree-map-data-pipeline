@@ -67,33 +67,60 @@
           break;
       }
     }
-    log(newValue) {
-      if (this.level <= 1) {
-        this.objectList.push(newValue);
-      }
+    log(value) {
+      //if (this.level <= 1) {
+      this.objectList.push({ value, key: "log" });
+      //}
     }
-    error(newValue) {
-      if (this.level <= 2) {
-        this.objectList.push(newValue);
-      }
+    error(value) {
+      //if (this.level <= 2) {
+      this.objectList.push({ value, key: "error" });
+      //}
     }
-    toString() {
-      if (this.objectList.length === 0) {
+    getError() {
+      return this.getCsv(function(item) {
+        return item.key === "error";
+      });
+    }
+    getLogged() {
+      return this.getCsv(function(item) {
+        return item.key === "log";
+      });
+    }
+    getAll() {
+      return this.getCsv(function() {
+        return true;
+      });
+    }
+    getCsv(filterFunction) {
+      const errors = this.objectList.filter(filterFunction);
+      if (errors.length === 0) {
         return "";
       }
       // get the keys from the first object
-      const obj1 = this.objectList[0];
-      const titleRow = Object.keys(obj1).join(",");
-      return (
-        titleRow +
+      const obj1 = errors[0];
+      const titleRow = Object.keys(obj1.value).join(",");
+      return (titleRow +
         "\n" +
-        this.objectList
+        errors
           .map(item => {
-            return Object.values(item).join(",");
+            return Object.values(item.value).join(",");
           })
-          .join("\n")
-      );
+          .join("\n"));
     }
+    // toString() {
+    //   let filterFunction;
+    //   switch (this.level) {
+    //     case "error":
+    //     case 2:
+    //       filterFunction = item => item.key === "error";
+    //       break;
+    //     default:
+    //       filterFunction = () => true;
+    //       break;
+    //   }
+    //   return this.getCsv(filterFunction);
+    // }
   }
 
   module.exports = {

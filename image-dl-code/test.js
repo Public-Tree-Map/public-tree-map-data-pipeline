@@ -138,32 +138,40 @@ describe("HttpPicker", function() {
   });
 });
 describe("LogObjects", function() {
-  it("error one item", function() {
+  it("Log two items", function() {
     const myLogger = new LogObjects();
-    myLogger.error({ one: 1, two: 2 });
-    expect(myLogger.toString()).to.equal("one,two\n1,2");
+    myLogger.log({ one: 1, two: 2 });
+    myLogger.log({ one: 11, two: 12 });
+    expect(myLogger.getLogged()).to.equal("one,two\n1,2\n11,12");
   });
-  it("error two items", function() {
+  it("Log no items", function() {
     const myLogger = new LogObjects();
-    myLogger.error({ one: 1, two: 2 });
-    myLogger.error({ one: 11, two: 12 });
-    expect(myLogger.toString()).to.equal("one,two\n1,2\n11,12");
+    expect(myLogger.getAll()).to.equal("");
   });
-  it("log one, error one item", function() {
+  it("Test getError", function() {
     const myLogger = new LogObjects();
     myLogger.log({ one: 1, two: 2 });
     myLogger.error({ one: 11, two: 12 });
-    expect(myLogger.toString()).to.equal("one,two\n11,12");
+    expect(myLogger.getError()).to.equal("one,two\n11,12");
   });
-  it("push no items", function() {
+  it("Test getLog", function() {
     const myLogger = new LogObjects();
-    expect(myLogger.toString()).to.equal("");
-  });
-  it("log one, error one item with Level = log", function() {
-    const myLogger = new LogObjects(1);
     myLogger.log({ one: 1, two: 2 });
     myLogger.error({ one: 11, two: 12 });
-    expect(myLogger.toString()).to.equal("one,two\n1,2\n11,12");
+    expect(myLogger.getLogged()).to.equal("one,two\n1,2");
   });
-
+  it("Test getAll", function() {
+    const myLogger = new LogObjects();
+    myLogger.log({ one: 1, two: 2 });
+    myLogger.error({ one: 11, two: 12 });
+    expect(myLogger.getAll()).to.equal("one,two\n1,2\n11,12");
+  });
+  it("Test Log, Error and all on same history", function() {
+    const myLogger = new LogObjects();
+    myLogger.log({ one: 1, two: 2 });
+    myLogger.error({ one: 11, two: 12 });
+    expect(myLogger.getError()).to.equal("one,two\n11,12");
+    expect(myLogger.getLogged()).to.equal("one,two\n1,2");
+    expect(myLogger.getAll()).to.equal("one,two\n1,2\n11,12");
+  });
 });

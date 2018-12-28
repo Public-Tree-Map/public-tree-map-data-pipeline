@@ -1,20 +1,20 @@
 const DownloadImages = require("./DownloadImages");
 
-const { LogObjects } = require("./functions");
-
 const inputFileName = "species_native_status_EOL_ID_test.csv";
 //const inputFileName = "species_native_status_EOL_ID.csv";
-const outFileName = "download_files_results.csv";
+const outFileName = "../data/jpgs/csv/download_files_results.csv";
+const errorFilename = "../data/jpgs/csv/download_files_error.csv";
 const pngsPath = "../data/jpgs";
 (async function() {
-  const logObjects = new LogObjects("all");
+  const logLevel = "all";
 
-  const downloadImages = new DownloadImages(
+  const downloadImages = new DownloadImages({
     inputFileName,
     outFileName,
+    errorFilename,
     pngsPath,
-    logObjects
-  );
+    logLevel
+  });
 
   await downloadImages.run();
   console.log("done");
