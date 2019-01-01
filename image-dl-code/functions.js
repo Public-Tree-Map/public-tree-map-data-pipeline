@@ -53,7 +53,9 @@
       return "";
     }
   }
-
+/**
+ * LogObjects
+ */
   class LogObjects {
     constructor(level = "error") {
       this.objectList = [];

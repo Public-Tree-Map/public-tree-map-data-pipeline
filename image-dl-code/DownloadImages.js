@@ -12,7 +12,10 @@
     LogObjects
   } = require("./functions");
   const { parseCsv } = require("./shared");
-
+  /**
+   *
+   * @param {object} param0
+   */
   const DownloadImages = function({
     inputFileName,
     outFileName,
@@ -27,6 +30,9 @@
     this.logObjects = new LogObjects(logLevel);
   };
 
+  /**
+   *
+   */
   DownloadImages.prototype.run = async function() {
     const httpPicker = new HttpPicker(http, https);
 
@@ -101,7 +107,14 @@
     }
     return true;
   };
-
+  /**
+   * writeImageFile
+   * @param {string} mediaURL
+   * @param {object} item
+   * @param {object} httpPicker
+   * @param {object} logObjects
+   * @param {string} pngsPath
+   */
   const writeImageFile = async function(
     mediaURL,
     item,
@@ -170,7 +183,16 @@
         }
       });
   };
-
+  /**
+   * writeStreamToFile - Write the contents of the response to a file - Here we are assuming
+   * that the interaction was successful
+   * @param {object} response
+   * @param {string} mediaURL
+   * @param {object} item
+   * @param {number} firstCode
+   * @param {string} pngsPath
+   * @param {object} logObjects
+   */
   const writeStreamToFile = async function(
     response,
     mediaURL,
@@ -194,7 +216,15 @@
     var file = await fs.createWriteStream(ourFileName);
     return await response.pipe(file);
   };
-
+  /**
+   * writeOtherToFile - Write the contents of a response to a file.
+   * @param {object} response
+   * @param {object} item
+   * @param {number} firstCode
+   * @param {string} pngsPath
+   * @param {object} logObjects
+   * @param {string} error
+   */
   const writeOtherToFile = async function(
     response,
     item,
@@ -217,7 +247,10 @@
     var file = await fs.createWriteStream(ourFileName);
     return await response.pipe(file);
   };
-
+  /**
+   * ensureDirectories - Make sure that the /other and /csv directories exist
+   * @param {string} basePath - Where to put the extra directories
+   */
   const ensureDirectories = async function(basePath) {
     if (!fs.existsSync(basePath)) {
       await fs.mkdirSync(basePath);
