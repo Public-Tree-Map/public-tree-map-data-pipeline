@@ -4,7 +4,7 @@
 
 The file **inputFileName** is a CSV file that contains the columns **EOL\_ID** and **botanical\_name**.
 
-I hard coded the URL of eol.org's API. Look in the method makeFetchUrl() if you need to change it.
+I hard coded the URL of eol.org's API. Look in the method `makeFetchUrl()` if you need to change it.
 
 ## Run the code
 
@@ -15,7 +15,7 @@ const DownloadImages = require("./DownloadImages");
 // create the object with settings
 const downloadImages = new DownloadImages(settings);
 
-// run it
+// run it (must await it to ensure that we are done before moving on)
 await downloadImages.run();
 ```
 
@@ -69,6 +69,8 @@ Some times I got 301 or 302 when fetching images. I only go 1 level of redirecti
 
 ### Errors
 
+- Log success after redirect to **errorFilename** with the error message in the last column
+
 ## Logging
 
 | Field | Descrition |
@@ -78,4 +80,4 @@ Some times I got 301 or 302 when fetching images. I only go 1 level of redirecti
 | firstCode | The HTTP response code from the previous time (should only be 302 or 302) |
 | mediaURL | The URL of the image that the script downloads |
 | writtenFile  | The name of the file that the script writes |
-| error | The text of any error message written (blank if no error ) |
+| error | The text of any error message written (blank if no error) |
