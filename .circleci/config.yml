@@ -1,0 +1,26 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: google/cloud-sdk:228.0.0
+    steps:
+      - checkout
+      - run: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+      - run: echo 'export NVM_DIR=$HOME/.nvm' >> $BASH_ENV
+      - run: echo 'source $NVM_DIR/nvm.sh' >> $BASH_ENV
+      - run: nvm install 9.11.1
+      - run: nvm use 9.11.1
+      - run: npm install
+      - run: node --version
+      - run: echo $GCLOUD_SERVICE_KEY
+      - run: echo $GOOGLE_PROJECT_ID
+      - run: |
+          echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
+          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+      - run: cd data-parser && npm install && node index.js
+      - run: gsutil cp -Z data-parser/data.js gs://public-tree-map/js/
+      - run: gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/js/data.js
+    branches:
+      only:
+        - master
