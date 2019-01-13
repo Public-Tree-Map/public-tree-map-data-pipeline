@@ -6,6 +6,7 @@ jobs:
       - image: google/cloud-sdk:228.0.0
     steps:
       - checkout
+      - run: sudo apt-get install build-essential
       - run: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
       - run: echo 'export NVM_DIR=$HOME/.nvm' >> $BASH_ENV
       - run: echo 'source $NVM_DIR/nvm.sh' >> $BASH_ENV
