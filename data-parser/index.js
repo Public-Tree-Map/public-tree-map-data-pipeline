@@ -6,7 +6,7 @@ const Parallel = require('async-parallel')
 async function main() {
   const startTime = new Date().getTime()
 
-  let trees = getBaseData()
+  let trees = await getBaseData()
   console.log(`== Parsed initial data... (${new Date().getTime() - startTime} ms).`)
 
   let downloadStartTime = new Date().getTime()
@@ -18,10 +18,11 @@ async function main() {
   console.log(`== Complete! (${new Date().getTime() - startTime} ms).`)
 }
 
-function getBaseData() {
-  const species  = toMap(parseCsv('species_names.csv'), 'botanical_name')
-  const nativity = toMap(parseCsv('species_native_status_EOL_ID.csv'), 'botanical_name')
-  const treesRaw = parseCsv('trees.csv')
+async function getBaseData() {
+  const species  = toMap(parseCsv(readFile('species_names.csv')), 'botanical_name')
+  const nativity = toMap(parseCsv(readFile('species_native_status_EOL_ID.csv')), 'botanical_name')
+  const idk = await got('https://data.smgov.net/resource/w8ue-6cnd.csv?$limit=50000')
+  const treesRaw = parseCsv(idk.body)
 
   const trees = treesRaw.map(t => {
     const botanical = t['Name Botanical']
@@ -97,12 +98,15 @@ function formatAsJsFile(trees) {
   return prefix + body + suffix
 }
 
-function parseCsv(filename) {
-  const contents = fs.readFileSync(getPath(filename), 'utf8')
+function parseCsv(contents) {
   return parse(contents, { 
     columns: true,
     skip_empty_lines: true 
   })
+}
+
+function readFile(filename) {
+  return fs.readFileSync(getPath(filename), 'utf8')
 }
 
 function getPath(filename) {
