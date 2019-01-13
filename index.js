@@ -2,6 +2,7 @@ const parse    = require('csv-parse/lib/sync')
 const fs       = require('fs')
 const got      = require('got')
 const Parallel = require('async-parallel')
+const sharp    = require('sharp')
 
 async function main() {
   mkdir('build')
@@ -72,6 +73,10 @@ async function downloadImages(trees) {
         got.stream(imgUrl).pipe(fs.createWriteStream(filepath)).on('finish', resolve)
       })
 
+      let resizedData = await sharp(filepath).resize(1024, 1024, { fit: 'inside' })
+                                             .toBuffer()
+      fs.writeFileSync(filepath, resizedData)
+      
       console.log(`(${index}/${eolIds.length}) Downloaded image for ${eolId}.`)
 
       images[eolId] = 'https://storage.googleapis.com/public-tree-map/img/' + filename 
