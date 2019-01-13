@@ -71,7 +71,7 @@ async function downloadImages(trees) {
 
       console.log(`(${index}/${eolIds.length}) Downloaded image for ${eolId}.`)
 
-      images[eolId] = 'https://storage.googleapis.com/public-tree-map/img/' + filepath
+      images[eolId] = 'https://storage.googleapis.com/public-tree-map/' + filepath
     } catch (error) {
       console.warn(`(${index}/${eolIds.length}) Failed to fetch json for ${eolId}. Skipping.`)
     }
