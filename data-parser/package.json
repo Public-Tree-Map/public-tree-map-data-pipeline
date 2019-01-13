@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "async-parallel": "^1.2.3",
     "csv-parse": "^4.0.1",
-    "sqlite3": "^4.0.3"
+    "got": "^9.5.0"
   }
 }

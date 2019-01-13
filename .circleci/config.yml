@@ -20,7 +20,9 @@ jobs:
           gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
       - run: cd data-parser && npm install && node index.js
       - run: gsutil cp -Z data-parser/data.js gs://public-tree-map/js/
+      - run: gsutil cp -r data-parser/data.js gs://public-tree-map/js/
       - run: gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/js/data.js
+      - run: gsutil -m cp -r data-parser/img gs://public-tree-map/
     branches:
       only:
         - master
