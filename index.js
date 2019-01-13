@@ -4,6 +4,8 @@ const got      = require('got')
 const Parallel = require('async-parallel')
 
 async function main() {
+  mkdir('build')
+
   const startTime = new Date().getTime()
 
   let trees = await getBaseData()
@@ -13,16 +15,16 @@ async function main() {
   trees = await downloadImages(trees)
   console.log(`== Downloaded all images... (${new Date().getTime() - downloadStartTime} ms).`)
 
-  fs.writeFileSync('data.js', formatAsJsFile(trees))
+  mkdir('build/js')
+  fs.writeFileSync('build/js/data.js', formatAsJsFile(trees))
 
   console.log(`== Complete! (${new Date().getTime() - startTime} ms).`)
 }
 
 async function getBaseData() {
-  const species  = toMap(parseCsv(readFile('species_names.csv')), 'botanical_name')
-  const nativity = toMap(parseCsv(readFile('species_native_status_EOL_ID.csv')), 'botanical_name')
-  const idk = await got('https://data.smgov.net/resource/w8ue-6cnd.csv?$limit=50000')
-  const treesRaw = parseCsv(idk.body)
+  const species  = toMap(parseCsv(readFile('data/species_names.csv')), 'botanical_name')
+  const nativity = toMap(parseCsv(readFile('data/species_native_status_EOL_ID.csv')), 'botanical_name')
+  const treesRaw = parseCsv((await got('https://data.smgov.net/resource/w8ue-6cnd.csv?$limit=50000')).body)
 
   const trees = treesRaw.map(t => {
     const botanical = t['Name Botanical']
@@ -61,9 +63,10 @@ async function downloadImages(trees) {
 
       let imgUrl    = result.body.taxonConcept.dataObjects[0].eolMediaURL
       let extension = imgUrl.substring(imgUrl.lastIndexOf('.') + 1)
-      let filepath  = `img/${eolId}.${extension}`
+      let filename  = `${eolId}.${extension}`
+      let filepath  = `build/img/${filename}`
 
-      mkdir('img')
+      mkdir('build/img')
 
       await new Promise(resolve => {
         got.stream(imgUrl).pipe(fs.createWriteStream(filepath)).on('finish', resolve)
@@ -71,7 +74,7 @@ async function downloadImages(trees) {
 
       console.log(`(${index}/${eolIds.length}) Downloaded image for ${eolId}.`)
 
-      images[eolId] = 'https://storage.googleapis.com/public-tree-map/' + filepath
+      images[eolId] = 'https://storage.googleapis.com/public-tree-map/img/' + filename 
     } catch (error) {
       console.warn(`(${index}/${eolIds.length}) Failed to fetch json for ${eolId}. Skipping.`)
     }
@@ -82,8 +85,8 @@ async function downloadImages(trees) {
   return trees
 }
 
-function mkdir(dirName) {
-  fs.existsSync('img') || fs.mkdirSync('img')
+function mkdir(dirname) {
+  fs.existsSync(dirname) || fs.mkdirSync(dirname)
 }
 
 function makeFetchUrl(eolId) {
@@ -105,12 +108,8 @@ function parseCsv(contents) {
   })
 }
 
-function readFile(filename) {
-  return fs.readFileSync(getPath(filename), 'utf8')
-}
-
-function getPath(filename) {
-  return '../data/' + filename
+function readFile(filepath) {
+  return fs.readFileSync(filepath, 'utf8')
 }
 
 function toMap(data, key) {

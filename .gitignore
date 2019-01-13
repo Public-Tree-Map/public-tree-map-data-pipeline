@@ -1,5 +1,2 @@
-data-formatter/node_modules
-data-parser/node_modules
-image-dl-code/node_modules
-data-parser/img
-data-parser/data.js
+node_modules/
+build/
