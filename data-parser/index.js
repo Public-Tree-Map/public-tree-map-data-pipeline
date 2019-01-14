@@ -1,5 +1,6 @@
 const parse = require('csv-parse/lib/sync')
 const fs    = require('fs')
+const DownloadImages = require("../image-dl-code/DownloadImages");
 
 function main() {
   const species  = toMap(parseCsv('species_names.csv'), 'botanical_name')
@@ -26,7 +27,7 @@ function main() {
 
   fs.writeFileSync('data.js', prefix + body + suffix)
 
-  console.log('Complete!')
+  console.log('main() => Complete!')
 }
 
 function parseCsv(filename) {
@@ -51,4 +52,30 @@ function getOrDefault(map, key, field, defaultValue) {
   return map[key] && map[key][field] ? map[key][field] : defaultValue
 }
 
+async function downloadImages() {
+  console.log("downloadImages() => start");
+  const inputFileName = "species_native_status_EOL_ID.csv";
+  const outFileName = "../data/jpgs/csv/download_files_results.csv";
+  const errorFilename = "../data/jpgs/csv/download_files_error.csv";
+  const pngsPath = "../data/jpgs";
+  const logLevel = "all";
+
+  // create the object with settings
+  const downloadImages = new DownloadImages({
+    inputFileName,
+    outFileName,
+    errorFilename,
+    pngsPath,
+    logLevel
+  });
+
+  // run it
+  await downloadImages.run();
+
+  // this code shouldn't be called until downloadImages is done.
+  console.log("downloadImages() => Complete!");
+}
+
 main();
+
+downloadImages();

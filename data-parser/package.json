@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "csv-parse": "^4.0.1",
+    "node-fetch": "^2.3.0",
     "sqlite3": "^4.0.3"
   }
 }
