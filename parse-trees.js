@@ -75,6 +75,7 @@ function main() {
       'type':                    getOrDefault(extraData, botanical, 'type', 'Unknown'),
       'latitude':                t['Latitude'],
       'longitude':               t['Longitude'],
+      'location_description':    t['Location Description'],
       'nativity':                getOrDefault(extraData, botanical, 'native', 'Unknown'),
       'iucn_status':             getOrDefault(extraData, botanical, 'simplified_IUCN_status', 'Unknown'),
       'ipc_rating':              getOrDefault(extraData, botanical, 'Cal_IPC_rating', 'Unknown'),
