@@ -1,4 +1,3 @@
-(function() {
   const https = require("https");
   const http = require("http");
   const fetch = require("node-fetch");
@@ -264,4 +263,3 @@
   };
 
   module.exports = DownloadImages;
-})();

@@ -1,4 +1,4 @@
-(function() {
+
   // These are my testable functions
   const getMediaURL = function(data) {
     if (data == null || data == "") {
@@ -53,9 +53,9 @@
       return "";
     }
   }
-/**
- * LogObjects
- */
+  /**
+   * LogObjects
+   */
   class LogObjects {
     constructor(level = "error") {
       this.objectList = [];
@@ -102,27 +102,16 @@
       // get the keys from the first object
       const obj1 = errors[0];
       const titleRow = Object.keys(obj1.value).join(",");
-      return (titleRow +
+      return (
+        titleRow +
         "\n" +
         errors
           .map(item => {
             return Object.values(item.value).join(",");
           })
-          .join("\n"));
+          .join("\n")
+      );
     }
-    // toString() {
-    //   let filterFunction;
-    //   switch (this.level) {
-    //     case "error":
-    //     case 2:
-    //       filterFunction = item => item.key === "error";
-    //       break;
-    //     default:
-    //       filterFunction = () => true;
-    //       break;
-    //   }
-    //   return this.getCsv(filterFunction);
-    // }
   }
 
   module.exports = {
@@ -132,4 +121,3 @@
     HttpPicker,
     LogObjects
   };
-})();

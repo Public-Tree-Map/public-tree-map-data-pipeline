@@ -1,3 +1,4 @@
+// I need the IIF here to make it async
 (async function() {
   const DownloadImages = require("./DownloadImages");
 

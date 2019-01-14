@@ -1,4 +1,3 @@
-(function() {
   // These are files I got from data-parser/index.js
   const parse = require("csv-parse/lib/sync");
   const fs = require("fs");
@@ -16,4 +15,3 @@
   };
 
   module.exports = { parseCsv, getPath };
-})();
