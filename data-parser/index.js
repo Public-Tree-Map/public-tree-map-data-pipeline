@@ -27,7 +27,7 @@ function main() {
 
   fs.writeFileSync('data.js', prefix + body + suffix)
 
-  console.log('main() => Complete!')
+  console.log('Complete!')
 }
 
 function parseCsv(filename) {
