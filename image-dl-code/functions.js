@@ -3,10 +3,7 @@ const getMediaURL = function(data) {
   if (data == null || data == "") {
     return "";
   }
-  if (
-    data.taxonConcept.dataObjects &&
-    data.taxonConcept.dataObjects[0].mediaURL
-  ) {
+  if (data.taxonConcept.dataObjects && data.taxonConcept.dataObjects[0].mediaURL) {
     const actual = data.taxonConcept.dataObjects[0].mediaURL;
     return actual;
   }
