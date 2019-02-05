@@ -6,6 +6,8 @@ const sharp    = require('sharp')
 
 const DEBUG = !process.env.CI
 
+const SKIP_IMAGES = process.argv.length > 2 && process.argv[2] == '--skip-images'
+
 async function main() {
   mkdir('build')
   mkdir('tmp')
@@ -17,9 +19,14 @@ async function main() {
   let trees = await getBaseData()
   log(`== Parsed initial data... (${new Date().getTime() - startTime} ms)`)
 
-  let downloadStartTime = new Date().getTime()
-  trees = await downloadImages(trees)
-  log(`== Downloaded all images... (${new Date().getTime() - downloadStartTime} ms)`)
+  if (SKIP_IMAGES) {
+    log(`== Skipping image download...`)
+    trees.forEach(t => t['images'] = [])
+  } else {
+    let downloadStartTime = new Date().getTime()
+    trees = await downloadImages(trees)
+    log(`== Downloaded all images... (${new Date().getTime() - downloadStartTime} ms)`)
+  }
 
   console.log(JSON.stringify(trees, null, 2))
 
