@@ -7,12 +7,10 @@ const Parallel = require('async-parallel')
 const DEBUG = false
 
 async function main() {
-  log('Starting...')
-
   mkdir('build')
   mkdir('artifacts')
 
-  log('== Folders created...')
+  log('Starting...')
 
   const startTime = new Date().getTime()
 
