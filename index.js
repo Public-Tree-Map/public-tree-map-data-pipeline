@@ -16,8 +16,8 @@ async function main() {
   trees = await downloadImages(trees)
   console.log(`== Downloaded all images... (${new Date().getTime() - downloadStartTime} ms).`)
 
-  mkdir('build/js')
-  fs.writeFileSync('build/js/data.js', formatAsJsFile(trees))
+  mkdir('build/data')
+  fs.writeFileSync('build/data/trees.js', JSON.stringify(trees, null, 2))
 
   console.log(`== Complete! (${new Date().getTime() - startTime} ms).`)
 }
@@ -96,14 +96,6 @@ function mkdir(dirname) {
 
 function makeFetchUrl(eolId) {
   return `http://eol.org/api/pages/1.0.json?id=${eolId}&images_per_page=1&videos_per_page=0&sounds_per_page=0&maps_per_page=0&texts_per_page=0&details=true&taxonomy=false`
-}
-
-function formatAsJsFile(trees) {
-  const prefix = 'app.setData('
-  const body   = JSON.stringify(trees, null, 2)
-  const suffix = ');'
-
-  return prefix + body + suffix
 }
 
 function parseCsv(contents) {
