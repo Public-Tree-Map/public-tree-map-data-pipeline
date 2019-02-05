@@ -4,22 +4,29 @@ const got      = require('got')
 const Parallel = require('async-parallel')
 const sharp    = require('sharp')
 
+const DEBUG = !process.env.CI
+
 async function main() {
+  log('Starting...')
+
   mkdir('build')
+  mkdir('tmp')
+
+  log('== Folders created...')
 
   const startTime = new Date().getTime()
 
   let trees = await getBaseData()
-  console.log(`== Parsed initial data... (${new Date().getTime() - startTime} ms).`)
+  log(`== Parsed initial data... (${new Date().getTime() - startTime} ms)`)
 
   let downloadStartTime = new Date().getTime()
   trees = await downloadImages(trees)
-  console.log(`== Downloaded all images... (${new Date().getTime() - downloadStartTime} ms).`)
+  log(`== Downloaded all images... (${new Date().getTime() - downloadStartTime} ms)`)
 
   mkdir('build/data')
   fs.writeFileSync('build/data/trees.json', JSON.stringify(trees, null, 2))
 
-  console.log(`== Complete! (${new Date().getTime() - startTime} ms).`)
+  log(`== Complete! (${new Date().getTime() - startTime} ms)`)
 }
 
 async function getBaseData() {
@@ -59,7 +66,7 @@ async function downloadImages(trees) {
       let result = await got(makeFetchUrl(eolId), { json: true })
 
       if (!result.body.taxonConcept.dataObjects) {
-        return console.warn(`(${index}/${eolIds.length}) No image available for ${eolId}. Skipping.`)
+        return log(`(${index}/${eolIds.length}) No image available for ${eolId}. Skipping.`)
       }
 
       let imgUrl    = result.body.taxonConcept.dataObjects[0].eolMediaURL
@@ -77,11 +84,11 @@ async function downloadImages(trees) {
                                              .toBuffer()
       fs.writeFileSync(filepath, resizedData)
       
-      console.log(`(${index}/${eolIds.length}) Downloaded image for ${eolId}.`)
+      log(`(${index}/${eolIds.length}) Downloaded image for ${eolId}.`)
 
       images[eolId] = 'https://storage.googleapis.com/public-tree-map/img/' + filename 
     } catch (error) {
-      console.warn(`(${index}/${eolIds.length}) Failed to fetch json for ${eolId}. Skipping.`)
+      log(`(${index}/${eolIds.length}) Failed to fetch json for ${eolId}. Skipping.`)
     }
   }, 4)
 
@@ -117,6 +124,14 @@ function toMap(data, key) {
 
 function getOrDefault(map, key, field, defaultValue) {
   return map[key] && map[key][field] ? map[key][field] : defaultValue
+}
+
+function log(message) {
+  if (DEBUG) {
+    console.log(message)
+  } else {
+    fs.appendFileSync('tmp/log.txt', message + '\n')
+  }
 }
 
 main()
