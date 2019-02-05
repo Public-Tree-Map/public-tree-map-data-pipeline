@@ -25,6 +25,7 @@ jobs:
 
       - store_artifacts:
         path: /tmp/log.txt
+        destination: log.txt
 
 workflows:
   version: 2
