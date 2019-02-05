@@ -7,12 +7,10 @@ const sharp    = require('sharp')
 const DEBUG = !process.env.CI
 
 async function main() {
-  log('Starting...')
-
   mkdir('build')
   mkdir('tmp')
 
-  log('== Folders created...')
+  log('Starting...')
 
   const startTime = new Date().getTime()
 
