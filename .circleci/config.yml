@@ -24,8 +24,8 @@ jobs:
       - run: gsutil -m cp -r build/img gs://public-tree-map/
 
       - store_artifacts:
-        path: /tmp/log.txt
-        destination: log.txt
+          path: /tmp/log.txt
+          destination: log.txt
 
 workflows:
   version: 2
