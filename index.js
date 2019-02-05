@@ -20,7 +20,7 @@ async function main() {
   log(`== Parsed initial data... (${new Date().getTime() - startTime} ms)`)
 
   let downloadStartTime = new Date().getTime()
-  trees = await downloadImages(trees)
+  //  trees = await downloadImages(trees)
   log(`== Downloaded all images... (${new Date().getTime() - downloadStartTime} ms)`)
 
   mkdir('build/data')
