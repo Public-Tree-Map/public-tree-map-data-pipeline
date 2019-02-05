@@ -17,7 +17,7 @@ async function main() {
   console.log(`== Downloaded all images... (${new Date().getTime() - downloadStartTime} ms).`)
 
   mkdir('build/data')
-  fs.writeFileSync('build/data/trees.js', JSON.stringify(trees, null, 2))
+  fs.writeFileSync('build/data/trees.json', JSON.stringify(trees, null, 2))
 
   console.log(`== Complete! (${new Date().getTime() - startTime} ms).`)
 }

@@ -19,8 +19,8 @@ jobs:
           echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
           gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
       - run: node index.js
-      - run: gsutil cp -Z build/js/data.js gs://public-tree-map/js/
-      - run: gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/js/data.js
+      - run: gsutil cp -Z build/data/trees.json gs://public-tree-map/data/
+      - run: gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/trees.json
       - run: gsutil -m cp -r build/img gs://public-tree-map/
 
 workflows:
