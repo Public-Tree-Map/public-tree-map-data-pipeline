@@ -21,8 +21,7 @@ async function main() {
   trees = await downloadImages(trees)
   log(`== Downloaded all images... (${new Date().getTime() - downloadStartTime} ms)`)
 
-  mkdir('build/data')
-  fs.writeFileSync('build/data/trees.json', JSON.stringify(trees, null, 2))
+  console.log(JSON.stringify(trees, null, 2))
 
   log(`== Complete! (${new Date().getTime() - startTime} ms)`)
 }

@@ -13,12 +13,10 @@ jobs:
       - run: nvm install 9.11.1
       - run: nvm use 9.11.1
       - run: npm install
-      - run: echo $GCLOUD_SERVICE_KEY
-      - run: echo $GOOGLE_PROJECT_ID
+      - run: ./build-trees.sh
       - run: |
           echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
           gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-      - run: node index.js
       - run: gsutil cp -Z build/data/trees.json gs://public-tree-map/data/
       - run: gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/trees.json
       - run: gsutil -m cp -r build/img gs://public-tree-map/
