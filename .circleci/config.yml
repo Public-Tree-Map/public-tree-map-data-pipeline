@@ -23,6 +23,10 @@ jobs:
       - run: gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/trees.json
       - run: gsutil -m cp -r build/img gs://public-tree-map/
 
+      - store_artifacts:
+          path: /artifacts/log.txt
+          destination: log.txt
+
 workflows:
   version: 2
   commit:

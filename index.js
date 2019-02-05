@@ -4,13 +4,13 @@ const got      = require('got')
 const Parallel = require('async-parallel')
 //const sharp    = require('sharp')
 
-const DEBUG = !process.env.CI
+const DEBUG = false
 
 async function main() {
   log('Starting...')
 
   mkdir('build')
-  mkdir('tmp')
+  mkdir('artifacts')
 
   log('== Folders created...')
 
@@ -130,7 +130,7 @@ function log(message) {
   if (DEBUG) {
     console.log(message)
   } else {
-    fs.appendFileSync('tmp/log.txt', message + '\n')
+    fs.appendFileSync('artifacts/log.txt', message + '\n')
   }
 }
 
