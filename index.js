@@ -2,7 +2,7 @@ const parse    = require('csv-parse/lib/sync')
 const fs       = require('fs')
 const got      = require('got')
 const Parallel = require('async-parallel')
-const sharp    = require('sharp')
+//const sharp    = require('sharp')
 
 const DEBUG = !process.env.CI
 
