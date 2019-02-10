@@ -1,4 +1,5 @@
 #!/bin/bash
 
 mkdir -p build/data
-node index.js > build/data/trees.json
+
+curl 'https://data.smgov.net/resource/w8ue-6cnd.csv?$limit=50000' | node parse-trees.js | node download-images.js > build/data/trees.json
