@@ -2,6 +2,30 @@
 
 Public Tree Map uses open datasets to document publicly owned park + street + landmark trees in Santa Monica, California. Please see below for more information about the data sources and project.
 
+## Running the Pipeline Locally
+
+Prerequisites:
+- `make`
+- `node`
+
+After a fresh clone, run `npm install` to install the necessary node modules.
+
+To run the full pipeline, which will download the latest tree data and all
+images, run:
+
+```bash
+make release
+```
+
+To skip lengthy network requests, you can run a smaller version of the pipeline
+with:
+
+```bash
+make local-only
+```
+
+See the `Makefile` for other rules that are available.
+
 ## Protocol for pull requests + code review
 
 - Please review open issues and link your pull request to the relevant issue.
