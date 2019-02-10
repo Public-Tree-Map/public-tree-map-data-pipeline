@@ -13,7 +13,7 @@ jobs:
       - run: nvm install 9.11.1
       - run: nvm use 9.11.1
       - run: npm install
-      - run: ./build-trees.sh
+      - run: make release
       - run: |
           echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
           gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
