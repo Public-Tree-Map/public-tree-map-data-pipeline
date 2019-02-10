@@ -26,6 +26,17 @@ make local-only
 
 See the `Makefile` for other rules that are available.
 
+### Viewing the Logs
+
+The various scripts that makeup the pipeline rely on reading/writing to stdin 
+and stdout, so the scripts can't log to stdout like you'd expect. Instead, they
+write to a log file that's located at tmp/log.txt. If you'd like to watch logs
+as they happen, simply run:
+
+```bash
+tail -f tmp/log.txt
+```
+
 ## Protocol for pull requests + code review
 
 - Please review open issues and link your pull request to the relevant issue.
