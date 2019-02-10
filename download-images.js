@@ -82,7 +82,7 @@ async function main() {
 
   trees.forEach(t => t['images'] = images[t.eol_id] ? [images[t.eol_id]] : [])
 
-  return trees
+  console.log(JSON.stringify(trees, null, 2))
 }
 
 function makeFetchUrl(eolId) {
