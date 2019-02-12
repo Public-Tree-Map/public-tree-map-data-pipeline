@@ -53,6 +53,7 @@ function main() {
   const trees = treesRaw.map(t => {
     const botanical = t['Name Botanical']
     return {
+      'tree_id':               t['Tree ID'],
       'name_botanical':        botanical,
       'name_common':           t['Name Common'],
       'family_name_botanical': getOrDefault(species, botanical, 'family_botanical_name', 'Unknown'),
