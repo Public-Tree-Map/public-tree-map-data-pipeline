@@ -46,9 +46,8 @@ function main() {
 
   const stdinTime = new Date().getTime()
 
-  const species  = toMap(parseCsv(readFile('data/species_names.csv')), 'botanical_name')
-  const nativity = toMap(parseCsv(readFile('data/species_native_status_EOL_ID.csv')), 'botanical_name')
-  const treesRaw = parseCsv(csvRaw)
+  const extraData = toMap(parseCsv(readFile('data/species_attributes.csv')), 'botanical_name')
+  const treesRaw  = parseCsv(csvRaw)
 
   const trees = treesRaw.map(t => {
     const botanical = t['Name Botanical']
@@ -56,12 +55,12 @@ function main() {
       'tree_id':               t['Tree ID'],
       'name_botanical':        botanical,
       'name_common':           t['Name Common'],
-      'family_name_botanical': getOrDefault(species, botanical, 'family_botanical_name', 'Unknown'),
+      'family_name_botanical': getOrDefault(extraData, botanical, 'family_botanical_name', 'Unknown'),
       'height_group':          t['Height Group'],
       'latitude':              t['Latitude'],
       'longitude':             t['Longitude'],
-      'nativity':              getOrDefault(nativity, botanical, 'native', 'Unknown'),
-      'eol_id':                getOrDefault(nativity, botanical, 'EOL_ID', -1)
+      'nativity':              getOrDefault(extraData, botanical, 'native', 'Unknown'),
+      'eol_id':                getOrDefault(extraData, botanical, 'EOL_ID', -1)
     }
   })
 
