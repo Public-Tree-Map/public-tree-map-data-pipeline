@@ -33,7 +33,10 @@
  *     ipc_rating: 'moderate',
  *     ipc_url: 'https://website.com',
  *     eol_id: 12345,
- *     eol_url: 'https://eol.org/mah_tree'
+ *     eol_url: 'https://eol.org/mah_tree',
+ *     address: '123 Made Up Street',
+ *     city: 'Santa Monica',
+ *     state: 'CA'
  *   },
  *   ...
  * ]
@@ -77,7 +80,10 @@ function main() {
       'ipc_rating':              getOrDefault(extraData, botanical, 'Cal_IPC_rating', 'Unknown'),
       'ipc_url':                 getOrDefault(extraData, botanical, 'Cal_IPC_url', ''),
       'eol_id':                  getOrDefault(extraData, botanical, 'EOL_ID', -1),
-      'eol_url':                 getOrDefault(extraData, botanical, 'EOL_overview_URL', '')
+      'eol_url':                 getOrDefault(extraData, botanical, 'EOL_overview_URL', ''),
+      'address':                 t['Address'] + ' ' + t['Street'],
+      'city':                    'Santa Monica',
+      'state':                   'CA'
     }
   })
 
