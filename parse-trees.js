@@ -17,14 +17,23 @@
  * ```
  * [
  *   {
+ *     tree_id: 1234567,
  *     name_botanical: 'treeus fancyus',
  *     name_common: 'tree',
  *     family_name_botanical: 'familyus',
  *     height_group: 1,
+ *     shade_production: 'dense',
+ *     irrigation_requirements: 'minimal',
+ *     form: 'rounded',
+ *     type: 'evergreen',
  *     latitude: 123.456,
  *     longitude: 456.679,
  *     nativity: 'native',
- *     eol_id: 12345
+ *     iucn_status: 'endangered',
+ *     ipc_rating: 'moderate',
+ *     ipc_url: 'https://website.com',
+ *     eol_id: 12345,
+ *     eol_url: 'https://eol.org/mah_tree'
  *   },
  *   ...
  * ]
@@ -52,15 +61,23 @@ function main() {
   const trees = treesRaw.map(t => {
     const botanical = t['Name Botanical']
     return {
-      'tree_id':               t['Tree ID'],
-      'name_botanical':        botanical,
-      'name_common':           t['Name Common'],
-      'family_name_botanical': getOrDefault(extraData, botanical, 'family_botanical_name', 'Unknown'),
-      'height_group':          t['Height Group'],
-      'latitude':              t['Latitude'],
-      'longitude':             t['Longitude'],
-      'nativity':              getOrDefault(extraData, botanical, 'native', 'Unknown'),
-      'eol_id':                getOrDefault(extraData, botanical, 'EOL_ID', -1)
+      'tree_id':                 t['Tree ID'],
+      'name_botanical':          botanical,
+      'name_common':             t['Name Common'],
+      'family_name_botanical':   getOrDefault(extraData, botanical, 'family_botanical_name', 'Unknown'),
+      'height_group':            t['Height Group'],
+      'shade_production':        getOrDefault(extraData, botanical, 'shade_production', 'Unknown'),
+      'irrigation_requirements': getOrDefault(extraData, botanical, 'Irrigation_Requirements', 'Unknown'),
+      'form':                    getOrDefault(extraData, botanical, 'form', 'Unknown'),
+      'type':                    getOrDefault(extraData, botanical, 'type', 'Unknown'),
+      'latitude':                t['Latitude'],
+      'longitude':               t['Longitude'],
+      'nativity':                getOrDefault(extraData, botanical, 'native', 'Unknown'),
+      'iucn_status':             getOrDefault(extraData, botanical, 'simplified_IUCN_status', 'Unknown'),
+      'ipc_rating':              getOrDefault(extraData, botanical, 'Cal_IPC_rating', 'Unknown'),
+      'ipc_url':                 getOrDefault(extraData, botanical, 'Cal_IPC_url', ''),
+      'eol_id':                  getOrDefault(extraData, botanical, 'EOL_ID', -1),
+      'eol_url':                 getOrDefault(extraData, botanical, 'EOL_overview_URL', '')
     }
   })
 
