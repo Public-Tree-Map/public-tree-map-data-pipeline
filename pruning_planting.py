@@ -8,6 +8,10 @@ import geopandas as gpd
 from shapely.geometry import Point
 
 def load_dataset(name):
+    """
+    Given a file path, load the data into a geodataframe,
+    reproject it into WGS84, and return the geodataframe.
+    """
     # Load the street planting shape data, reprojecting into WGS84
     gdf = gpd.read_file(name, crs='+init=epsg:2229')
     gdf = gdf.to_crs({'init': 'epsg:4326', 'no_defs': True})
@@ -15,6 +19,18 @@ def load_dataset(name):
 
 
 def planting_for_trees(trees):
+    """
+    Match a replacement species and planting year for
+    all the trees in a dataframe.
+
+    The input is a dataframe with a record for each tree.
+    The columns of the dataframe are the same as the JSON properties
+    described in the "parse-trees.js" script.
+
+    This returns a new dataframe which is the same as the old one,
+    but includes columns for street segment, planting year, and
+    replacement species.
+    """
     # Load the street planting shape data, reprojecting into WGS84
     planting_street_segments = load_dataset("data/planting/TreePlanting_Streets.shp")
     planting_median_segments = load_dataset("data/planting/TreePlanting_Medians.shp")
@@ -51,6 +67,15 @@ def planting_for_trees(trees):
 
 
 def pruning_for_trees(trees):
+    """
+    Match pruning year for a trees dataframe.
+
+    This takes the same dataframe type that is described in `planting_for_trees`,
+    but it assumes that planting_for_trees has already been run, as it
+    relies on the street segment having been identified.
+
+    Returns a dataframe with a "pruning_year" column.
+    """
     years = {"1718": "2017-2018", "1819": "2018-2019", "1920": "2019-2020"}
     for year in years:
         name_streets = f"data/pruning/pruning{year}_streets.shp"

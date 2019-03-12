@@ -28,6 +28,7 @@
  *     type: 'evergreen',
  *     latitude: 123.456,
  *     longitude: 456.679,
+ *     location_description: 'street',
  *     nativity: 'native',
  *     iucn_status: 'endangered',
  *     ipc_rating: 'moderate',
