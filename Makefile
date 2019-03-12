@@ -6,6 +6,7 @@ setup:
 release: setup
 	curl 'https://data.smgov.net/resource/w8ue-6cnd.csv?$$limit=50000' \
 	  | node parse-trees.js \
+	  | python pruning_planting.py \
 	  | node download-images.js \
 	  > build/data/trees.json
 
@@ -19,6 +20,7 @@ no-images: setup
 local-only: setup
 	cat data/trees.csv \
 	  | node parse-trees.js \
+	  | python pruning_planting.py \
 	  > build/data/trees.json
 
 # Removes build artifacts
