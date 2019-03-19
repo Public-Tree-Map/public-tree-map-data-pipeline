@@ -35,7 +35,7 @@ workflows:
       - deploy:
           filters:
             branches:
-              only: zones
+              only: master
   nightly:
     triggers:
       - schedule:
