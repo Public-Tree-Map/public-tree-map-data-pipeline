@@ -68,7 +68,7 @@ async function main() {
     }
   }, 4)
 
-  trees.forEach(t => t['images'] = images[t.eol_id] ? [images[t.eol_id]] : [])
+  trees.forEach(t => t['images'] = images[t.eol_id] ? images[t.eol_id] : [])
 
   console.log(JSON.stringify(trees, null, 2))
 }
