@@ -53,30 +53,18 @@ async function main() {
       let result = await got(makeFetchUrl(eolId), { json: true })
 
       if (!result.body.taxonConcept.dataObjects) {
-        return log(`(${index}/${eolIds.length}) No image available for ${eolId}. Skipping.`)
+        return log(`(${index}/${eolIds.length}) No images available for ${eolId}. Skipping.`)
       }
 
-      let imgUrl    = result.body.taxonConcept.dataObjects[0].eolMediaURL
-      let extension = imgUrl.substring(imgUrl.lastIndexOf('.') + 1)
-      let filename  = `${eolId}.${extension}`
-      let filepath  = `build/img/${filename}`
+      images[eolId] = images[eolId] || []
 
-      mkdir('build')
-      mkdir('build/img')
-
-      await new Promise(resolve => {
-        got.stream(imgUrl).pipe(fs.createWriteStream(filepath)).on('finish', resolve)
-      })
-
-      let resizedData = await sharp(filepath).resize(1024, 1024, { fit: 'inside' })
-                                             .toBuffer()
-      fs.writeFileSync(filepath, resizedData)
-      
-      log(`(${index}/${eolIds.length}) Downloaded image for ${eolId} (${new Date().getTime() - startTime} ms).`)
-
-      images[eolId] = 'https://storage.googleapis.com/public-tree-map/img/' + filename 
+      for (let i = 0; i < result.body.taxonConcept.dataObjects.length; i++) {
+        let image = await processImage(result.body.taxonConcept.dataObjects[i], eolId, i)
+        images[eolId].push(image)
+        log(`(${index}/${eolIds.length}) Downloaded image #${i + 1} for ${eolId} (${new Date().getTime() - startTime} ms).`)
+      }
     } catch (error) {
-      log(`(${index}/${eolIds.length}) Failed to fetch json for ${eolId}. Skipping.`)
+      log(`(${index}/${eolIds.length}) Failed to fetch data for ${eolId}. Skipping.`)
     }
   }, 4)
 
@@ -85,8 +73,35 @@ async function main() {
   console.log(JSON.stringify(trees, null, 2))
 }
 
+async function processImage(data, eolId, index) {
+  let imgUrl    = data.eolMediaURL
+  let extension = imgUrl.substring(imgUrl.lastIndexOf('.') + 1)
+  let filename  = `${eolId}_${index + 1}.${extension}`
+  let filepath  = `build/img/${filename}`
+  let author    = {
+    name: data.rightsHolder ? data.rightsHolder.trim() : '',
+    url : `https://eol.org/pages/${eolId}/media`,
+  }
+
+  mkdir('build')
+  mkdir('build/img')
+
+  await new Promise(resolve => {
+    got.stream(imgUrl).pipe(fs.createWriteStream(filepath)).on('finish', resolve)
+  })
+
+  let resizedData = await sharp(filepath).resize(1024, 1024, { fit: 'inside' })
+                                         .toBuffer()
+  fs.writeFileSync(filepath, resizedData)
+  
+  return {
+    url   : 'https://storage.googleapis.com/public-tree-map/img/' + filename,
+    author: author
+  }
+}
+
 function makeFetchUrl(eolId) {
-  return `http://eol.org/api/pages/1.0.json?id=${eolId}&images_per_page=1&videos_per_page=0&sounds_per_page=0&maps_per_page=0&texts_per_page=0&details=true&taxonomy=false`
+  return `http://eol.org/api/pages/1.0.json?id=${eolId}&images_per_page=3&videos_per_page=0&sounds_per_page=0&maps_per_page=0&texts_per_page=0&details=true&taxonomy=false`
 }
 
 main()

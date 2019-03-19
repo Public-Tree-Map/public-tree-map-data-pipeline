@@ -10,6 +10,13 @@ release: setup
 	  | node download-images.js \
 	  > build/data/trees.json
 
+# Runs the pipeline using local data, but skips the CPU-intensive python tasks
+img-test: setup
+	cat data/trees.csv \
+	  | node parse-trees.js \
+	  | node download-images.js \
+	  > build/data/trees.json
+
 # Runs the pipeline, but skips downloading images
 no-images: setup
 	curl 'https://data.smgov.net/resource/w8ue-6cnd.csv?$$limit=50000' \
