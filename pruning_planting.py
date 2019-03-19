@@ -3,6 +3,7 @@ Data processing for tree data.
 """
 import json
 
+import numpy as np
 import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
@@ -94,6 +95,21 @@ def pruning_for_trees(trees):
 
     trees["pruning_year"] = trees.apply(collapse_years, axis=1)
     trees = trees.drop([y for y in years], axis=1)
+
+
+    pruning_zones = load_dataset("data/pruning/pruning_zones.shp")
+    def get_pruning_zone(tree):
+        """
+        Given a row from the trees dataset, find the pruning zone that contains
+        it. Then return that segment id, planting year, and replacement species.
+        """
+        # Construct a shapely point from the tree data
+        pt = Point(tree["longitude"], tree["latitude"])
+        for zone in pruning_zones.iterrows():
+            if zone[1].geometry.contains(pt):
+                return zone[1]["Id"]
+        return np.nan
+    trees["pruning_zone"] = trees.apply(get_pruning_zone, axis=1)
 
     return trees
 
