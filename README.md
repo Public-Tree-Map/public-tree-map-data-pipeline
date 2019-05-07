@@ -37,6 +37,24 @@ as they happen, simply run:
 tail -f tmp/log.txt
 ```
 
+### General Thoughts on the Pipeline
+
+We don't want a server. To avoid this, we serve static data as JSON via a Google 
+Cloud bucket. This has a number of benefits, namely cost and client simplicity.
+
+The pipeline in general works like this:
+
+- Start with tree data provided by Santa Monica.
+- End with one JSON file that can be used to render the map, and a series of 
+  JSON files that represent the details of each individual tree.
+- In between, we break down each augmentation/alteration of the data into a
+  series of distinct processes, each of which reads from stdin and writes to
+  stdout. Examples include doing the initial parse of the CSV, and finding
+  images for each tree.
+- Each of these scripts are written and documented extensively.
+- The Makefile composes these scripts into a set of routines.
+- CircleCI will run the `make release` script nightly to update the data.
+
 ## Protocol for pull requests + code review
 
 - Please review open issues and link your pull request to the relevant issue.
