@@ -28,7 +28,7 @@ Araucaria heterophylla,NORFOLK ISLAND PINE,84,Araucariaceae,Araucaria,exotic,103
 Arbutus 'Marina',MARINA ARBUTUS,486,Ericaceae,Heather,exotic,71122,http://eol.org/pages/71122/overview,not listed,not listed,,dense,rounded,evergreen,,,
 Arbutus unedo,STRAWBERRY TREE,315,Ericaceae,Heather,exotic,583608,http://eol.org/pages/583608/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T202930A68076133.en,dense,rounded,evergreen,,,minimal
 Archontophoenix cunninghamiana,KING PALM,63,Arecaceae,Palm,exotic,1136266,http://eol.org/pages/1136266/overview,not listed,not listed,,"little, none",palm,evergreen,,,
-Asphalted well,Asphalted well,638,,,,,not listed,not listed,,,,,,,
+Asphalted well,Asphalted well,638,,,,,,not listed,not listed,,,,,,,
 Auranticarpa rhombifolium,QUEENSLAND PITTOSPORUM,100,Pittosporaceae,Cheesewood,exotic,5556305,http://eol.org/pages/5556305/overview,not listed,not listed,,dense,rounded,,,,
 Bauhinia blakeana,HONG KONG ORCHID TREE,250,Fabaceae,Legume,exotic,641500,http://eol.org/pages/641500/overview,not listed,not listed,,dense,"pendulous, spreading",,,,minimal
 Bauhinia variegata,Purple Orchid Tree,97,Fabaceae,Legume,exotic,702916,http://eol.org/pages/702916/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2012.RLTS.T19893142A20028421.en,dense,"pendulous, spreading",,,,minimal
@@ -264,8 +264,8 @@ Schinus terebinthifolius,BRAZILIAN PEPPER,14,Anacardiaceae,Sumac,exotic,49905957
 Sequoia sempervirens,COAST REDWOOD,35,Cupressaceae,Cypress,native,1034849,http://eol.org/pages/1034849/overview,Endangered,Endangered A2acd,http://www.iucnredlist.org/details/34051/0,dense,conical,evergreen,,,high
 Stenocarpus sinuatus,FIREWHEEL TREE,171,Proteaceae,Protea,exotic,582737,http://eol.org/pages/582737/overview,not listed,not listed,,filtered,,,,,moderate
 Strelitzia nicolai,GIANT BIRD OF PARADISE,321,Strelitziaceae,Strelitzia,exotic,345179,http://eol.org/pages/345179/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
-Stump,STUMP,225,,,,,not listed,not listed,,,,,,,
-Stump - not accessible,STUMP - NOT ACCESSIBLE,1434,,,,,not listed,not listed,,,,,,,
+Stump,STUMP,225,,,,,,not listed,not listed,,,,,,,
+Stump - not accessible,STUMP - NOT ACCESSIBLE,1434,,,,,,not listed,not listed,,,,,,,
 Styphnolobium japonicum,Japanese Pagoda Tree,265,Fabaceae,Legume,exotic,702857,http://eol.org/pages/702857/overview,not listed,not listed,,"filtered, dense",,,,,
 Syagrus romanzoffianum,QUEEN PALM,99,Arecaceae,Palm,exotic,1129524,http://eol.org/pages/1129524/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
 Syzygium paniculatum,BRUSH CHERRY,17,Myrtaceae,Myrtle,exotic,2508667,http://eol.org/pages/2508667/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
@@ -284,9 +284,9 @@ Ulmus parvifolia 'Drake',DRAKE ELM,462,Ulmaceae,Elm,exotic,595062,http://eol.org
 Ulmus propinqua 'Emerald Sunshine',Emerald Sunshine Elm,1768,,exotic,595062,http://eol.org/pages/595062/overview,not listed,not listed,,"filtered, dense",vase,,,,
 Ulmus pumila,SIBERIAN ELM,111,Ulmaceae,Elm,exotic,594950,http://www.eol.org/pages/594950/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T61967372A61967374.en,filtered,"spreading, rounded",deciduous,,,moderate
 Umbellularia californica,California Bay,20,Lauraceae,Laurel,native,596841,http://eol.org/pages/596841/overview,not listed,not listed,,filtered,rounded,evergreen,,,"none, once established"
-Unidentified spp.,Unidentified Tree,1506,,,,,not listed,not listed,,,,,,,
-Unsuitable site,UNSUITABLE SITE,237,,,,,not listed,not listed,,,,,,,
-Vacant site,VACANT SITE,238,,,,,not listed,not listed,,,,,,,
+Unidentified spp.,Unidentified Tree,1506,,,,,,not listed,not listed,,,,,,,
+Unsuitable site,UNSUITABLE SITE,237,,,,,,not listed,not listed,,,,,,,
+Vacant site,VACANT SITE,238,,,,,,not listed,not listed,,,,,,,
 Viburnum spp.,Viburnum,571,Adoxaceae,Adoxas,exotic,490016,https://eol.org/pages/490016/overview,not listed,not listed,,dense,,,,,moderate
 Washingtonia filifera,CALIFORNIA FAN PALM,21,Arecaceae,Palm,native,1127834,http://www.eol.org/pages/1127834/overview,Lower Risk/near threatened,Lower Risk/near threatened,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38725A10145920.en,little,,,,,"none, once established"
 Washingtonia filifera X robusta,Filibuster Hybrid Fan Palm,557,Arecaceae,Palm,exotic,,,not listed,not listed,,"little, none",palm,evergreen,,,
