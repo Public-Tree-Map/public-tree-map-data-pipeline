@@ -1,299 +1,299 @@
-botanical_name,common_name,Species ID,family_botanical_name,native,EOL_ID,EOL_overview_URL,simplified_IUCN_status,IUCN_status,IUCN_DOI_or_URL,shade_production,form,type,Cal_IPC_rating,CAL_IPC_url,Irrigation_Requirements
-Acacia baileyana,BAILEY ACACIA,144,Fabaceae,exotic,649008,http://eol.org/pages/649008/overview,not listed,not listed,,dense,spreading,evergreen,watch,https://www.cal-ipc.org/plants/risk/acacia-baileyana-risk/,"none, once established"
-Acacia baileyana 'Purpurea',Purple Acacia,1102,Fabaceae,exotic,649008,http://eol.org/pages/649008/overview,not listed,not listed,,dense,spreading,evergreen,watch,https://www.cal-ipc.org/plants/risk/acacia-baileyana-risk/,"none, once established"
-Acacia cognata,River Wattle,274,Fabaceae,exotic,660740,http://eol.org/pages/660740/overview,not listed,not listed,,dense,"small, spreading",,,,
-Acacia longifolia,Sydney Golden Wattle,338,Fabaceae,exotic,690308,http://eol.org/pages/690308/overview,not listed,not listed,,dense,rounded,,,,
-Acacia melanoxylon,BLACK ACACIA,145,Fabaceae,exotic,8684941,http://eol.org/pages/8684941/overview,not listed,not listed,,dense,rounded,evergreen,limited,https://www.cal-ipc.org/plants/paf/acacia-melanoxylon-plant-assessment-form/,"none, once established"
-Acacia stenophylla,Shoestring Acacia,415,Fabaceae,exotic,643396,http://eol.org/pages/643396/overview,not listed,not listed,,filtered,"weeping, pendulous",,,,
-Acca sellowiana,Pinapple Guava,207,Myrtaceae,exotic,2508674,http://eol.org/pages/2508674/overview,not listed,not listed,,filtered,rounded,,,,
-Acer palmatum,JAPANESE MAPLE,188,Sapindaceae,exotic,596824,http://eol.org/pages/596824/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T193845A2285627.en,dense,"spreading, vase",,,,moderate
-Acer paxii,Acer Paxii,137,Sapindaceae,exotic,2888996,http://eol.org/pages/2888996/overview,not listed,not listed,,dense,rounded,,,,
-Acer rubrum,Red Maple,104,Sapindaceae,exotic,582246,http://eol.org/pages/582246/overview,Least Concern,Learn Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T193860A2287111.en,filtered,"Conical, rounded, Spreading",,,,
-Acer saccharinum,SILVER MAPLE,115,Sapindaceae,exotic,583072,http://eol.org/pages/583072/overview,Least Concern,Learn Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T193862A2287256.en,dense,"spreading, vase",,,,
-Acer spp.,Maple,72,Sapindaceae,exotic,47125858,https://eol.org/pages/47125858/overview,not listed,not listed,,dense,rounded,,,,
-Acmena smithii,LILLY-PILLY TREE,195,Myrtaceae,exotic,47381883,http://eol.org/pages/47381883/overview,not listed,not listed,,dense,rounded,evergreen,,,
-Afrocarpus gracilior,FERN PINE,46,Podocarpaceae,exotic,1033605,http://eol.org/pages/1033605/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42439A2980350.en,dense,rounded,,,,
-Afrocarpus macrophyllus,YEW PINE,134,Podocarpaceae,exotic,1059922,http://eol.org/pages/1059922/overview,not listed,not listed,,dense,rounded,,,,
-Agathis robusta,Queensland Kauri,269,Araucariaceae,exotic,1033628,http://eol.org/pages/1033628/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T16437966A2960124.en,dense,rounded,,,,
-Agonis flexuosa,PEPPERMINT TREE,307,Myrtaceae,exotic,5448625,http://eol.org/pages/5448625/overview,not listed,not listed,,filtered,pendulous,,,,minimal
-Ailanthus altissima,TREE OF HEAVEN,233,Simaroubaceae,exotic,5614169,http://eol.org/pages/5614169/overview,not listed,not listed,,dense,"spreading, vase",,moderate,https://www.cal-ipc.org/plants/paf/ailanthus-altissima-plant-assessment-form/,
+botanical_name,common_name,Species ID,family_botanical_name,family_common_name,native,EOL_ID,EOL_overview_URL,simplified_IUCN_status,IUCN_status,IUCN_DOI_or_URL,shade_production,form,type,Cal_IPC_rating,CAL_IPC_url,Irrigation_Requirements
+Acacia baileyana,BAILEY ACACIA,144,Fabaceae,Legume,exotic,649008,http://eol.org/pages/649008/overview,not listed,not listed,,dense,spreading,evergreen,watch,https://www.cal-ipc.org/plants/risk/acacia-baileyana-risk/,"none, once established"
+Acacia baileyana 'Purpurea',Purple Acacia,1102,Fabaceae,Legume,exotic,649008,http://eol.org/pages/649008/overview,not listed,not listed,,dense,spreading,evergreen,watch,https://www.cal-ipc.org/plants/risk/acacia-baileyana-risk/,"none, once established"
+Acacia cognata,River Wattle,274,Fabaceae,Legume,exotic,660740,http://eol.org/pages/660740/overview,not listed,not listed,,dense,"small, spreading",,,,
+Acacia longifolia,Sydney Golden Wattle,338,Fabaceae,Legume,exotic,690308,http://eol.org/pages/690308/overview,not listed,not listed,,dense,rounded,,,,
+Acacia melanoxylon,BLACK ACACIA,145,Fabaceae,Legume,exotic,8684941,http://eol.org/pages/8684941/overview,not listed,not listed,,dense,rounded,evergreen,limited,https://www.cal-ipc.org/plants/paf/acacia-melanoxylon-plant-assessment-form/,"none, once established"
+Acacia stenophylla,Shoestring Acacia,415,Fabaceae,Legume,exotic,643396,http://eol.org/pages/643396/overview,not listed,not listed,,filtered,"weeping, pendulous",,,,
+Acca sellowiana,Pinapple Guava,207,Myrtaceae,Myrtle,exotic,2508674,http://eol.org/pages/2508674/overview,not listed,not listed,,filtered,rounded,,,,
+Acer palmatum,JAPANESE MAPLE,188,Sapindaceae,Soapberry,exotic,596824,http://eol.org/pages/596824/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T193845A2285627.en,dense,"spreading, vase",,,,moderate
+Acer paxii,Acer Paxii,137,Sapindaceae,Soapberry,exotic,2888996,http://eol.org/pages/2888996/overview,not listed,not listed,,dense,rounded,,,,
+Acer rubrum,Red Maple,104,Sapindaceae,Soapberry,exotic,582246,http://eol.org/pages/582246/overview,Least Concern,Learn Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T193860A2287111.en,filtered,"Conical, rounded, Spreading",,,,
+Acer saccharinum,SILVER MAPLE,115,Sapindaceae,Soapberry,exotic,583072,http://eol.org/pages/583072/overview,Least Concern,Learn Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T193862A2287256.en,dense,"spreading, vase",,,,
+Acer spp.,Maple,72,Sapindaceae,Soapberry,exotic,47125858,https://eol.org/pages/47125858/overview,not listed,not listed,,dense,rounded,,,,
+Acmena smithii,LILLY-PILLY TREE,195,Myrtaceae,Myrtle,exotic,47381883,http://eol.org/pages/47381883/overview,not listed,not listed,,dense,rounded,evergreen,,,
+Afrocarpus gracilior,FERN PINE,46,Podocarpaceae,Podocarp,exotic,1033605,http://eol.org/pages/1033605/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42439A2980350.en,dense,rounded,,,,
+Afrocarpus macrophyllus,YEW PINE,134,Podocarpaceae,Podocarp,exotic,1059922,http://eol.org/pages/1059922/overview,not listed,not listed,,dense,rounded,,,,
+Agathis robusta,Queensland Kauri,269,Araucariaceae,Araucaria,exotic,1033628,http://eol.org/pages/1033628/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T16437966A2960124.en,dense,rounded,,,,
+Agonis flexuosa,PEPPERMINT TREE,307,Myrtaceae,Myrtle,exotic,5448625,http://eol.org/pages/5448625/overview,not listed,not listed,,filtered,pendulous,,,,minimal
+Ailanthus altissima,TREE OF HEAVEN,233,Simaroubaceae,Quassia,exotic,5614169,http://eol.org/pages/5614169/overview,not listed,not listed,,dense,"spreading, vase",,moderate,https://www.cal-ipc.org/plants/paf/ailanthus-altissima-plant-assessment-form/,
 Albizia julibrissin,SILK TREE,76,Fabaceae,exotic,640054,http://eol.org/pages/640054/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Allocasuarina verticillata,Drooping She-Oak,1881,Casuarinaceae,exotic,628407,http://eol.org/pages/628407/overview,not listed,not listed,,filtered,"vase, pendulous",,,,
-Alnus cordata,ITALIAN ALDER,187,Betulaceae,exotic,1145955,http://eol.org/pages/1145955/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T194657A117268007.en,dense,"Conical, Spreading",,,,moderate
-Alnus rhombifolia,WHITE ALDER,129,Betulaceae,native,1145613,http://eol.org/pages/1145613/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2014-3.RLTS.T194648A2355642.en,dense,"Columnar, Conical, Rounded",,,,moderate
-Angophora costata,Gum Myrtle,622,Myrtaceae,exotic,630874,http://eol.org/pages/630874/overview,not listed,not listed,,dense,vase,,,,
-Araucaria bidwillii,BUNYA-BUNYA,150,Araucariaceae,exotic,323342,http://eol.org/pages/323342/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2011-2.RLTS.T42195A10660714.en,dense,"Conical, Spreading",evergreen,,,
-Araucaria columnaris,STAR PINE,306,Araucariaceae,exotic,988571,http://eol.org/pages/988571/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2010-2.RLTS.T42196A10661112.en,dense,"Conical, Spreading",evergreen,,,moderate
-Araucaria heterophylla,NORFOLK ISLAND PINE,84,Araucariaceae,exotic,1033727,http://eol.org/pages/1033727/overview,Vulnerable,Vulnerable D2,http://dx.doi.org/10.2305/IUCN.UK.2011-2.RLTS.T30497A9548582.en,dense,"Conical, Spreading",evergreen,,,moderate
-Arbutus 'Marina',MARINA ARBUTUS,486,Ericaceae,exotic,71122,http://eol.org/pages/71122/overview,not listed,not listed,,dense,rounded,evergreen,,,
-Arbutus unedo,STRAWBERRY TREE,315,Ericaceae,exotic,583608,http://eol.org/pages/583608/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T202930A68076133.en,dense,rounded,evergreen,,,minimal
-Archontophoenix cunninghamiana,KING PALM,63,Arecaceae,exotic,1136266,http://eol.org/pages/1136266/overview,not listed,not listed,,"little, none",palm,evergreen,,,
+Allocasuarina verticillata,Drooping She-Oak,1881,Casuarinaceae,Beefwood,exotic,628407,http://eol.org/pages/628407/overview,not listed,not listed,,filtered,"vase, pendulous",,,,
+Alnus cordata,ITALIAN ALDER,187,Betulaceae,Birch,exotic,1145955,http://eol.org/pages/1145955/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T194657A117268007.en,dense,"Conical, Spreading",,,,moderate
+Alnus rhombifolia,WHITE ALDER,129,Betulaceae,Birch,native,1145613,http://eol.org/pages/1145613/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2014-3.RLTS.T194648A2355642.en,dense,"Columnar, Conical, Rounded",,,,moderate
+Angophora costata,Gum Myrtle,622,Myrtaceae,Myrtle,exotic,630874,http://eol.org/pages/630874/overview,not listed,not listed,,dense,vase,,,,
+Araucaria bidwillii,BUNYA-BUNYA,150,Araucariaceae,Araucaria,exotic,323342,http://eol.org/pages/323342/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2011-2.RLTS.T42195A10660714.en,dense,"Conical, Spreading",evergreen,,,
+Araucaria columnaris,STAR PINE,306,Araucariaceae,Araucaria,exotic,988571,http://eol.org/pages/988571/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2010-2.RLTS.T42196A10661112.en,dense,"Conical, Spreading",evergreen,,,moderate
+Araucaria heterophylla,NORFOLK ISLAND PINE,84,Araucariaceae,Araucaria,exotic,1033727,http://eol.org/pages/1033727/overview,Vulnerable,Vulnerable D2,http://dx.doi.org/10.2305/IUCN.UK.2011-2.RLTS.T30497A9548582.en,dense,"Conical, Spreading",evergreen,,,moderate
+Arbutus 'Marina',MARINA ARBUTUS,486,Ericaceae,Heather,exotic,71122,http://eol.org/pages/71122/overview,not listed,not listed,,dense,rounded,evergreen,,,
+Arbutus unedo,STRAWBERRY TREE,315,Ericaceae,Heather,exotic,583608,http://eol.org/pages/583608/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T202930A68076133.en,dense,rounded,evergreen,,,minimal
+Archontophoenix cunninghamiana,KING PALM,63,Arecaceae,Palm,exotic,1136266,http://eol.org/pages/1136266/overview,not listed,not listed,,"little, none",palm,evergreen,,,
 Asphalted well,Asphalted well,638,,,,,not listed,not listed,,,,,,,
-Auranticarpa rhombifolium,QUEENSLAND PITTOSPORUM,100,Pittosporaceae,exotic,5556305,http://eol.org/pages/5556305/overview,not listed,not listed,,dense,rounded,,,,
-Bauhinia blakeana,HONG KONG ORCHID TREE,250,Fabaceae,exotic,641500,http://eol.org/pages/641500/overview,not listed,not listed,,dense,"pendulous, spreading",,,,minimal
-Bauhinia variegata,Purple Orchid Tree,97,Fabaceae,exotic,702916,http://eol.org/pages/702916/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2012.RLTS.T19893142A20028421.en,dense,"pendulous, spreading",,,,minimal
-Betula pendula,EUROPEAN WHITE BIRCH,241,Betulaceae,exotic,1149364,http://eol.org/pages/1149364/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2014-3.RLTS.T62535A3115662.en,filtered,"Columnar, Pendulous",deciduous,,,moderate
-Brachychiton acerifolius,Australian Flame Tree,172,Malvaceae,exotic,5420372,http://eol.org/pages/5420372/overview,not listed,not listed,,dense,rounded,deciduous,,,
-Brachychiton populneus,BOTTLE TREE,12,Malvaceae,exotic,487630,http://eol.org/pages/487630/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
-Brahea armata,MEXICAN BLUE PALM,74,Arecaceae,exotic,1121077,http://eol.org/pages/1121077/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2015-2.RLTS.T55948517A56756065.en,"little, none",palm,evergreen,,,minimal
-Brahea brandegeei,San Jose Hesper Palm,380,Arecaceae,exotic,47389352,http://eol.org/pages/47389352/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2015-2.RLTS.T55948714A55948834.en,"little, none",palm,evergreen,,,
-Brahea edulis,GUADALUPE PALM,50,Arecaceae,exotic,1121015,http://eol.org/pages/1121015/overview,Endangered,Endangered C1,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38455A10120521.en,"little, none",palm,evergreen,,,minimal
-Butia capitata,PINDO PALM,206,Arecaceae,exotic,1003987,http://eol.org/pages/1003987/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
-Calocedrus decurrens,INCENSE CEDAR,30,Cupressaceae,native,1061623,http://eol.org/pages/1061623/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42210A2962006.en,dense,conical,evergreen,,,"none, once established"
-Calodendrum capense,CAPE CHESTNUT,153,Rutaceae,exotic,5623469,http://eol.org/pages/5623469/overview,not listed,not listed,,dense,rounded,,,,moderate
-Carya illinoinensis,Pecan,92,Juglandaceae,exotic,594985,https://eol.org/pages/594985/overview,not listed,not listed,,dense,"rounded, spreading",deciduous,,,
-Casimiroa edulis,WHITE SAPOTE,243,Rutaceae,exotic,47126587,https://eol.org/pages/47126587/overview,not listed,not listed,,dense,rounded,,,,moderate
-Cassia leptophylla,GOLD MEDALLION TREE,252,Fabaceae,exotic,640224,http://eol.org/pages/640224/overview,not listed,not listed,,filtered,rounded,,,,minimal
-Castanea mollissima,CHINESE CHESTNUT,706,Fagaceae,exotic,1148512,http://eol.org/pages/1148512/overview,not listed,not listed,,dense,rounded,,,,minimal
-Casuarina cunninghamiana,RIVER SHE-OAK,107,Casuarinaceae,exotic,629957,http://eol.org/pages/629957/overview,not listed,not listed,,filtered,"Columnar, Conical",evergreen,,,minimal
-Catalpa hybrida,Hybrid Catalpa,1164,Bignoniaceae,exotic,11888718,https://eol.org/pages/11888718,not listed,not listed,,dense,rounded,,,,
-Cedrus atlantica,ATLAS CEDAR,143,Pinaceae,exotic,1033602,http://eol.org/pages/1033602/overview,Endangered,Endangered A2cd,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42303A2970716.en,dense,conical,,,,minimal
-Cedrus atlantica 'Glauca',CEDAR BLUE ATLAS,1167,Pinaceae,exotic,1033602,http://eol.org/pages/1033602/overview,Endangered,Endangered A2cd,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42303A2970716.en,dense,"Conical, Spreading",evergreen,,,minimal
-Cedrus deodara,DEODAR CEDAR,40,Pinaceae,exotic,1033603,http://eol.org/pages/1033603/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42304A2970751.en,dense,"Conical, Spreading",evergreen,,,minimal
-Cedrus libani,CEDAR-OF-LEBANON,1012,Pinaceae,exotic,1061705,http://eol.org/pages/1061705/overview,Vulnerable,"Vulnerable B2ab(ii,iii,v)",http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T46191675A46192926.en,dense,conical,,,,minimal
-Ceiba speciosa,Silk-Floss Tree,113,Malvaceae,exotic,5405972,http://eol.org/pages/5405972/overview,not listed,not listed,,filtered,rounded,,,,
-Ceratonia siliqua,CAROB,27,Fabaceae,exotic,418096,http://eol.org/pages/418096/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T202951A112823254.en,dense,rounded,evergreen,,,minimal
-Cercidium floridum,Blue Palo Verde,1010,Fabaceae,native,47378911,https://eol.org/pages/47378911/overview,not listed,not listed,,little,rounded,,,,
-Cercis canadensis,EASTERN REDBUD,166,Fabaceae,exotic,640323,http://eol.org/pages/640323/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2000.RLTS.T33892A9812587.en,filtered,rounded,deciduous,,,minimal
-Cercis canadensis 'Forest Pansy',FOREST PANSY REDBUD,456,Fabaceae,exotic,640323,http://eol.org/pages/640323/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Cercis canadensis 'Oklahoma',Oklahoma Redbud,394,Fabaceae,exotic,640323,http://eol.org/pages/640323/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Cercis canadensis texensis,Texas Redbud,1655,Fabaceae,exotic,1271471,http://eol.org/pages/1271471/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Cercis canadensis var. mexicana,Mexican Redbud,1831,Fabaceae,exotic,1271470,http://eol.org/pages/1271470/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Cercis occidentalis,WESTERN REDBUD,106,Fabaceae,native,640324,http://eol.org/pages/640324/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Cercis spp.,Redbud,1177,Fabaceae,exotic,28998,http://eol.org/pages/28998/overview,not listed,not listed,,dense,rounded,,,,minimal
-Chamaerops humilis,MEDITERRANEAN FAN PALM,73,Arecaceae,exotic,1091059,http://eol.org/pages/1091059/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T13164373A95532812.en,"little, none",palm,evergreen,,,moderate
-Chilopsis linearis,Desert Willow,509,Bignoniaceae,native,580331,http://eol.org/pages/580331/overview,not listed,not listed,,filtered,rounded,,,,
-Chionanthus retusus,CHINESE FRINGE TREE,259,Oleaceae,exotic,2892340,http://eol.org/pages/2892340/overview,not listed,not listed,,filtered,rounded,deciduous,,,moderate
-Chitalpa tashkentensis,CHITALPA,262,Bignoniaceae,exotic,49307441,https://eol.org/pages/49307441/overview,not listed,not listed,,filtered,rounded,,,,
-Cinnamomum camphora,CAMPHOR TREE,24,Lauraceae,exotic,596902,http://eol.org/pages/596902/overview,not listed,not listed,,dense,"Rounded, Spreading",evergreen,,,minimal
-Citrus limon,LEMON,66,Rutaceae,exotic,582200,http://eol.org/pages/582200/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
-Citrus sinensis,ORANGE,88,Rutaceae,exotic,582206,http://eol.org/pages/582206/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
-Cocculus laurifolius,LAUREL-LEAFED SNAILSEED,336,Menispermaceae,exotic,2886371,http://eol.org/pages/2886371/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,
-Cordyline australis,DRACAENA,164,Asparagaceae,exotic,1087084,http://eol.org/pages/1087084/overview,not listed,not listed,,"little, none",palm,evergreen,limited,https://www.cal-ipc.org/plants/paf/cordyline-australis-plant-assessment-form/,moderate
-Corymbia citriodora,LEMON-SCENTED GUM,67,Myrtaceae,exotic,301375,http://eol.org/pages/301375/overview,not listed,not listed,,dense,rounded,,,,
-Corymbia ficifolia,RED FLOWERING GUM,101,Myrtaceae,exotic,301438,http://eol.org/pages/301438/overview,not listed,not listed,,dense,rounded,,,,
-Corymbia maculata,SPOTTED GUM,117,Myrtaceae,exotic,301463,http://eol.org/pages/301463/overview,not listed,not listed,,dense,rounded,,,,
-Cotinus coggygria,SMOKE TREE,668,Anacardiaceae,exotic,582267,http://eol.org/pages/582267/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T202959A119996147.en,dense,rounded,deciduous,,,
-Cryptomeria japonica,JAPANESE CEDAR,254,Cupressaceae,exotic,126871,http://eol.org/pages/126871/overview,Near Threatened,Near Threatened,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T39149A2886821.en,dense,conical,evergreen,,,moderate
-Cupaniopsis anacardioides,CARROTWOOD,29,Sapindaceae,exotic,481245,http://eol.org/pages/481245/overview,not listed,not listed,,filtered,rounded,evergreen,,,
-Cupressocyparis x leylandii,LEYLAND CYPRESS,194,Cupressaceae,exotic,49955481,https://eol.org/pages/49955481,not listed,not listed,,dense,columnar,evergreen,,,moderate
-Cupressus glabra,Smoothbark Arizona Cypress,142,Cupressaceae,exotic,49307043,https://eol.org/pages/49307043,Near Threatened,Near Threatened,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T19708408A19708411.en,dense,Columnar,,,,minimal
-Cupressus sempervirens,ITALIAN CYPRESS,57,Cupressaceae,exotic,1034869,http://eol.org/pages/1034869/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/32518/0,dense,columnar,evergreen,,,minimal
-Cyathea cooperi,Australian Tree Fern,739,Cyatheaceae,exotic,483203,http://eol.org/pages/483203/overview,not listed,not listed,,filtered,fern,,,,
-Diospyros virginiana,AMERICAN PERSIMMON,323,Ebenaceae,exotic,595775,http://eol.org/pages/595775/overview,not listed,not listed,,filtered,rounded,deciduous,,,moderate
-Dodonaea viscosa,HOPSEED,329,Sapindaceae,exotic,582326,http://eol.org/pages/582326/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
-Dracaena draco,DRAGON TREE,165,Asparagaceae,exotic,1087629,http://eol.org/pages/1087629/overview,Vulnerable,Vulnerable A1abcde,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T30394A9535771.en,little,rounded,,,,moderate
-Duranta repens,Brazilian Sky Flower,220,Verbenaceae,exotic,487855,http://eol.org/pages/487855/overview,not listed,not listed,,filtered,spreading,,,,moderate
-Dypsis decaryi,TRIANGLE PALM,283,Arecaceae,exotic,1095068,http://eol.org/pages/1095068/overview,Vulnerable,Vulnerable D1,http://dx.doi.org/10.2305/IUCN.UK.2012.RLTS.T38531A2873409.en,"little, none",palm,evergreen,,,
-Eriobotrya deflexa,BRONZE LOQUAT,16,Rosaceae,exotic,229674,http://eol.org/pages/229674/overview,not listed,not listed,,"filtered, dense","rounded, vase",evergreen,,,moderate
-Eriobotrya japonica,EDIBLE LOQUAT,43,Rosaceae,exotic,628975,http://eol.org/pages/628975/overview,not listed,not listed,,dense,"rounded, vase",evergreen,,,
+Auranticarpa rhombifolium,QUEENSLAND PITTOSPORUM,100,Pittosporaceae,Cheesewood,exotic,5556305,http://eol.org/pages/5556305/overview,not listed,not listed,,dense,rounded,,,,
+Bauhinia blakeana,HONG KONG ORCHID TREE,250,Fabaceae,Legume,exotic,641500,http://eol.org/pages/641500/overview,not listed,not listed,,dense,"pendulous, spreading",,,,minimal
+Bauhinia variegata,Purple Orchid Tree,97,Fabaceae,Legume,exotic,702916,http://eol.org/pages/702916/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2012.RLTS.T19893142A20028421.en,dense,"pendulous, spreading",,,,minimal
+Betula pendula,EUROPEAN WHITE BIRCH,241,Betulaceae,Birch,exotic,1149364,http://eol.org/pages/1149364/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2014-3.RLTS.T62535A3115662.en,filtered,"Columnar, Pendulous",deciduous,,,moderate
+Brachychiton acerifolius,Australian Flame Tree,172,Malvaceae,Mallow,exotic,5420372,http://eol.org/pages/5420372/overview,not listed,not listed,,dense,rounded,deciduous,,,
+Brachychiton populneus,BOTTLE TREE,12,Malvaceae,Mallow,exotic,487630,http://eol.org/pages/487630/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
+Brahea armata,MEXICAN BLUE PALM,74,Arecaceae,Palm,exotic,1121077,http://eol.org/pages/1121077/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2015-2.RLTS.T55948517A56756065.en,"little, none",palm,evergreen,,,minimal
+Brahea brandegeei,San Jose Hesper Palm,380,Arecaceae,Palm,exotic,47389352,http://eol.org/pages/47389352/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2015-2.RLTS.T55948714A55948834.en,"little, none",palm,evergreen,,,
+Brahea edulis,GUADALUPE PALM,50,Arecaceae,Palm,exotic,1121015,http://eol.org/pages/1121015/overview,Endangered,Endangered C1,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38455A10120521.en,"little, none",palm,evergreen,,,minimal
+Butia capitata,PINDO PALM,206,Arecaceae,Palm,exotic,1003987,http://eol.org/pages/1003987/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
+Calocedrus decurrens,INCENSE CEDAR,30,Cupressaceae,Cypress,native,1061623,http://eol.org/pages/1061623/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42210A2962006.en,dense,conical,evergreen,,,"none, once established"
+Calodendrum capense,CAPE CHESTNUT,153,Rutaceae,Rue,exotic,5623469,http://eol.org/pages/5623469/overview,not listed,not listed,,dense,rounded,,,,moderate
+Carya illinoinensis,Pecan,92,Juglandaceae,Walnut,exotic,594985,https://eol.org/pages/594985/overview,not listed,not listed,,dense,"rounded, spreading",deciduous,,,
+Casimiroa edulis,WHITE SAPOTE,243,Rutaceae,Rue,exotic,47126587,https://eol.org/pages/47126587/overview,not listed,not listed,,dense,rounded,,,,moderate
+Cassia leptophylla,GOLD MEDALLION TREE,252,Fabaceae,Legume,exotic,640224,http://eol.org/pages/640224/overview,not listed,not listed,,filtered,rounded,,,,minimal
+Castanea mollissima,CHINESE CHESTNUT,706,Fagaceae,Beech,exotic,1148512,http://eol.org/pages/1148512/overview,not listed,not listed,,dense,rounded,,,,minimal
+Casuarina cunninghamiana,RIVER SHE-OAK,107,Casuarinaceae,Beefwood,exotic,629957,http://eol.org/pages/629957/overview,not listed,not listed,,filtered,"Columnar, Conical",evergreen,,,minimal
+Catalpa hybrida,Hybrid Catalpa,1164,Bignoniaceae,Bignonia,exotic,11888718,https://eol.org/pages/11888718,not listed,not listed,,dense,rounded,,,,
+Cedrus atlantica,ATLAS CEDAR,143,Pinaceae,Pine,exotic,1033602,http://eol.org/pages/1033602/overview,Endangered,Endangered A2cd,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42303A2970716.en,dense,conical,,,,minimal
+Cedrus atlantica 'Glauca',CEDAR BLUE ATLAS,1167,Pinaceae,Pine,exotic,1033602,http://eol.org/pages/1033602/overview,Endangered,Endangered A2cd,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42303A2970716.en,dense,"Conical, Spreading",evergreen,,,minimal
+Cedrus deodara,DEODAR CEDAR,40,Pinaceae,Pine,exotic,1033603,http://eol.org/pages/1033603/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42304A2970751.en,dense,"Conical, Spreading",evergreen,,,minimal
+Cedrus libani,CEDAR-OF-LEBANON,1012,Pinaceae,Pine,exotic,1061705,http://eol.org/pages/1061705/overview,Vulnerable,"Vulnerable B2ab(ii,iii,v)",http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T46191675A46192926.en,dense,conical,,,,minimal
+Ceiba speciosa,Silk-Floss Tree,113,Malvaceae,Mallow,exotic,5405972,http://eol.org/pages/5405972/overview,not listed,not listed,,filtered,rounded,,,,
+Ceratonia siliqua,CAROB,27,Fabaceae,Legume,exotic,418096,http://eol.org/pages/418096/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T202951A112823254.en,dense,rounded,evergreen,,,minimal
+Cercidium floridum,Blue Palo Verde,1010,Fabaceae,Legume,native,47378911,https://eol.org/pages/47378911/overview,not listed,not listed,,little,rounded,,,,
+Cercis canadensis,EASTERN REDBUD,166,Fabaceae,Legume,exotic,640323,http://eol.org/pages/640323/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2000.RLTS.T33892A9812587.en,filtered,rounded,deciduous,,,minimal
+Cercis canadensis 'Forest Pansy',FOREST PANSY REDBUD,456,Fabaceae,Legume,exotic,640323,http://eol.org/pages/640323/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Cercis canadensis 'Oklahoma',Oklahoma Redbud,394,Fabaceae,Legume,exotic,640323,http://eol.org/pages/640323/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Cercis canadensis texensis,Texas Redbud,1655,Fabaceae,Legume,exotic,1271471,http://eol.org/pages/1271471/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Cercis canadensis var. mexicana,Mexican Redbud,1831,Fabaceae,Legume,exotic,1271470,http://eol.org/pages/1271470/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Cercis occidentalis,WESTERN REDBUD,106,Fabaceae,Legume,native,640324,http://eol.org/pages/640324/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Cercis spp.,Redbud,1177,Fabaceae,Legume,exotic,28998,http://eol.org/pages/28998/overview,not listed,not listed,,dense,rounded,,,,minimal
+Chamaerops humilis,MEDITERRANEAN FAN PALM,73,Arecaceae,Palm,exotic,1091059,http://eol.org/pages/1091059/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T13164373A95532812.en,"little, none",palm,evergreen,,,moderate
+Chilopsis linearis,Desert Willow,509,Bignoniaceae,Bignonia,native,580331,http://eol.org/pages/580331/overview,not listed,not listed,,filtered,rounded,,,,
+Chionanthus retusus,CHINESE FRINGE TREE,259,Oleaceae,Olive,exotic,2892340,http://eol.org/pages/2892340/overview,not listed,not listed,,filtered,rounded,deciduous,,,moderate
+Chitalpa tashkentensis,CHITALPA,262,Bignoniaceae,Bignonia,exotic,49307441,https://eol.org/pages/49307441/overview,not listed,not listed,,filtered,rounded,,,,
+Cinnamomum camphora,CAMPHOR TREE,24,Lauraceae,Laurel,exotic,596902,http://eol.org/pages/596902/overview,not listed,not listed,,dense,"Rounded, Spreading",evergreen,,,minimal
+Citrus limon,LEMON,66,Rutaceae,Rue,exotic,582200,http://eol.org/pages/582200/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
+Citrus sinensis,ORANGE,88,Rutaceae,Rue,exotic,582206,http://eol.org/pages/582206/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
+Cocculus laurifolius,LAUREL-LEAFED SNAILSEED,336,Menispermaceae,Moonseed,exotic,2886371,http://eol.org/pages/2886371/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,
+Cordyline australis,DRACAENA,164,Asparagaceae,Asparagus,exotic,1087084,http://eol.org/pages/1087084/overview,not listed,not listed,,"little, none",palm,evergreen,limited,https://www.cal-ipc.org/plants/paf/cordyline-australis-plant-assessment-form/,moderate
+Corymbia citriodora,LEMON-SCENTED GUM,67,Myrtaceae,Myrtle,exotic,301375,http://eol.org/pages/301375/overview,not listed,not listed,,dense,rounded,,,,
+Corymbia ficifolia,RED FLOWERING GUM,101,Myrtaceae,Myrtle,exotic,301438,http://eol.org/pages/301438/overview,not listed,not listed,,dense,rounded,,,,
+Corymbia maculata,SPOTTED GUM,117,Myrtaceae,Myrtle,exotic,301463,http://eol.org/pages/301463/overview,not listed,not listed,,dense,rounded,,,,
+Cotinus coggygria,SMOKE TREE,668,Anacardiaceae,Sumac,exotic,582267,http://eol.org/pages/582267/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T202959A119996147.en,dense,rounded,deciduous,,,
+Cryptomeria japonica,JAPANESE CEDAR,254,Cupressaceae,Cypress,exotic,126871,http://eol.org/pages/126871/overview,Near Threatened,Near Threatened,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T39149A2886821.en,dense,conical,evergreen,,,moderate
+Cupaniopsis anacardioides,CARROTWOOD,29,Sapindaceae,Soapberry,exotic,481245,http://eol.org/pages/481245/overview,not listed,not listed,,filtered,rounded,evergreen,,,
+Cupressocyparis x leylandii,LEYLAND CYPRESS,194,Cupressaceae,Cypress,exotic,49955481,https://eol.org/pages/49955481,not listed,not listed,,dense,columnar,evergreen,,,moderate
+Cupressus glabra,Smoothbark Arizona Cypress,142,Cupressaceae,Cypress,exotic,49307043,https://eol.org/pages/49307043,Near Threatened,Near Threatened,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T19708408A19708411.en,dense,Columnar,,,,minimal
+Cupressus sempervirens,ITALIAN CYPRESS,57,Cupressaceae,Cypress,exotic,1034869,http://eol.org/pages/1034869/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/32518/0,dense,columnar,evergreen,,,minimal
+Cyathea cooperi,Australian Tree Fern,739,Cyatheaceae,Tree fern,exotic,483203,http://eol.org/pages/483203/overview,not listed,not listed,,filtered,fern,,,,
+Diospyros virginiana,AMERICAN PERSIMMON,323,Ebenaceae,Ebony,exotic,595775,http://eol.org/pages/595775/overview,not listed,not listed,,filtered,rounded,deciduous,,,moderate
+Dodonaea viscosa,HOPSEED,329,Sapindaceae,Soapberry,exotic,582326,http://eol.org/pages/582326/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
+Dracaena draco,DRAGON TREE,165,Asparagaceae,Asparagus,exotic,1087629,http://eol.org/pages/1087629/overview,Vulnerable,Vulnerable A1abcde,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T30394A9535771.en,little,rounded,,,,moderate
+Duranta repens,Brazilian Sky Flower,220,Verbenaceae,Verbena,exotic,487855,http://eol.org/pages/487855/overview,not listed,not listed,,filtered,spreading,,,,moderate
+Dypsis decaryi,TRIANGLE PALM,283,Arecaceae,Palm,exotic,1095068,http://eol.org/pages/1095068/overview,Vulnerable,Vulnerable D1,http://dx.doi.org/10.2305/IUCN.UK.2012.RLTS.T38531A2873409.en,"little, none",palm,evergreen,,,
+Eriobotrya deflexa,BRONZE LOQUAT,16,Rosaceae,Rose,exotic,229674,http://eol.org/pages/229674/overview,not listed,not listed,,"filtered, dense","rounded, vase",evergreen,,,moderate
+Eriobotrya japonica,EDIBLE LOQUAT,43,Rosaceae,Rose,exotic,628975,http://eol.org/pages/628975/overview,not listed,not listed,,dense,"rounded, vase",evergreen,,,
 Erythrina bidwillii,Bidwills Coral Tree,303,Fabaceae,exotic,49953463,http://eol.org/pages/49953463/overview,not listed,not listed,,dense,spreading,,,,moderate
-Erythrina caffra,KAFFIRBOOM CORAL TREE,193,Fabaceae,exotic,644148,http://eol.org/pages/644148/overview,not listed,not listed,,dense,spreading,,,,moderate
-Erythrina coralloides,NAKED CORAL TREE,308,Fabaceae,exotic,643189,http://eol.org/pages/643189/overview,not listed,not listed,,dense,spreading,,,,moderate
-Eucalyptus amplifolia,CABBAGE GUM,663,Myrtaceae,exotic,630154,http://eol.org/pages/630154/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
-Eucalyptus camaldulensis,RED GUM,102,Myrtaceae,exotic,301398,http://eol.org/pages/301398/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,limited,https://www.cal-ipc.org/plants/paf/eucalyptus-camaldulensis-plant-assessment-form/,minimal
-Eucalyptus cinerea,ASH GUM,219,Myrtaceae,exotic,630170,http://eol.org/pages/630170/overview,not listed,not listed,,filtered,rounded,evergreen,,,minimal
-Eucalyptus cladocalyx,SUGAR GUM,119,Myrtaceae,exotic,637218,http://eol.org/pages/637218/overview,not listed,not listed,,dense,"vase, rounded",,watch,https://www.cal-ipc.org/plants/risk/eucalyptus-cladocalyx-risk/,minimal
-Eucalyptus cornuta,YATE,300,Myrtaceae,exotic,301420,https://eol.org/pages/301420/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
-Eucalyptus deglupta,Mindanao Gum,416,Myrtaceae,exotic,230366,http://eol.org/pages/230366/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
-Eucalyptus globulus,BLUE GUM,11,Myrtaceae,exotic,301421,http://eol.org/pages/301421/overview,not listed,not listed,,dense,rounded,evergreen,limited,https://www.cal-ipc.org/plants/paf/eucalyptus-globulus-plant-assessment-form/,minimal
-Eucalyptus globulus 'Compacta',Dwarf Blue Gum,445,Myrtaceae,exotic,301421,http://eol.org/pages/301421/overview,not listed,not listed,,dense,rounded,evergreen,limited,https://www.cal-ipc.org/plants/paf/eucalyptus-globulus-plant-assessment-form/,minimal
-Eucalyptus grandis,FLOODED GUM,351,Myrtaceae,exotic,230778,http://eol.org/pages/230778/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
-Eucalyptus lehmannii,BUSHY YATE,18,Myrtaceae,exotic,630174,http://eol.org/pages/630174/overview,not listed,not listed,,dense,spreading,evergreen,,,minimal
-Eucalyptus leucoxylon 'Rosea',LG.-FRUIT RED-FLOWERING GUM,909,Myrtaceae,exotic,301411,http://eol.org/pages/301411/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,minimal
-Eucalyptus nicholii,NICHOLS WILLOW LEAFED PEPPERMINT,346,Myrtaceae,exotic,630137,http://eol.org/pages/630137/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,minimal
-Eucalyptus polyanthemos,SILVER DOLLAR GUM,114,Myrtaceae,exotic,633030,http://eol.org/pages/633030/overview,not listed,not listed,,dense,"rounded, vase",evergreen,,,minimal
-Eucalyptus pulverulenta,Silver Mountain Gum,532,Myrtaceae,exotic,301319,http://eol.org/pages/301319/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
-Eucalyptus robusta,SWAMP MAHOGONY,226,Myrtaceae,exotic,301423,http://eol.org/pages/301423/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
-Eucalyptus rudis,DESERT GUM,163,Myrtaceae,exotic,633012,http://eol.org/pages/633012/overview,not listed,not listed,,filtered,spreading,evergreen,,,minimal
-Eucalyptus sideroxylon,RED IRONBARK,103,Myrtaceae,exotic,632020,http://eol.org/pages/632020/overview,not listed,not listed,,filtered,columnar,evergreen,,,minimal
-Eucalyptus torquata,CORAL GUM,160,Myrtaceae,exotic,301419,http://eol.org/pages/301419/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
-Eucalyptus viminalis,MANNA GUM,301,Myrtaceae,exotic,245551,http://eol.org/pages/245551/overview,not listed,not listed,,filtered,vase,evergreen,,,minimal
-Eugenia aggregata,Cherry Of The Rio Grande,1051,Myrtaceae,exotic,48306163,http://eol.org/pages/48306163/overview,not listed,not listed,,filtered,,,,,
-Ficus benjamina,WEEPING FIG,127,Moraceae,exotic,594918,http://eol.org/pages/594918/overview,not listed,not listed,,dense,"vase, rounded",evergeen,,,moderate
-Ficus benjamina 'Variegata',Chinese Weeping Banyan,1805,Moraceae,exotic,594918,http://eol.org/pages/594918/overview,not listed,not listed,,dense,"vase, rounded",evergreen,,,moderate
-Ficus carica,EDIBLE FIG,167,Moraceae,exotic,594632,http://eol.org/pages/594632/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2007.RLTS.T63527A12687229.en,dense,"rounded, spreading",deciduous,moderate,https://www.cal-ipc.org/plants/paf/ficus-carica-plant-assessment-form/,moderate
-Ficus elastica,RUBBER TREE,108,Moraceae,exotic,594821,http://eol.org/pages/594821/overview,not listed,not listed,,dense,"vase, rounded",,,,moderate
-Ficus lyrata,Fiddleleaf Fig,344,Moraceae,exotic,482014,http://eol.org/pages/482014/overview,not listed,not listed,,dense,"vase, rounded",,,,moderate
-Ficus macrophylla,MORETON BAY FIG,80,Moraceae,exotic,2876056,http://eol.org/pages/2876056/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
-Ficus microcarpa,WEEPING INDIAN LAUREL FIG,330,Moraceae,exotic,590525,http://eol.org/pages/590525/overview,not listed,not listed,,dense,"vase, rounded",,,,moderate
-Ficus microcarpa 'Green Gem',Green Gem Indian Laurel Fig,339,Moraceae,exotic,590525,http://eol.org/pages/590525/overview,not listed,not listed,,dense,"vase, rounded",,,,moderate
-Ficus microcarpa 'Nitida',INDIAN LAUREL FIG,56,Moraceae,exotic,49953563,https://eol.org/pages/49953563/overview,not listed,not listed,,dense,"vase, rounded",,,,moderate
-Ficus rubiginosa,RUSTY LEAF FIG,109,Moraceae,exotic,482015,http://eol.org/pages/482015/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
-Ficus spp.,FIG,83,Moraceae,exotic,47119105,https://eol.org/pages/47119105,not listed,not listed,,dense,"vase, rounded",,,,moderate
-Fraxinus angustifolia oxycarpa,RAYWOOD ASH,266,Oleaceae,exotic,47150160,https://eol.org/pages/47150160/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/203366/1,dense,rounded,deciduous,,,
-Fraxinus uhdei,SHAMEL ASH,110,Oleaceae,exotic,487569,http://eol.org/pages/487569/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T96444707A96444709.en,dense,rounded,"evergreen, semi-deciduous",,,minimal
-Fraxinus velutina,ARIZONA ASH,141,Oleaceae,native,579143,http://eol.org/pages/579143/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T96444728A96444730.en,dense,vase,deciduous,,,minimal
-Geijera parviflora,AUSTRALIAN WILLOW,7,Rutaceae,exotic,5624115,http://eol.org/pages/5624115/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
-Ginkgo biloba,MAIDENHAIR TREE,71,Ginkgoaceae,exotic,1156278,http://eol.org/pages/1156278/overview,Endangered,Endangered B1+2c,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T32353A9700472.en,filtered,"conical, rounded",deciduous,,,minimal
-Ginkgo biloba 'Autumn Gold',GINKGO AUTUMN GOLD,1263,Ginkgoaceae,exotic,1156278,http://eol.org/pages/1156278/overview,not listed,not listed,,filtered,"conical, rounded",deciduous,,,minimal
-Gleditsia triacanthos,HONEY LOCUST,55,Fabaceae,exotic,416265,http://eol.org/pages/416265/overview,not listed,not listed,,filtered,rounded,deciduous,,,
-Grevillea robusta,SILK OAK,112,Proteaceae,exotic,582736,http://eol.org/pages/582736/overview,not listed,not listed,,filtered,spreading,evergreen,watch,https://www.cal-ipc.org/plants/risk/grevillea-robusta-risk/,minimal
-Hakea suaveolens,SWEET HAKEA,270,Proteaceae,exotic,5511103,http://eol.org/pages/5511103/overview,not listed,not listed,,filtered,rounded,,,,
-Handroanthus chrysotrichus,Golden Trumpet Tree,179,Bignoniaceae,exotic,5637482,http://eol.org/pages/5637482/overview,not listed,not listed,,dense,rounded,,,,
-Handroanthus impetiginosus,Pink Trumpet Tree,403,Bignoniaceae,exotic,5637444,http://eol.org/pages/5637444,not listed,not listed,,"filtered, dense","rounded, vase",deciduous,,,
-Harpephyllum caffrum,KAFFIR PLUM,192,Anacardiaceae,exotic,6935240,http://eol.org/pages/6935240/overview,not listed,not listed,,dense,rounded,,,,minimal
-Hesperocyparis macrocarpa,MONTEREY CYPRESS,332,Cupressaceae,native,1034856,http://eol.org/pages/1034856/overview,Vulnerable,Vulnerable D2,http://www.iucnredlist.org/details/30375/0,filtered,conical,,,,
-Heteromeles arbutifolia,TOYON,232,Rosaceae,native,47383069,https://eol.org/pages/47383069,not listed,not listed,,dense,rounded,evergreen,,,
-Howea belmoreana,Sentry Palm,427,Arecaceae,exotic,1142854,http://eol.org/pages/1142854/overview,Vulnerable,Vulnerable D2,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38576A10125688.en,"little, none",palm,evergreen,,,
-Howea forsteriana,PARADISE PALM,261,Arecaceae,exotic,1142853,http://eol.org/pages/1142853/overview,Vulnerable,Vulnerable D2,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38577A10125794.en,"little, none",palm,evergreen,,,
-Hymenosporum flavum,SWEETSHADE,228,Pittosporaceae,exotic,49896246,https://eol.org/pages/49896246/overview,not listed,not listed,,filtered,"conical, vase",evergreen,,,
-Ilex altaclarensis 'Wilsonii',WILSON HOLLY,245,Aquifoliaceae,exotic,2888814,https://eol.org/pages/2888814/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,
-Jacaranda mimosifolia,JACARANDA,59,Bignoniaceae,exotic,47154753,https://eol.org/pages/47154753/overview,Vulnerable,Vulnerable B1+2ac,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T32027A9675619.en,"filtered, dense",rounded,deciduous,,,minimal
-Jubaea chilensis,CHILEAN WINE PALM,291,Arecaceae,exotic,1142626,http://eol.org/pages/1142626/overview,Vulnerable,Vulnerable A1cd,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38586A10128158.en,"little, none",palm,evergreen,,,
-Juglans hindsii,CALIFORNIA BLACK WALNUT,152,Juglandaceae,native,595007,http://eol.org/pages/595007/overview,Vulnerable,Vulnerable A1c,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T35154A9915361.en,filtered,spreading,deciduous,,,"none, once established"
-Juniperus chinensis,CHINESE JUNIPER,191,Cupressaceae,exotic,1061675,http://eol.org/pages/1061675/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42227A2962948.en,little,conical,evergreen,,,minimal
-Juniperus chinensis 'Torulosa',HOLLYWOOD JUNIPER,182,Cupressaceae,exotic,1061675,http://eol.org/pages/1061675/overview,not listed,not listed,,little,conical,evergreen,,,minimal
-Koelreuteria bipinnata,CHINESE FLAME TREE,33,Sapindaceae,exotic,483646,http://eol.org/pages/483646/overview,not listed,not listed,,filtered,"rounded, vase",deciduous,,,moderate
-Koelreuteria paniculata,GOLDENRAIN TREE,49,Sapindaceae,exotic,487245,http://eol.org/pages/487245/overview,not listed,not listed,,filtered,"rounded, vase",deciduous,,,moderate
-Lagerstroemia indica,CRAPE MYRTLE,38,Lythraceae,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Lagerstroemia indica 'Muskogee',MUSKOGEE CRAPE MYRTLE,1292,Lythraceae,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Lagerstroemia indica 'Natchez',Natchez Crape Myrtle,1566,Lythraceae,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Lagerstroemia indica 'Purple',PURPLE CRAPE MYRTLE,1288,Lythraceae,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Lagerstroemia indica 'Red',Red Crape Myrtle,1289,Lythraceae,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Lagerstroemia indica 'Tuscarora',Tuscarora Crape Myrtle,1291,Lythraceae,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Lagerstroemia indica 'White',White Crape Myrtle,1290,Lythraceae,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
-Lagunaria patersonii,PRIMROSE TREE,210,Malvaceae,exotic,586694,http://eol.org/pages/586694/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
-Laurus nobilis,SWEET BAY,121,Lauraceae,exotic,486835,http://eol.org/pages/486835/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T203351A119996864.en,dense,conical,evergreen,,,minimal
-Leptospermum laevigatum,AUSTRALIAN TEA TREE,907,Myrtaceae,exotic,2508619,http://eol.org/pages/2508619/overview,not listed,not listed,,dense,rounded,,watch,https://www.cal-ipc.org/plants/risk/leptospermum-laevigatum-risk/,minimal
-Leptospermum spp.,Tea Tree,255,Myrtaceae,exotic,2508616,http://eol.org/pages/2508616/overview,not listed,not listed,,dense,rounded,,,,minimal
-Ligustrum lucidum,GLOSSY PRIVET,48,Oleaceae,exotic,487035,http://eol.org/pages/487035/overview,not listed,not listed,,dense,rounded,evergreen,limited,https://www.cal-ipc.org/plants/paf/ligustrum-lucidum-plant-assessment-form/,
-Liquidambar formosana,Chinese Sweetgum,158,Altingiaceae,exotic,2887420,http://eol.org/pages/2887420/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/61983495/0,dense,columnar,deciduous,,,
-Liquidambar styraciflua,AMERICAN SWEETGUM,5,Altingiaceae,exotic,594658,http://eol.org/pages/594658/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/33966/0,dense,"columnar, rounded",deciduous,,,moderate
-Liquidambar styraciflua 'Rotundiloba',ROUND-LEAFED SWEETGUM,340,Altingiaceae,exotic,594658,http://eol.org/pages/594658/overview,not listed,not listed,,dense,"columnar, rounded",deciduous,,,moderate
-Liriodendron tulipifera,TULIP TREE,123,Magnoliaceae,exotic,1155834,http://eol.org/pages/1155834/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2014-3.RLTS.T194015A2294401.en,dense,"rounded, vase",deciduous,,,moderate
-Livistona chinensis,CHINESE FOUNTAIN PALM,279,Arecaceae,exotic,1140296,http://eol.org/pages/1140296/overview,not listed,not listed,,"little, none",palm,evergreen,,,
-Lophostemon confertus,BRISBANE BOX,15,Myrtaceae,exotic,2508670,http://eol.org/pages/2508670/overview,not listed,not listed,,filtered,rounded,evergreen,,,minimal
-Lophostemon confertus 'Variegata',VARIEGATED BRISBANE BOX,903,Myrtaceae,exotic,2508670,http://eol.org/pages/2508670/overview,not listed,not listed,,filtered,rounded,evergreen,,,minimal
-Lyonothamnus floribundus,FERN-LEAF CATALINA IRONWOOD,366,Rosaceae,native,47383078,https://eol.org/pages/47383078,Vulnerable,Vulnerable D2,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T37561A10058223.en,filtered,vase,evergreen,,,minimal
-Macadamia integrifolia,SMOOTH-SHELL MACADAMIA,367,Proteaceae,exotic,486498,https://eol.org/pages/486498/overview,not listed,not listed,,dense,rounded,,,,
-Macadamia tetraphylla,ROUGH-SHELL MACADAMIA,212,Proteaceae,exotic,491550,http://eol.org/pages/491550/overview,not listed,not listed,,dense,rounded,,,,moderate
-Magnolia champaca,Champaca,284,Magnoliaceae,exotic,1155025,http://eol.org/pages/1155025/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2014-3.RLTS.T191869A15267603.en,dense,rounded,,,,
-Magnolia grandiflora,SOUTHERN MAGNOLIA,116,Magnoliaceae,exotic,1154991,http://eol.org/pages/1154991/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2014-1.RLTS.T193948A2291865.en,dense,"rounded, spreading",evergreen,,,moderate
-Magnolia grandiflora 'Little Gem',Little Gem Magnolia,607,Magnoliaceae,exotic,1154991,http://eol.org/pages/1154991/overview,not listed,not listed,,dense,"rounded, spreading",evergreen,,,moderate
-Magnolia grandiflora 'Samuel Sommer',SAMUEL SOMMER MAGNOLIA,392,Magnoliaceae,exotic,1154991,http://eol.org/pages/1154991/overview,not listed,not listed,,dense,"rounded, spreading",evergreen,,,moderate
-Malus floribunda,Crabapple,37,Rosaceae,exotic,11168049,https://eol.org/pages/11168049,not listed,not listed,,dense,spreading,deciduous,,,
-Malus sylvestris,EDIBLE APPLE,42,Rosaceae,exotic,633316,http://eol.org/pages/633316/overview,Data Deficient,Data Deficient,http://dx.doi.org/10.2305/IUCN.UK.2011-1.RLTS.T172170A6841688.en,dense,rounded,,,,moderate
-Maytenus boaria,MAYTEN TREE,196,Celastraceae,exotic,6940183,http://eol.org/pages/6940183/overview,not listed,not listed,,filtered,pendulous,evergreen,watch,https://www.cal-ipc.org/plants/risk/maytenus-boaria-risk/,moderate
-Melaleuca armillaris,Drooping Melaleuca,352,Myrtaceae,exotic,5449241,http://eol.org/pages/5449241/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,minimal
-Melaleuca citrina,LEMON BOTTLEBRUSH,13,Myrtaceae,exotic,2508464,http://eol.org/pages/2508464/overview,not listed,not listed,,,,,,,
-Melaleuca ericifolia,Heath Melaleuca,256,Myrtaceae,exotic,5449388,http://eol.org/pages/5449388/overview,not listed,not listed,,dense,pendulous,,,,minimal
-Melaleuca genistifolia,Melaleuca Decora,657,Myrtaceae,exotic,5449350,http://eol.org/pages/5449350/overview,not listed,not listed,,dense,pendulous,,,,
-Melaleuca linariifolia,FLAXLEAF PAPERBARK,258,Myrtaceae,exotic,2508583,http://eol.org/pages/2508583/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,
-Melaleuca nesophila,PINK MELALEUCA,257,Myrtaceae,exotic,5449572,http://eol.org/pages/5449572/overview,not listed,not listed,,little,rounded,evergreen,,,minimal
-Melaleuca quinquenervia,CAJEPUT TREE,19,Myrtaceae,exotic,2508582,http://eol.org/pages/2508582/overview,not listed,not listed,,dense,"rounded, vase",evergreen,,,minimal
-Melaleuca spp.,Melaleuca,1002,Myrtaceae,exotic,1327063,http://eol.org/pages/1327063/overview,not listed,not listed,,dense,pendulous,,,,
-Melaleuca viminalis,WEEPING BOTTLEBRUSH,239,Myrtaceae,exotic,5454625,http://eol.org/pages/5454625/overview,not listed,not listed,,,,,,,
-Melia azedarach,CHINABERRY,31,Meliaceae,exotic,581918,http://eol.org/pages/581918/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T61801956A61801958.en,filtered,rounded,deciduous,,,
-Metrosideros excelsus,NEW ZEALAND CHRISTMAS TREE,82,Myrtaceae,exotic,5448620,http://eol.org/pages/5448620/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,minimal
-Morus alba,WHITE MULBERRY,130,Moraceae,exotic,594885,http://eol.org/pages/594885/overview,not listed,not listed,,dense,"rounded, spreading",evergreen,,,moderate
-Morus spp.,Mulberry Species,1331,Moraceae,exotic,72690,https://eol.org/pages/72690,not listed,not listed,,,,,,,
-Musa spp.,BANANA,320,Musaceae,exotic,44527,http://eol.org/pages/44527/overview,not listed,not listed,,,,,,,high
-Myoporum laetum,MYOPORUM,81,Scrophulariaceae,exotic,578077,http://eol.org/pages/578077/overview,not listed,not listed,,dense,spreading,evergreen,moderate,https://www.cal-ipc.org/plants/profile/myoporum-laetum-profile/,"none, once established"
-Myrtus communis,TRUE MYRTLE,318,Myrtaceae,exotic,2508590,http://eol.org/pages/2508590/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T203365A119997141.en.,dense,conical,evergreen,,,minimal
-Nerium oleander,OLEANDER,86,Apocynaceae,exotic,581314,http://eol.org/pages/581314/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T202961A13537523.en,little,rounded,evergreen,,,minimal
+Erythrina caffra,KAFFIRBOOM CORAL TREE,193,Fabaceae,Legume,exotic,644148,http://eol.org/pages/644148/overview,not listed,not listed,,dense,spreading,,,,moderate
+Erythrina coralloides,NAKED CORAL TREE,308,Fabaceae,Legume,exotic,643189,http://eol.org/pages/643189/overview,not listed,not listed,,dense,spreading,,,,moderate
+Eucalyptus amplifolia,CABBAGE GUM,663,Myrtaceae,Myrtle,exotic,630154,http://eol.org/pages/630154/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
+Eucalyptus camaldulensis,RED GUM,102,Myrtaceae,Myrtle,exotic,301398,http://eol.org/pages/301398/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,limited,https://www.cal-ipc.org/plants/paf/eucalyptus-camaldulensis-plant-assessment-form/,minimal
+Eucalyptus cinerea,ASH GUM,219,Myrtaceae,Myrtle,exotic,630170,http://eol.org/pages/630170/overview,not listed,not listed,,filtered,rounded,evergreen,,,minimal
+Eucalyptus cladocalyx,SUGAR GUM,119,Myrtaceae,Myrtle,exotic,637218,http://eol.org/pages/637218/overview,not listed,not listed,,dense,"vase, rounded",,watch,https://www.cal-ipc.org/plants/risk/eucalyptus-cladocalyx-risk/,minimal
+Eucalyptus cornuta,YATE,300,Myrtaceae,Myrtle,exotic,301420,https://eol.org/pages/301420/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
+Eucalyptus deglupta,Mindanao Gum,416,Myrtaceae,Myrtle,exotic,230366,http://eol.org/pages/230366/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
+Eucalyptus globulus,BLUE GUM,11,Myrtaceae,Myrtle,exotic,301421,http://eol.org/pages/301421/overview,not listed,not listed,,dense,rounded,evergreen,limited,https://www.cal-ipc.org/plants/paf/eucalyptus-globulus-plant-assessment-form/,minimal
+Eucalyptus globulus 'Compacta',Dwarf Blue Gum,445,Myrtaceae,Myrtle,exotic,301421,http://eol.org/pages/301421/overview,not listed,not listed,,dense,rounded,evergreen,limited,https://www.cal-ipc.org/plants/paf/eucalyptus-globulus-plant-assessment-form/,minimal
+Eucalyptus grandis,FLOODED GUM,351,Myrtaceae,Myrtle,exotic,230778,http://eol.org/pages/230778/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
+Eucalyptus lehmannii,BUSHY YATE,18,Myrtaceae,Myrtle,exotic,630174,http://eol.org/pages/630174/overview,not listed,not listed,,dense,spreading,evergreen,,,minimal
+Eucalyptus leucoxylon 'Rosea',LG.-FRUIT RED-FLOWERING GUM,909,Myrtaceae,Myrtle,exotic,301411,http://eol.org/pages/301411/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,minimal
+Eucalyptus nicholii,NICHOLS WILLOW LEAFED PEPPERMINT,346,Myrtaceae,Myrtle,exotic,630137,http://eol.org/pages/630137/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,minimal
+Eucalyptus polyanthemos,SILVER DOLLAR GUM,114,Myrtaceae,Myrtle,exotic,633030,http://eol.org/pages/633030/overview,not listed,not listed,,dense,"rounded, vase",evergreen,,,minimal
+Eucalyptus pulverulenta,Silver Mountain Gum,532,Myrtaceae,Myrtle,exotic,301319,http://eol.org/pages/301319/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
+Eucalyptus robusta,SWAMP MAHOGONY,226,Myrtaceae,Myrtle,exotic,301423,http://eol.org/pages/301423/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
+Eucalyptus rudis,DESERT GUM,163,Myrtaceae,Myrtle,exotic,633012,http://eol.org/pages/633012/overview,not listed,not listed,,filtered,spreading,evergreen,,,minimal
+Eucalyptus sideroxylon,RED IRONBARK,103,Myrtaceae,Myrtle,exotic,632020,http://eol.org/pages/632020/overview,not listed,not listed,,filtered,columnar,evergreen,,,minimal
+Eucalyptus torquata,CORAL GUM,160,Myrtaceae,Myrtle,exotic,301419,http://eol.org/pages/301419/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
+Eucalyptus viminalis,MANNA GUM,301,Myrtaceae,Myrtle,exotic,245551,http://eol.org/pages/245551/overview,not listed,not listed,,filtered,vase,evergreen,,,minimal
+Eugenia aggregata,Cherry Of The Rio Grande,1051,Myrtaceae,Myrtle,exotic,48306163,http://eol.org/pages/48306163/overview,not listed,not listed,,filtered,,,,,
+Ficus benjamina,WEEPING FIG,127,Moraceae,Mulberry,exotic,594918,http://eol.org/pages/594918/overview,not listed,not listed,,dense,"vase, rounded",evergeen,,,moderate
+Ficus benjamina 'Variegata',Chinese Weeping Banyan,1805,Moraceae,Mulberry,exotic,594918,http://eol.org/pages/594918/overview,not listed,not listed,,dense,"vase, rounded",evergreen,,,moderate
+Ficus carica,EDIBLE FIG,167,Moraceae,Mulberry,exotic,594632,http://eol.org/pages/594632/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2007.RLTS.T63527A12687229.en,dense,"rounded, spreading",deciduous,moderate,https://www.cal-ipc.org/plants/paf/ficus-carica-plant-assessment-form/,moderate
+Ficus elastica,RUBBER TREE,108,Moraceae,Mulberry,exotic,594821,http://eol.org/pages/594821/overview,not listed,not listed,,dense,"vase, rounded",,,,moderate
+Ficus lyrata,Fiddleleaf Fig,344,Moraceae,Mulberry,exotic,482014,http://eol.org/pages/482014/overview,not listed,not listed,,dense,"vase, rounded",,,,moderate
+Ficus macrophylla,MORETON BAY FIG,80,Moraceae,Mulberry,exotic,2876056,http://eol.org/pages/2876056/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
+Ficus microcarpa,WEEPING INDIAN LAUREL FIG,330,Moraceae,Mulberry,exotic,590525,http://eol.org/pages/590525/overview,not listed,not listed,,dense,"vase, rounded",,,,moderate
+Ficus microcarpa 'Green Gem',Green Gem Indian Laurel Fig,339,Moraceae,Mulberry,exotic,590525,http://eol.org/pages/590525/overview,not listed,not listed,,dense,"vase, rounded",,,,moderate
+Ficus microcarpa 'Nitida',INDIAN LAUREL FIG,56,Moraceae,Mulberry,exotic,49953563,https://eol.org/pages/49953563/overview,not listed,not listed,,dense,"vase, rounded",,,,moderate
+Ficus rubiginosa,RUSTY LEAF FIG,109,Moraceae,Mulberry,exotic,482015,http://eol.org/pages/482015/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
+Ficus spp.,FIG,83,Moraceae,Mulberry,exotic,47119105,https://eol.org/pages/47119105,not listed,not listed,,dense,"vase, rounded",,,,moderate
+Fraxinus angustifolia oxycarpa,RAYWOOD ASH,266,Oleaceae,Olive,exotic,47150160,https://eol.org/pages/47150160/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/203366/1,dense,rounded,deciduous,,,
+Fraxinus uhdei,SHAMEL ASH,110,Oleaceae,Olive,exotic,487569,http://eol.org/pages/487569/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T96444707A96444709.en,dense,rounded,"evergreen, semi-deciduous",,,minimal
+Fraxinus velutina,ARIZONA ASH,141,Oleaceae,Olive,native,579143,http://eol.org/pages/579143/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T96444728A96444730.en,dense,vase,deciduous,,,minimal
+Geijera parviflora,AUSTRALIAN WILLOW,7,Rutaceae,Rue,exotic,5624115,http://eol.org/pages/5624115/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
+Ginkgo biloba,MAIDENHAIR TREE,71,Ginkgoaceae,Ginko,exotic,1156278,http://eol.org/pages/1156278/overview,Endangered,Endangered B1+2c,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T32353A9700472.en,filtered,"conical, rounded",deciduous,,,minimal
+Ginkgo biloba 'Autumn Gold',GINKGO AUTUMN GOLD,1263,Ginkgoaceae,Ginko,exotic,1156278,http://eol.org/pages/1156278/overview,not listed,not listed,,filtered,"conical, rounded",deciduous,,,minimal
+Gleditsia triacanthos,HONEY LOCUST,55,Fabaceae,Legume,exotic,416265,http://eol.org/pages/416265/overview,not listed,not listed,,filtered,rounded,deciduous,,,
+Grevillea robusta,SILK OAK,112,Proteaceae,Protea,exotic,582736,http://eol.org/pages/582736/overview,not listed,not listed,,filtered,spreading,evergreen,watch,https://www.cal-ipc.org/plants/risk/grevillea-robusta-risk/,minimal
+Hakea suaveolens,SWEET HAKEA,270,Proteaceae,Protea,exotic,5511103,http://eol.org/pages/5511103/overview,not listed,not listed,,filtered,rounded,,,,
+Handroanthus chrysotrichus,Golden Trumpet Tree,179,Bignoniaceae,Bignoniaexotic,5637482,http://eol.org/pages/5637482/overview,not listed,not listed,,dense,rounded,,,,
+Handroanthus impetiginosus,Pink Trumpet Tree,403,Bignoniaceae,Bignoniaexotic,5637444,http://eol.org/pages/5637444,not listed,not listed,,"filtered, dense","rounded, vase",deciduous,,,
+Harpephyllum caffrum,KAFFIR PLUM,192,Anacardiaceae,Sumac,exotic,6935240,http://eol.org/pages/6935240/overview,not listed,not listed,,dense,rounded,,,,minimal
+Hesperocyparis macrocarpa,MONTEREY CYPRESS,332,Cupressaceae,Cypress,native,1034856,http://eol.org/pages/1034856/overview,Vulnerable,Vulnerable D2,http://www.iucnredlist.org/details/30375/0,filtered,conical,,,,
+Heteromeles arbutifolia,TOYON,232,Rosaceae,Rose,native,47383069,https://eol.org/pages/47383069,not listed,not listed,,dense,rounded,evergreen,,,
+Howea belmoreana,Sentry Palm,427,Arecaceae,Palm,exotic,1142854,http://eol.org/pages/1142854/overview,Vulnerable,Vulnerable D2,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38576A10125688.en,"little, none",palm,evergreen,,,
+Howea forsteriana,PARADISE PALM,261,Arecaceae,Palm,exotic,1142853,http://eol.org/pages/1142853/overview,Vulnerable,Vulnerable D2,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38577A10125794.en,"little, none",palm,evergreen,,,
+Hymenosporum flavum,SWEETSHADE,228,Pittosporaceae,Cheesewood,exotic,49896246,https://eol.org/pages/49896246/overview,not listed,not listed,,filtered,"conical, vase",evergreen,,,
+Ilex altaclarensis 'Wilsonii',WILSON HOLLY,245,Aquifoliaceae,Holly,exotic,2888814,https://eol.org/pages/2888814/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,
+Jacaranda mimosifolia,JACARANDA,59,Bignoniaceae,Bignonia,exotic,47154753,https://eol.org/pages/47154753/overview,Vulnerable,Vulnerable B1+2ac,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T32027A9675619.en,"filtered, dense",rounded,deciduous,,,minimal
+Jubaea chilensis,CHILEAN WINE PALM,291,Arecaceae,Palm,exotic,1142626,http://eol.org/pages/1142626/overview,Vulnerable,Vulnerable A1cd,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38586A10128158.en,"little, none",palm,evergreen,,,
+Juglans hindsii,CALIFORNIA BLACK WALNUT,152,Juglandaceae,Walnut,native,595007,http://eol.org/pages/595007/overview,Vulnerable,Vulnerable A1c,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T35154A9915361.en,filtered,spreading,deciduous,,,"none, once established"
+Juniperus chinensis,CHINESE JUNIPER,191,Cupressaceae,Cypress,exotic,1061675,http://eol.org/pages/1061675/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42227A2962948.en,little,conical,evergreen,,,minimal
+Juniperus chinensis 'Torulosa',HOLLYWOOD JUNIPER,182,Cupressaceae,Cypress,exotic,1061675,http://eol.org/pages/1061675/overview,not listed,not listed,,little,conical,evergreen,,,minimal
+Koelreuteria bipinnata,CHINESE FLAME TREE,33,Sapindaceae,Soapberry,exotic,483646,http://eol.org/pages/483646/overview,not listed,not listed,,filtered,"rounded, vase",deciduous,,,moderate
+Koelreuteria paniculata,GOLDENRAIN TREE,49,Sapindaceae,Soapberry,exotic,487245,http://eol.org/pages/487245/overview,not listed,not listed,,filtered,"rounded, vase",deciduous,,,moderate
+Lagerstroemia indica,CRAPE MYRTLE,38,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Lagerstroemia indica 'Muskogee',MUSKOGEE CRAPE MYRTLE,1292,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Lagerstroemia indica 'Natchez',Natchez Crape Myrtle,1566,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Lagerstroemia indica 'Purple',PURPLE CRAPE MYRTLE,1288,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Lagerstroemia indica 'Red',Red Crape Myrtle,1289,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Lagerstroemia indica 'Tuscarora',Tuscarora Crape Myrtle,1291,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Lagerstroemia indica 'White',White Crape Myrtle,1290,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Lagunaria patersonii,PRIMROSE TREE,210,Malvaceae,Mallow,exotic,586694,http://eol.org/pages/586694/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
+Laurus nobilis,SWEET BAY,121,Lauraceae,Laurel,exotic,486835,http://eol.org/pages/486835/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T203351A119996864.en,dense,conical,evergreen,,,minimal
+Leptospermum laevigatum,AUSTRALIAN TEA TREE,907,Myrtaceae,Myrtle,exotic,2508619,http://eol.org/pages/2508619/overview,not listed,not listed,,dense,rounded,,watch,https://www.cal-ipc.org/plants/risk/leptospermum-laevigatum-risk/,minimal
+Leptospermum spp.,Tea Tree,255,Myrtaceae,Myrtle,exotic,2508616,http://eol.org/pages/2508616/overview,not listed,not listed,,dense,rounded,,,,minimal
+Ligustrum lucidum,GLOSSY PRIVET,48,Oleaceae,Olive,exotic,487035,http://eol.org/pages/487035/overview,not listed,not listed,,dense,rounded,evergreen,limited,https://www.cal-ipc.org/plants/paf/ligustrum-lucidum-plant-assessment-form/,
+Liquidambar formosana,Chinese Sweetgum,158,Altingiaceae,Sweet-gum,exotic,2887420,http://eol.org/pages/2887420/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/61983495/0,dense,columnar,deciduous,,,
+Liquidambar styraciflua,AMERICAN SWEETGUM,5,Altingiaceae,Sweet-gum,exotic,594658,http://eol.org/pages/594658/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/33966/0,dense,"columnar, rounded",deciduous,,,moderate
+Liquidambar styraciflua 'Rotundiloba',ROUND-LEAFED SWEETGUM,340,Altingiaceae,Sweet-gum,exotic,594658,http://eol.org/pages/594658/overview,not listed,not listed,,dense,"columnar, rounded",deciduous,,,moderate
+Liriodendron tulipifera,TULIP TREE,123,Magnoliaceae,Magnolia,exotic,1155834,http://eol.org/pages/1155834/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2014-3.RLTS.T194015A2294401.en,dense,"rounded, vase",deciduous,,,moderate
+Livistona chinensis,CHINESE FOUNTAIN PALM,279,Arecaceae,Palm,exotic,1140296,http://eol.org/pages/1140296/overview,not listed,not listed,,"little, none",palm,evergreen,,,
+Lophostemon confertus,BRISBANE BOX,15,Myrtaceae,Myrtle,exotic,2508670,http://eol.org/pages/2508670/overview,not listed,not listed,,filtered,rounded,evergreen,,,minimal
+Lophostemon confertus 'Variegata',VARIEGATED BRISBANE BOX,903,Myrtaceae,Myrtle,exotic,2508670,http://eol.org/pages/2508670/overview,not listed,not listed,,filtered,rounded,evergreen,,,minimal
+Lyonothamnus floribundus,FERN-LEAF CATALINA IRONWOOD,366,Rosaceae,Rose,native,47383078,https://eol.org/pages/47383078,Vulnerable,Vulnerable D2,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T37561A10058223.en,filtered,vase,evergreen,,,minimal
+Macadamia integrifolia,SMOOTH-SHELL MACADAMIA,367,Proteaceae,Protea,exotic,486498,https://eol.org/pages/486498/overview,not listed,not listed,,dense,rounded,,,,
+Macadamia tetraphylla,ROUGH-SHELL MACADAMIA,212,Proteaceae,Protea,exotic,491550,http://eol.org/pages/491550/overview,not listed,not listed,,dense,rounded,,,,moderate
+Magnolia champaca,Champaca,284,Magnoliaceae,Magnolia,exotic,1155025,http://eol.org/pages/1155025/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2014-3.RLTS.T191869A15267603.en,dense,rounded,,,,
+Magnolia grandiflora,SOUTHERN MAGNOLIA,116,Magnoliaceae,Magnolia,exotic,1154991,http://eol.org/pages/1154991/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2014-1.RLTS.T193948A2291865.en,dense,"rounded, spreading",evergreen,,,moderate
+Magnolia grandiflora 'Little Gem',Little Gem Magnolia,607,Magnoliaceae,Magnolia,exotic,1154991,http://eol.org/pages/1154991/overview,not listed,not listed,,dense,"rounded, spreading",evergreen,,,moderate
+Magnolia grandiflora 'Samuel Sommer',SAMUEL SOMMER MAGNOLIA,392,Magnoliaceae,Magnolia,exotic,1154991,http://eol.org/pages/1154991/overview,not listed,not listed,,dense,"rounded, spreading",evergreen,,,moderate
+Malus floribunda,Crabapple,37,Rosaceae,Rose,exotic,11168049,https://eol.org/pages/11168049,not listed,not listed,,dense,spreading,deciduous,,,
+Malus sylvestris,EDIBLE APPLE,42,Rosaceae,Rose,exotic,633316,http://eol.org/pages/633316/overview,Data Deficient,Data Deficient,http://dx.doi.org/10.2305/IUCN.UK.2011-1.RLTS.T172170A6841688.en,dense,rounded,,,,moderate
+Maytenus boaria,MAYTEN TREE,196,Celastraceae,Bittersweet,exotic,6940183,http://eol.org/pages/6940183/overview,not listed,not listed,,filtered,pendulous,evergreen,watch,https://www.cal-ipc.org/plants/risk/maytenus-boaria-risk/,moderate
+Melaleuca armillaris,Drooping Melaleuca,352,Myrtaceae,Myrtle,exotic,5449241,http://eol.org/pages/5449241/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,minimal
+Melaleuca citrina,LEMON BOTTLEBRUSH,13,Myrtaceae,Myrtle,exotic,2508464,http://eol.org/pages/2508464/overview,not listed,not listed,,,,,,,
+Melaleuca ericifolia,Heath Melaleuca,256,Myrtaceae,Myrtle,exotic,5449388,http://eol.org/pages/5449388/overview,not listed,not listed,,dense,pendulous,,,,minimal
+Melaleuca genistifolia,Melaleuca Decora,657,Myrtaceae,Myrtle,exotic,5449350,http://eol.org/pages/5449350/overview,not listed,not listed,,dense,pendulous,,,,
+Melaleuca linariifolia,FLAXLEAF PAPERBARK,258,Myrtaceae,Myrtle,exotic,2508583,http://eol.org/pages/2508583/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,
+Melaleuca nesophila,PINK MELALEUCA,257,Myrtaceae,Myrtle,exotic,5449572,http://eol.org/pages/5449572/overview,not listed,not listed,,little,rounded,evergreen,,,minimal
+Melaleuca quinquenervia,CAJEPUT TREE,19,Myrtaceae,Myrtle,exotic,2508582,http://eol.org/pages/2508582/overview,not listed,not listed,,dense,"rounded, vase",evergreen,,,minimal
+Melaleuca spp.,Melaleuca,1002,Myrtaceae,Myrtle,exotic,1327063,http://eol.org/pages/1327063/overview,not listed,not listed,,dense,pendulous,,,,
+Melaleuca viminalis,WEEPING BOTTLEBRUSH,239,Myrtaceae,Myrtle,exotic,5454625,http://eol.org/pages/5454625/overview,not listed,not listed,,,,,,,
+Melia azedarach,CHINABERRY,31,Meliaceae,Mahogany,exotic,581918,http://eol.org/pages/581918/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T61801956A61801958.en,filtered,rounded,deciduous,,,
+Metrosideros excelsus,NEW ZEALAND CHRISTMAS TREE,82,Myrtaceae,Myrtle,exotic,5448620,http://eol.org/pages/5448620/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,minimal
+Morus alba,WHITE MULBERRY,130,Moraceae,Mulberry,exotic,594885,http://eol.org/pages/594885/overview,not listed,not listed,,dense,"rounded, spreading",evergreen,,,moderate
+Morus spp.,Mulberry Species,1331,Moraceae,Mulberry,exotic,72690,https://eol.org/pages/72690,not listed,not listed,,,,,,,
+Musa spp.,BANANA,320,Musaceae,Banana,exotic,44527,http://eol.org/pages/44527/overview,not listed,not listed,,,,,,,high
+Myoporum laetum,MYOPORUM,81,Scrophulariaceae,Figwort,exotic,578077,http://eol.org/pages/578077/overview,not listed,not listed,,dense,spreading,evergreen,moderate,https://www.cal-ipc.org/plants/profile/myoporum-laetum-profile/,"none, once established"
+Myrtus communis,TRUE MYRTLE,318,Myrtaceae,Myrtle,exotic,2508590,http://eol.org/pages/2508590/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T203365A119997141.en.,dense,conical,evergreen,,,minimal
+Nerium oleander,OLEANDER,86,Apocynaceae,Dogbane,exotic,581314,http://eol.org/pages/581314/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T202961A13537523.en,little,rounded,evergreen,,,minimal
 No Replant,No Replant,1420,,,,,not listed,not listed,,,,,,,
-Nolina recurvata,PONYTAIL PALM,361,Arecaceae,exotic,1086152,http://eol.org/pages/1086152/overview,not listed,not listed,,"little, none",palm,evergreen,,,
-Olea europaea,OLIVE,87,Oleaceae,exotic,579181,http://eol.org/pages/579181/overview,Data Deficient,Data Deficient,http://www.iucnredlist.org/details/summary/63005/1,filtered,"rounded, vase",evergreen,limited,https://www.cal-ipc.org/plants/paf/olea-europaea-plant-assessment-form/,minimal
+Nolina recurvata,PONYTAIL PALM,361,Arecaceae,Palm,exotic,1086152,http://eol.org/pages/1086152/overview,not listed,not listed,,"little, none",palm,evergreen,,,
+Olea europaea,OLIVE,87,Oleaceae,Olive,exotic,579181,http://eol.org/pages/579181/overview,Data Deficient,Data Deficient,http://www.iucnredlist.org/details/summary/63005/1,filtered,"rounded, vase",evergreen,limited,https://www.cal-ipc.org/plants/paf/olea-europaea-plant-assessment-form/,minimal
 Other tree,Other Tree,203,,exotic,,,not listed,not listed,,,,,,,
-Palm spp.,PALM,90,Arecaceae,exotic,8193,http://eol.org/pages/8193/overview,not listed,not listed,,"little, none",palm,evergreen,,,
-Parkinsonia X 'Desert Museum',Desert Museum Palo Verde,677,Fabaceae,exotic,53527,http://eol.org/pages/53527/overview,not listed,not listed,,"little, none",palm,evergreen,,,
-Persea americana,AVOCADO,8,Lauraceae,exotic,596888,http://eol.org/pages/596888/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/96986556/0,filtered,rounded,evergreen,,,moderate
-Persea borbonia,RED BAY,316,Lauraceae,exotic,596915,http://eol.org/pages/596915/overview,not listed,not listed,,filtered,rounded,evergreen,,,moderate
-Persea indica,Madeira Bay Fig,911,Lauraceae,exotic,5394782,http://eol.org/pages/5394782/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T30329A102153566.en,filtered,rounded,evergreen,,,
-Phoenix canariensis,CANARY ISLAND DATE PALM,25,Arecaceae,exotic,1135089,http://eol.org/pages/1135089/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/13416997/0,little,,,limited,https://www.cal-ipc.org/plants/paf/phoenix-canariensis-plant-assessment-form/,minimal
-Phoenix dactylifera,DATE PALM,162,Arecaceae,exotic,1135088,http://eol.org/pages/1135088/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/13416997/0,little,,,,,moderate
-Phoenix reclinata,SENEGAL PALM,218,Arecaceae,exotic,1135083,http://eol.org/pages/1135083/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T67540526A67540546.en,"little, none",palm,evergreen,,,
-Phoenix roebelenii,PYGMY DATE PALM,324,Arecaceae,exotic,1135082,http://eol.org/pages/1135082/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
-Phoenix rupicola,CLIFF DATE PALM,272,Arecaceae,exotic,1135081,http://eol.org/pages/1135081/overview,Lower Risk/near threatened,Lower Risk/near threatened,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38629A10140589.en,"little, none",palm,evergreen,,,
-Pinus canariensis,Canary Island Pine,26,Pinaceae,exotic,323436,http://eol.org/pages/323436/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-2.RLTS.T39603A84061236.en,filtered,columnar,evergreen,,,minimal
-Pinus eldarica,AFGHAN PINE,275,Pinaceae,exotic,47105642,https://eol.org/pages/47105642,Near Threatened,Near Threatened,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T34183A2849651.en,dense,conical,,,,
-Pinus halepensis,ALEPPO PINE,2,Pinaceae,exotic,1033600,http://eol.org/pages/1033600/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42366A2975569.en,filtered/dense,conical,evergreen,,,minimal
-Pinus pinea,ITALIAN STONE PINE,58,Pinaceae,exotic,999491,http://eol.org/pages/999491/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/42391/0,dense,"rounded, spreading",evergreen,,,minimal
-Pinus radiata,MONTEREY PINE,79,Pinaceae,native,1061749,http://eol.org/pages/1061749/overview,Endangered,"Endangered B2ab(ii,iii,v)",http://www.iucnredlist.org/details/42408/0,filtered,"conical, spreading",evergreen,,,minimal
-Pinus roxburghii,CHIR PINE,410,Pinaceae,exotic,1033069,http://eol.org/pages/1033069/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42412A2978347.en,dense,conical,,,,
-Pinus thunbergiana,JAPANESE BLACK PINE,60,Pinaceae,exotic,1033637,http://eol.org/pages/1033637/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42423A2979140.en,dense,"conical, spreading",evergreen,,,minimal
-Pinus torreyana,TORREY PINE,122,Pinaceae,native,1059927,http://eol.org/pages/1059927/overview,Critically Endangered,"Critically Endangered B2ab(ii,iii,v)",http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42424A2979186.en,filtered/dense,"conical, vase",evergreen,,,minimal
-Pistacia chinensis,CHINESE PISTACHE,34,Anacardiaceae,exotic,483509,http://eol.org/pages/483509/overview,not listed,not listed,,filtered,rounded,deciduous,,,"none, once established"
-Pittosporum crassifolium,KARO,322,Pittosporaceae,exotic,486199,http://eol.org/pages/486199/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
-Pittosporum phillyraeoides,WILLOW PITTOSPORUM,244,Pittosporaceae,exotic,5555698,https://eol.org/pages/5555698/overview,not listed,not listed,,filtered,"weeping, rounded",evergreen,,,moderate
-Pittosporum tobira,MOCK ORANGE,198,Pittosporaceae,exotic,583390,http://eol.org/pages/583390/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
-Pittosporum undulatum,VICTORIAN BOX,125,Pittosporaceae,exotic,583391,http://eol.org/pages/583391/overview,not listed,not listed,,dense,rounded,evergreen,watch,https://www.cal-ipc.org/plants/risk/pittosporum-undulatum-risk/,moderate
-Pittosporum viridiflorum,CAPE PITTOSPORUM,345,Pittosporaceae,exotic,47136685,https://eol.org/pages/47136685/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
-Platanus mexicana,Mexican Sycamore,440,Platanaceae,exotic,5348089,http://eol.org/pages/5348089/overview,not listed,not listed,,dense,"vase, spreading",,,,
-Platanus racemosa,CALIFORNIA SYCAMORE,23,Platanaceae,native,594707,http://eol.org/pages/594707/overview,not listed,not listed,,filtered,spreading,evergreen,,,
+Palm spp.,PALM,90,Arecaceae,Palm,exotic,8193,http://eol.org/pages/8193/overview,not listed,not listed,,"little, none",palm,evergreen,,,
+Parkinsonia X 'Desert Museum',Desert Museum Palo Verde,677,Fabaceae,Legume,exotic,53527,http://eol.org/pages/53527/overview,not listed,not listed,,"little, none",palm,evergreen,,,
+Persea americana,AVOCADO,8,Lauraceae,Laurel,exotic,596888,http://eol.org/pages/596888/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/96986556/0,filtered,rounded,evergreen,,,moderate
+Persea borbonia,RED BAY,316,Lauraceae,Laurel,exotic,596915,http://eol.org/pages/596915/overview,not listed,not listed,,filtered,rounded,evergreen,,,moderate
+Persea indica,Madeira Bay Fig,911,Lauraceae,Laurel,exotic,5394782,http://eol.org/pages/5394782/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T30329A102153566.en,filtered,rounded,evergreen,,,
+Phoenix canariensis,CANARY ISLAND DATE PALM,25,Arecaceae,Palm,exotic,1135089,http://eol.org/pages/1135089/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/13416997/0,little,,,limited,https://www.cal-ipc.org/plants/paf/phoenix-canariensis-plant-assessment-form/,minimal
+Phoenix dactylifera,DATE PALM,162,Arecaceae,Palm,exotic,1135088,http://eol.org/pages/1135088/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/13416997/0,little,,,,,moderate
+Phoenix reclinata,SENEGAL PALM,218,Arecaceae,Palm,exotic,1135083,http://eol.org/pages/1135083/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T67540526A67540546.en,"little, none",palm,evergreen,,,
+Phoenix roebelenii,PYGMY DATE PALM,324,Arecaceae,Palm,exotic,1135082,http://eol.org/pages/1135082/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
+Phoenix rupicola,CLIFF DATE PALM,272,Arecaceae,Palm,exotic,1135081,http://eol.org/pages/1135081/overview,Lower Risk/near threatened,Lower Risk/near threatened,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38629A10140589.en,"little, none",palm,evergreen,,,
+Pinus canariensis,Canary Island Pine,26,Pinaceae,Pine,exotic,323436,http://eol.org/pages/323436/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-2.RLTS.T39603A84061236.en,filtered,columnar,evergreen,,,minimal
+Pinus eldarica,AFGHAN PINE,275,Pinaceae,Pine,exotic,47105642,https://eol.org/pages/47105642,Near Threatened,Near Threatened,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T34183A2849651.en,dense,conical,,,,
+Pinus halepensis,ALEPPO PINE,2,Pinaceae,Pine,exotic,1033600,http://eol.org/pages/1033600/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42366A2975569.en,filtered/dense,conical,evergreen,,,minimal
+Pinus pinea,ITALIAN STONE PINE,58,Pinaceae,Pine,exotic,999491,http://eol.org/pages/999491/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/42391/0,dense,"rounded, spreading",evergreen,,,minimal
+Pinus radiata,MONTEREY PINE,79,Pinaceae,Pine,native,1061749,http://eol.org/pages/1061749/overview,Endangered,"Endangered B2ab(ii,iii,v)",http://www.iucnredlist.org/details/42408/0,filtered,"conical, spreading",evergreen,,,minimal
+Pinus roxburghii,CHIR PINE,410,Pinaceae,Pine,exotic,1033069,http://eol.org/pages/1033069/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42412A2978347.en,dense,conical,,,,
+Pinus thunbergiana,JAPANESE BLACK PINE,60,Pinaceae,Pine,exotic,1033637,http://eol.org/pages/1033637/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42423A2979140.en,dense,"conical, spreading",evergreen,,,minimal
+Pinus torreyana,TORREY PINE,122,Pinaceae,Pine,native,1059927,http://eol.org/pages/1059927/overview,Critically Endangered,"Critically Endangered B2ab(ii,iii,v)",http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42424A2979186.en,filtered/dense,"conical, vase",evergreen,,,minimal
+Pistacia chinensis,CHINESE PISTACHE,34,Anacardiaceae,Sumac,exotic,483509,http://eol.org/pages/483509/overview,not listed,not listed,,filtered,rounded,deciduous,,,"none, once established"
+Pittosporum crassifolium,KARO,322,Pittosporaceae,Cheesewood,exotic,486199,http://eol.org/pages/486199/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
+Pittosporum phillyraeoides,WILLOW PITTOSPORUM,244,Pittosporaceae,Cheesewood,exotic,5555698,https://eol.org/pages/5555698/overview,not listed,not listed,,filtered,"weeping, rounded",evergreen,,,moderate
+Pittosporum tobira,MOCK ORANGE,198,Pittosporaceae,Cheesewood,exotic,583390,http://eol.org/pages/583390/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
+Pittosporum undulatum,VICTORIAN BOX,125,Pittosporaceae,Cheesewood,exotic,583391,http://eol.org/pages/583391/overview,not listed,not listed,,dense,rounded,evergreen,watch,https://www.cal-ipc.org/plants/risk/pittosporum-undulatum-risk/,moderate
+Pittosporum viridiflorum,CAPE PITTOSPORUM,345,Pittosporaceae,Cheesewood,exotic,47136685,https://eol.org/pages/47136685/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
+Platanus mexicana,Mexican Sycamore,440,Platanaceae,Plane-tree,exotic,5348089,http://eol.org/pages/5348089/overview,not listed,not listed,,dense,"vase, spreading",,,,
+Platanus racemosa,CALIFORNIA SYCAMORE,23,Platanaceae,Plane-tree,native,594707,http://eol.org/pages/594707/overview,not listed,not listed,,filtered,spreading,evergreen,,,
 Platanus X hispanica,London Plane,70,Platanaceae,exotic,49950980,https://eol.org/pages/49950980/overview,not listed,not listed,,dense,"vase, spreading",,,,
-Platanus X hispanica 'Bloodgood',Bloodgood Plane,1079,Platanaceae,exotic,49950980,https://eol.org/pages/49950980/overview,not listed,not listed,,filtered,rounded,deciduous,,,
-Platanus X hispanica 'Columbia',Columbia Plane,1360,Platanaceae,exotic,49950980,https://eol.org/pages/49950980/overview,not listed,not listed,,dense,"rounded, spreading",deciduous,,,
-Platanus X hispanica 'Yarwood',Yarwood Plane,933,Platanaceae,exotic,49950980,https://eol.org/pages/49950980/overview,not listed,not listed,,filtered,rounded,deciduous,,,
-Platycladus orientalis,ORIENTAL ARBORVITAE,200,Cupressaceae,exotic,323359,http://eol.org/pages/323359/overview,Near Threatened,Near Threatened,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T31305A2803944.en,dense,rounded,evergreen,,,moderate
-Prunus armeniaca,APRICOT,6,Rosaceae,exotic,301091,http://eol.org/pages/301091/overview,Least Concern,Least Concern,,filtered,"Rounded, Spreading, Vase",deciduous,,,moderate
-Prunus blireiana,FLOWERING PLUM,47,Rosaceae,exotic,39934521,https://eol.org/pages/39934521,not listed,not listed,,filtered,,,,,moderate
-Prunus caroliniana,CAROLINA LAUREL CHERRY,28,Rosaceae,exotic,301110,http://eol.org/pages/301110/overview,not listed,not listed,,dense,rounded,evergreen,,,
-Prunus cerasifera,PURPLE-LEAF PLUM,98,Rosaceae,exotic,301112,https://eol.org/pages/301112/overview,Data Deficient,Data Deficient,http://www.iucnredlist.org/details/172162/1,dense,"rounded, vase",deciduous,limited,https://www.cal-ipc.org/plants/paf/prunus-cerasifera-plant-assessment-form/,moderate
-Prunus cerasifera 'Atropurpurea',Purple-Leaf Flowering Plum,683,Rosaceae,exotic,301112,https://eol.org/pages/301112/overview,not listed,not listed,,dense,"rounded, vase",deciduous,limited,https://www.cal-ipc.org/plants/paf/prunus-cerasifera-plant-assessment-form/,moderate
-Prunus cerasifera 'Krater Vesuvius',PLUM KRAUTERS VESUVIUS,1371,Rosaceae,exotic,301112,https://eol.org/pages/301112/overview,not listed,not listed,,dense,rounded,deciduous,limited,https://www.cal-ipc.org/plants/paf/prunus-cerasifera-plant-assessment-form/,moderate
-Prunus cerasifera 'Newport',Newport Plum,397,Rosaceae,exotic,301112,https://eol.org/pages/301112/overview,not listed,not listed,,dense,"rounded, vase",deciduous,limited,https://www.cal-ipc.org/plants/paf/prunus-cerasifera-plant-assessment-form/,moderate
-Prunus domestica,PLUM,95,Rosaceae,exotic,301139,http://eol.org/pages/301139/overview,Data Deficient,Data Deficient,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T50135950A50135957.en,filtered,"rounded, spreading",deciduous,,,moderate
-Prunus ilicifolia,Hollyleaf Cherry,181,Rosaceae,native,11165073,http://eol.org/pages/11165073/overview,not listed,not listed,,dense,spreading,evergreen,,,
-Prunus ilicifolia ssp. Lyonii,CATALINA CHERRY,156,Rosaceae,native,1245549,http://eol.org/pages/1245549/overview,not listed,not listed,,dense,"spreading, vase",evergreen,,,moderate
-Prunus lusitanica,Portugal Laurel,1374,Rosaceae,exotic,640257,http://eol.org/pages/640257/overview,Vulnerable,"Vulnerable B2ab(ii,v) (Regional assessment)",http://www.iucnredlist.org/details/62857/1,dense,spreading,evergreen,,,
-Prunus persica,PEACH,91,Rosaceae,exotic,631649,http://eol.org/pages/631649/overview,not listed,not listed,,filtered,rounded,deciduous,,,moderate
-Prunus spp.,Stone Fruit,118,Rosaceae,exotic,39934521,https://eol.org/pages/39934521,not listed,not listed,,filtered,,,,,
-Psidium guajava,GUAVA,268,Myrtaceae,exotic,2508593,http://eol.org/pages/2508593/overview,not listed,not listed,,filtered,"rounded, vase","evergreen, semi-deciduous",,,
-Pyrus calleryana,ORNAMENTAL PEAR,89,Rosaceae,exotic,299081,http://eol.org/pages/299081/overview,not listed,not listed,,dense,rounded,deciduous,watch,https://www.cal-ipc.org/plants/risk/pyrus-calleryana-risk/,moderate
-Pyrus kawakamii,EVERGREEN PEAR,45,Rosaceae,exotic,49271488,https://eol.org/pages/49271488,not listed,not listed,,filtered,"pendulous, spreading","evergreen, semi-deciduous",,,moderate
-Quercus agrifolia,COAST LIVE OAK,68,Fagaceae,native,1151806,http://eol.org/pages/1151806/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2016-1.RLTS.T194049A2295175.en,dense,"rounded, spreading",evergreen,,,minimal
-Quercus engelmannii,ENGELMANN OAK,359,Fagaceae,native,1151633,http://www.eol.org/pages/1151633/overview,Endangered,Endangered A3c,http://www.iucnredlist.org/details/34020/0,dense,vase,,,,
-Quercus ilex,HOLLY OAK,53,Fagaceae,exotic,1151536,http://eol.org/pages/1151536/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T62537A3116134.en,dense,"rounded, spreading",evergreen,,,minimal
-Quercus lobata,Valley Oak,435,Fagaceae,native,1151479,http://eol.org/pages/1151479/overview,Near Threatened,Near Threatened A3c,http://dx.doi.org/10.2305/IUCN.UK.2017-2.RLTS.T61983021A61983023.en,dense,rounded,deciduous,,,
-Quercus suber,CORK OAK,161,Fagaceae,exotic,1151259,http://eol.org/pages/1151259/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T194237A2305530.en,dense,"Pendulous, Rounded, Spreading, Vase",evergreen,,,minimal
-Quercus tomentella,ISLAND OAK,1563,Fagaceae,native,1151230,http://www.eol.org/pages/1151230/overview,Endangered,"Endangered B2ab(i,ii,iv,v)",http://www.iucnredlist.org/details/30959/0,dense,vase,,,,
-Quillaja saponaria,SOAPBARK TREE,468,Quillajaceae,exotic,241669,http://www.eol.org/pages/241669/overview,not listed,not listed,,dense,rounded,evergreen,,,
-Radermachera sinica,CHINA DOLL,169,Bignoniaceae,exotic,2895140,http://eol.org/pages/2895140/overview,not listed,not listed,,,,evergreen,,,moderate
-Ravenea rivularis,MAJESTY PALM,342,Arecaceae,exotic,1131993,http://eol.org/pages/1131993/overview,Vulnerable,"Vulnerable B2ab(i,ii,iii,iv,v)",http://dx.doi.org/10.2305/IUCN.UK.2017-2.RLTS.T38677A67737451.en,"little, none",palm,evergreen,,,moderate
-Rhus lancea,AFRICAN SUMAC,138,Anacardiaceae,exotic,582276,https://eol.org/pages/582276/overview,not listed,not listed,,dense,"pendulous, rounded",evergreen,,,
-Rhus laurina,Laurel Sumac,579,Anacardiaceae,native,486956,https://eol.org/pages/486956/overview,not listed,not listed,,,,evergreen,,,
-Robinia ambigua 'Idahoensis',Idaho Locust,185,Fabaceae,exotic,49133015,https://eol.org/pages/49133015,not listed,not listed,,filtered,vase,deciduous,,,
-Robinia pseudoacacia,Black Locust,10,Fabaceae,exotic,704089,http://eol.org/pages/704089/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2012.RLTS.T19891648A20138922.en,filtered,spreading,deciduous,limited,https://www.cal-ipc.org/plants/paf/robinia-pseudoacacia-plant-assessment-form/,
-Roystonea regia,CUBAN ROYAL PALM,470,Arecaceae,exotic,1131526,http://eol.org/pages/1131526/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
-Salix babylonica,WEEPING WILLOW,240,Salicaceae,exotic,47108280,https://eol.org/pages/47108280/overview,not listed,not listed,,"filtered, dense",weeping,deciduous,,,
-Schefflera actinophylla,QUEENSLAND UMBRELLA TREE,328,Araliaceae,exotic,1150882,http://eol.org/pages/1150882/overview,not listed,not listed,,"filtered, dense",,,,,moderate
-Schinus molle,CALIFORNIA PEPPER,22,Anacardiaceae,exotic,582275,http://eol.org/pages/582275/overview,not listed,not listed,,filtered,"Pendulous, Rounded, Spreading",evergreen,,,minimal
-Schinus terebinthifolius,BRAZILIAN PEPPER,14,Anacardiaceae,exotic,49905957,https://eol.org/pages/49905957,not listed,not listed,,dense,rounded,evergreen,,,minimal
-Sequoia sempervirens,COAST REDWOOD,35,Cupressaceae,native,1034849,http://eol.org/pages/1034849/overview,Endangered,Endangered A2acd,http://www.iucnredlist.org/details/34051/0,dense,conical,evergreen,,,high
-Stenocarpus sinuatus,FIREWHEEL TREE,171,Proteaceae,exotic,582737,http://eol.org/pages/582737/overview,not listed,not listed,,filtered,,,,,moderate
-Strelitzia nicolai,GIANT BIRD OF PARADISE,321,Strelitziaceae,exotic,345179,http://eol.org/pages/345179/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
+Platanus X hispanica 'Bloodgood',Bloodgood Plane,1079,Platanaceae,Plane-tree,exotic,49950980,https://eol.org/pages/49950980/overview,not listed,not listed,,filtered,rounded,deciduous,,,
+Platanus X hispanica 'Columbia',Columbia Plane,1360,Platanaceae,Plane-tree,exotic,49950980,https://eol.org/pages/49950980/overview,not listed,not listed,,dense,"rounded, spreading",deciduous,,,
+Platanus X hispanica 'Yarwood',Yarwood Plane,933,Platanaceae,Plane-tree,exotic,49950980,https://eol.org/pages/49950980/overview,not listed,not listed,,filtered,rounded,deciduous,,,
+Platycladus orientalis,ORIENTAL ARBORVITAE,200,Cupressaceae,Cypress,exotic,323359,http://eol.org/pages/323359/overview,Near Threatened,Near Threatened,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T31305A2803944.en,dense,rounded,evergreen,,,moderate
+Prunus armeniaca,APRICOT,6,Rosaceae,Rose,exotic,301091,http://eol.org/pages/301091/overview,Least Concern,Least Concern,,filtered,"Rounded, Spreading, Vase",deciduous,,,moderate
+Prunus blireiana,FLOWERING PLUM,47,Rosaceae,Rose,exotic,39934521,https://eol.org/pages/39934521,not listed,not listed,,filtered,,,,,moderate
+Prunus caroliniana,CAROLINA LAUREL CHERRY,28,Rosaceae,Rose,exotic,301110,http://eol.org/pages/301110/overview,not listed,not listed,,dense,rounded,evergreen,,,
+Prunus cerasifera,PURPLE-LEAF PLUM,98,Rosaceae,Rose,exotic,301112,https://eol.org/pages/301112/overview,Data Deficient,Data Deficient,http://www.iucnredlist.org/details/172162/1,dense,"rounded, vase",deciduous,limited,https://www.cal-ipc.org/plants/paf/prunus-cerasifera-plant-assessment-form/,moderate
+Prunus cerasifera 'Atropurpurea',Purple-Leaf Flowering Plum,683,Rosaceae,Rose,exotic,301112,https://eol.org/pages/301112/overview,not listed,not listed,,dense,"rounded, vase",deciduous,limited,https://www.cal-ipc.org/plants/paf/prunus-cerasifera-plant-assessment-form/,moderate
+Prunus cerasifera 'Krater Vesuvius',PLUM KRAUTERS VESUVIUS,1371,Rosaceae,Rose,exotic,301112,https://eol.org/pages/301112/overview,not listed,not listed,,dense,rounded,deciduous,limited,https://www.cal-ipc.org/plants/paf/prunus-cerasifera-plant-assessment-form/,moderate
+Prunus cerasifera 'Newport',Newport Plum,397,Rosaceae,Rose,exotic,301112,https://eol.org/pages/301112/overview,not listed,not listed,,dense,"rounded, vase",deciduous,limited,https://www.cal-ipc.org/plants/paf/prunus-cerasifera-plant-assessment-form/,moderate
+Prunus domestica,PLUM,95,Rosaceae,Rose,exotic,301139,http://eol.org/pages/301139/overview,Data Deficient,Data Deficient,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T50135950A50135957.en,filtered,"rounded, spreading",deciduous,,,moderate
+Prunus ilicifolia,Hollyleaf Cherry,181,Rosaceae,Rose,native,11165073,http://eol.org/pages/11165073/overview,not listed,not listed,,dense,spreading,evergreen,,,
+Prunus ilicifolia ssp. Lyonii,CATALINA CHERRY,156,Rosaceae,Rose,native,1245549,http://eol.org/pages/1245549/overview,not listed,not listed,,dense,"spreading, vase",evergreen,,,moderate
+Prunus lusitanica,Portugal Laurel,1374,Rosaceae,Rose,exotic,640257,http://eol.org/pages/640257/overview,Vulnerable,"Vulnerable B2ab(ii,v) (Regional assessment)",http://www.iucnredlist.org/details/62857/1,dense,spreading,evergreen,,,
+Prunus persica,PEACH,91,Rosaceae,Rose,exotic,631649,http://eol.org/pages/631649/overview,not listed,not listed,,filtered,rounded,deciduous,,,moderate
+Prunus spp.,Stone Fruit,118,Rosaceae,Rose,exotic,39934521,https://eol.org/pages/39934521,not listed,not listed,,filtered,,,,,
+Psidium guajava,GUAVA,268,Myrtaceae,Myrtle,exotic,2508593,http://eol.org/pages/2508593/overview,not listed,not listed,,filtered,"rounded, vase","evergreen, semi-deciduous",,,
+Pyrus calleryana,ORNAMENTAL PEAR,89,Rosaceae,Rose,exotic,299081,http://eol.org/pages/299081/overview,not listed,not listed,,dense,rounded,deciduous,watch,https://www.cal-ipc.org/plants/risk/pyrus-calleryana-risk/,moderate
+Pyrus kawakamii,EVERGREEN PEAR,45,Rosaceae,Rose,exotic,49271488,https://eol.org/pages/49271488,not listed,not listed,,filtered,"pendulous, spreading","evergreen, semi-deciduous",,,moderate
+Quercus agrifolia,COAST LIVE OAK,68,Fagaceae,Beech,native,1151806,http://eol.org/pages/1151806/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2016-1.RLTS.T194049A2295175.en,dense,"rounded, spreading",evergreen,,,minimal
+Quercus engelmannii,ENGELMANN OAK,359,Fagaceae,Beech,native,1151633,http://www.eol.org/pages/1151633/overview,Endangered,Endangered A3c,http://www.iucnredlist.org/details/34020/0,dense,vase,,,,
+Quercus ilex,HOLLY OAK,53,Fagaceae,Beech,exotic,1151536,http://eol.org/pages/1151536/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T62537A3116134.en,dense,"rounded, spreading",evergreen,,,minimal
+Quercus lobata,Valley Oak,435,Fagaceae,Beech,native,1151479,http://eol.org/pages/1151479/overview,Near Threatened,Near Threatened A3c,http://dx.doi.org/10.2305/IUCN.UK.2017-2.RLTS.T61983021A61983023.en,dense,rounded,deciduous,,,
+Quercus suber,CORK OAK,161,Fagaceae,Beech,exotic,1151259,http://eol.org/pages/1151259/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T194237A2305530.en,dense,"Pendulous, Rounded, Spreading, Vase",evergreen,,,minimal
+Quercus tomentella,ISLAND OAK,1563,Fagaceae,Beech,native,1151230,http://www.eol.org/pages/1151230/overview,Endangered,"Endangered B2ab(i,ii,iv,v)",http://www.iucnredlist.org/details/30959/0,dense,vase,,,,
+Quillaja saponaria,SOAPBARK TREE,468,Quillajaceae,Quillaja,exotic,241669,http://www.eol.org/pages/241669/overview,not listed,not listed,,dense,rounded,evergreen,,,
+Radermachera sinica,CHINA DOLL,169,Bignoniaceae,Bignonia,exotic,2895140,http://eol.org/pages/2895140/overview,not listed,not listed,,,,evergreen,,,moderate
+Ravenea rivularis,MAJESTY PALM,342,Arecaceae,Palm,exotic,1131993,http://eol.org/pages/1131993/overview,Vulnerable,"Vulnerable B2ab(i,ii,iii,iv,v)",http://dx.doi.org/10.2305/IUCN.UK.2017-2.RLTS.T38677A67737451.en,"little, none",palm,evergreen,,,moderate
+Rhus lancea,AFRICAN SUMAC,138,Anacardiaceae,Sumac,exotic,582276,https://eol.org/pages/582276/overview,not listed,not listed,,dense,"pendulous, rounded",evergreen,,,
+Rhus laurina,Laurel Sumac,579,Anacardiaceae,Sumac,native,486956,https://eol.org/pages/486956/overview,not listed,not listed,,,,evergreen,,,
+Robinia ambigua 'Idahoensis',Idaho Locust,185,Fabaceae,Legume,exotic,49133015,https://eol.org/pages/49133015,not listed,not listed,,filtered,vase,deciduous,,,
+Robinia pseudoacacia,Black Locust,10,Fabaceae,Legume,exotic,704089,http://eol.org/pages/704089/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2012.RLTS.T19891648A20138922.en,filtered,spreading,deciduous,limited,https://www.cal-ipc.org/plants/paf/robinia-pseudoacacia-plant-assessment-form/,
+Roystonea regia,CUBAN ROYAL PALM,470,Arecaceae,Palm,exotic,1131526,http://eol.org/pages/1131526/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
+Salix babylonica,WEEPING WILLOW,240,Salicaceae,Willow,exotic,47108280,https://eol.org/pages/47108280/overview,not listed,not listed,,"filtered, dense",weeping,deciduous,,,
+Schefflera actinophylla,QUEENSLAND UMBRELLA TREE,328,Araliaceae,Ginseng,exotic,1150882,http://eol.org/pages/1150882/overview,not listed,not listed,,"filtered, dense",,,,,moderate
+Schinus molle,CALIFORNIA PEPPER,22,Anacardiaceae,Sumac,exotic,582275,http://eol.org/pages/582275/overview,not listed,not listed,,filtered,"Pendulous, Rounded, Spreading",evergreen,,,minimal
+Schinus terebinthifolius,BRAZILIAN PEPPER,14,Anacardiaceae,Sumac,exotic,49905957,https://eol.org/pages/49905957,not listed,not listed,,dense,rounded,evergreen,,,minimal
+Sequoia sempervirens,COAST REDWOOD,35,Cupressaceae,Cypress,native,1034849,http://eol.org/pages/1034849/overview,Endangered,Endangered A2acd,http://www.iucnredlist.org/details/34051/0,dense,conical,evergreen,,,high
+Stenocarpus sinuatus,FIREWHEEL TREE,171,Proteaceae,Protea,exotic,582737,http://eol.org/pages/582737/overview,not listed,not listed,,filtered,,,,,moderate
+Strelitzia nicolai,GIANT BIRD OF PARADISE,321,Strelitziaceae,Strelitzia,exotic,345179,http://eol.org/pages/345179/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
 Stump,STUMP,225,,,,,not listed,not listed,,,,,,,
 Stump - not accessible,STUMP - NOT ACCESSIBLE,1434,,,,,not listed,not listed,,,,,,,
-Styphnolobium japonicum,Japanese Pagoda Tree,265,Fabaceae,exotic,702857,http://eol.org/pages/702857/overview,not listed,not listed,,"filtered, dense",,,,,
-Syagrus romanzoffianum,QUEEN PALM,99,Arecaceae,exotic,1129524,http://eol.org/pages/1129524/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
-Syzygium paniculatum,BRUSH CHERRY,17,Myrtaceae,exotic,2508667,http://eol.org/pages/2508667/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
-Syzygium spp.,Eugenia,1061,Myrtaceae,exotic,11894339,https://eol.org/pages/11894339,not listed,not listed,,dense,,,,,
-Taxodium distichum,BALD CYPRESS,411,Cupressaceae,exotic,1061709,http://www.eol.org/pages/1061709/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42261A2967873.en,"filtered, dense",,,,,
-Taxodium huegelii,Mexican Cypress,319,Cupressaceae,exotic,47389708,https://eol.org/pages/47389708,not listed,not listed,,"filtered, dense",,,,,
-Tecoma stans,YELLOW ELDER,518,Bignoniaceae,exotic,578225,http://eol.org/pages/578225/overview,not listed,not listed,,filtered,,,,,
-Thuja occidentalis,American Arborvitae,374,Cupressaceae,exotic,1034927,http://eol.org/pages/1034927/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42262A2967995.en,little,"conical, rounded",evergreen,,,
-Tilia americana,American Linden,139,Malvaceae,exotic,584834,http://eol.org/pages/584834/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T61788230A61788232.en,filtered,"conical, rounded",deciduous,,,
-Tipuana tipu,TIPU,230,Fabaceae,exotic,638623,http://www.eol.org/pages/638623/overview,not listed,not listed,,filtered,,,,,moderate
-Trachycarpus fortunei,WINDMILL PALM,133,Arecaceae,exotic,1128696,http://eol.org/pages/1128696/overview,not listed,not listed,,little/none,palm,evergreen,,,moderate
-Tristaniopsis laurina,WATER GUM,236,Myrtaceae,exotic,5461008,http://eol.org/pages/5461008/overview,not listed,not listed,,dense,"rounded, vase",evergreen,,,"none, once established"
-Ulmus parvifolia,CHINESE ELM,32,Ulmaceae,exotic,595062,http://eol.org/pages/595062/overview,not listed,not listed,,filtered,"pendulous, spreading","evergreen, semi-deciduous",,,moderate
-Ulmus parvifolia 'Allee',Allee Elm,1702,Ulmaceae,exotic,595062,http://eol.org/pages/595062/overview,not listed,not listed,,filtered,rounded,"evergreen, semi-deciduous",,,moderate
-Ulmus parvifolia 'Drake',DRAKE ELM,462,Ulmaceae,exotic,595062,http://eol.org/pages/595062/overview,not listed,not listed,,filtered,rounded,"evergreen, semi-deciduous",,,moderate
+Styphnolobium japonicum,Japanese Pagoda Tree,265,Fabaceae,Legume,exotic,702857,http://eol.org/pages/702857/overview,not listed,not listed,,"filtered, dense",,,,,
+Syagrus romanzoffianum,QUEEN PALM,99,Arecaceae,Palm,exotic,1129524,http://eol.org/pages/1129524/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
+Syzygium paniculatum,BRUSH CHERRY,17,Myrtaceae,Myrtle,exotic,2508667,http://eol.org/pages/2508667/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
+Syzygium spp.,Eugenia,1061,Myrtaceae,Myrtle,exotic,11894339,https://eol.org/pages/11894339,not listed,not listed,,dense,,,,,
+Taxodium distichum,BALD CYPRESS,411,Cupressaceae,Cypress,exotic,1061709,http://www.eol.org/pages/1061709/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42261A2967873.en,"filtered, dense",,,,,
+Taxodium huegelii,Mexican Cypress,319,Cupressaceae,Cypress,exotic,47389708,https://eol.org/pages/47389708,not listed,not listed,,"filtered, dense",,,,,
+Tecoma stans,YELLOW ELDER,518,Bignoniaceae,Bignonia,exotic,578225,http://eol.org/pages/578225/overview,not listed,not listed,,filtered,,,,,
+Thuja occidentalis,American Arborvitae,374,Cupressaceae,Cypress,exotic,1034927,http://eol.org/pages/1034927/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42262A2967995.en,little,"conical, rounded",evergreen,,,
+Tilia americana,American Linden,139,Malvaceae,Mallow,exotic,584834,http://eol.org/pages/584834/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T61788230A61788232.en,filtered,"conical, rounded",deciduous,,,
+Tipuana tipu,TIPU,230,Fabaceae,Legume,exotic,638623,http://www.eol.org/pages/638623/overview,not listed,not listed,,filtered,,,,,moderate
+Trachycarpus fortunei,WINDMILL PALM,133,Arecaceae,Palm,exotic,1128696,http://eol.org/pages/1128696/overview,not listed,not listed,,little/none,palm,evergreen,,,moderate
+Tristaniopsis laurina,WATER GUM,236,Myrtaceae,Myrtle,exotic,5461008,http://eol.org/pages/5461008/overview,not listed,not listed,,dense,"rounded, vase",evergreen,,,"none, once established"
+Ulmus parvifolia,CHINESE ELM,32,Ulmaceae,Elm,exotic,595062,http://eol.org/pages/595062/overview,not listed,not listed,,filtered,"pendulous, spreading","evergreen, semi-deciduous",,,moderate
+Ulmus parvifolia 'Allee',Allee Elm,1702,Ulmaceae,Elm,exotic,595062,http://eol.org/pages/595062/overview,not listed,not listed,,filtered,rounded,"evergreen, semi-deciduous",,,moderate
+Ulmus parvifolia 'Drake',DRAKE ELM,462,Ulmaceae,Elm,exotic,595062,http://eol.org/pages/595062/overview,not listed,not listed,,filtered,rounded,"evergreen, semi-deciduous",,,moderate
 Ulmus propinqua 'Emerald Sunshine',Emerald Sunshine Elm,1768,,exotic,595062,http://eol.org/pages/595062/overview,not listed,not listed,,"filtered, dense",vase,,,,
-Ulmus pumila,SIBERIAN ELM,111,Ulmaceae,exotic,594950,http://www.eol.org/pages/594950/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T61967372A61967374.en,filtered,"spreading, rounded",deciduous,,,moderate
-Umbellularia californica,California Bay,20,Lauraceae,native,596841,http://eol.org/pages/596841/overview,not listed,not listed,,filtered,rounded,evergreen,,,"none, once established"
+Ulmus pumila,SIBERIAN ELM,111,Ulmaceae,Elm,exotic,594950,http://www.eol.org/pages/594950/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T61967372A61967374.en,filtered,"spreading, rounded",deciduous,,,moderate
+Umbellularia californica,California Bay,20,Lauraceae,Laurel,native,596841,http://eol.org/pages/596841/overview,not listed,not listed,,filtered,rounded,evergreen,,,"none, once established"
 Unidentified spp.,Unidentified Tree,1506,,,,,not listed,not listed,,,,,,,
 Unsuitable site,UNSUITABLE SITE,237,,,,,not listed,not listed,,,,,,,
 Vacant site,VACANT SITE,238,,,,,not listed,not listed,,,,,,,
-Viburnum spp.,Viburnum,571,Adoxaceae,exotic,490016,https://eol.org/pages/490016/overview,not listed,not listed,,dense,,,,,moderate
-Washingtonia filifera,CALIFORNIA FAN PALM,21,Arecaceae,native,1127834,http://www.eol.org/pages/1127834/overview,Lower Risk/near threatened,Lower Risk/near threatened,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38725A10145920.en,little,,,,,"none, once established"
-Washingtonia filifera X robusta,Filibuster Hybrid Fan Palm,557,Arecaceae,exotic,,,not listed,not listed,,"little, none",palm,evergreen,,,
-Washingtonia robusta,MEXICAN FAN PALM,75,Arecaceae,exotic,1127833,http://eol.org/pages/1127833/overview,Lower Risk/near threatened,Lower Risk/near threatened,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38725A10145920.en,little,,,moderate,https://www.cal-ipc.org/plants/paf/washingtonia-robusta-plant-assessment-form/,"none, once established"
-Wisteria sinensis,CHINESE WISTERIA,662,Fabaceae,exotic,704193,http://eol.org/pages/704193/overview,not listed,not listed,,filtered,vine,,,,
-Wodyetia bifurcata,FOXTAIL PALM,604,Arecaceae,exotic,1127809,http://eol.org/pages/1127809/overview,Lower Risk/conservation dependent,Lower Risk/conservation dependent,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38733A10146773.en,"little, none",palm,evergreen,,,moderate
-Yucca elephantipes,Giant Yucca,224,Asparagaceae,exotic,1083612,https://eol.org/pages/1083612/overview,not listed,not listed,,filtered,palm,evergreen,,,"none, once established"
-Yucca gloriosa,SPANISH DAGGER,223,Asparagaceae,exotic,1083624,http://www.eol.org/pages/1083624/overview,not listed,not listed,,little/none,palm,evergreen,,,"none, once established"
-Yucca spp.,Yucca Species,135,Asparagaceae,exotic,23768875,https://eol.org/pages/23768875,not listed,not listed,,"little, none",palm,evergreen,,,"none, once established"
-Zelkova serrata,Sawtooth Zelkova,216,Ulmaceae,exotic,484119,http://eol.org/pages/484119/overview,not listed,not listed,,filtered,"spreading, vase",deciduous,,,
+Viburnum spp.,Viburnum,571,Adoxaceae,Adoxas,exotic,490016,https://eol.org/pages/490016/overview,not listed,not listed,,dense,,,,,moderate
+Washingtonia filifera,CALIFORNIA FAN PALM,21,Arecaceae,Palm,native,1127834,http://www.eol.org/pages/1127834/overview,Lower Risk/near threatened,Lower Risk/near threatened,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38725A10145920.en,little,,,,,"none, once established"
+Washingtonia filifera X robusta,Filibuster Hybrid Fan Palm,557,Arecaceae,Palm,exotic,,,not listed,not listed,,"little, none",palm,evergreen,,,
+Washingtonia robusta,MEXICAN FAN PALM,75,Arecaceae,Palm,exotic,1127833,http://eol.org/pages/1127833/overview,Lower Risk/near threatened,Lower Risk/near threatened,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38725A10145920.en,little,,,moderate,https://www.cal-ipc.org/plants/paf/washingtonia-robusta-plant-assessment-form/,"none, once established"
+Wisteria sinensis,CHINESE WISTERIA,662,Fabaceae,Legume,exotic,704193,http://eol.org/pages/704193/overview,not listed,not listed,,filtered,vine,,,,
+Wodyetia bifurcata,FOXTAIL PALM,604,Arecaceae,Palm,exotic,1127809,http://eol.org/pages/1127809/overview,Lower Risk/conservation dependent,Lower Risk/conservation dependent,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38733A10146773.en,"little, none",palm,evergreen,,,moderate
+Yucca elephantipes,Giant Yucca,224,Asparagaceae,Asparagus,exotic,1083612,https://eol.org/pages/1083612/overview,not listed,not listed,,filtered,palm,evergreen,,,"none, once established"
+Yucca gloriosa,SPANISH DAGGER,223,Asparagaceae,Asparagus,exotic,1083624,http://www.eol.org/pages/1083624/overview,not listed,not listed,,little/none,palm,evergreen,,,"none, once established"
+Yucca spp.,Yucca Species,135,Asparagaceae,Asparagus,exotic,23768875,https://eol.org/pages/23768875,not listed,not listed,,"little, none",palm,evergreen,,,"none, once established"
+Zelkova serrata,Sawtooth Zelkova,216,Ulmaceae,Elm,exotic,484119,http://eol.org/pages/484119/overview,not listed,not listed,,filtered,"spreading, vase",deciduous,,,
