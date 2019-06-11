@@ -42,7 +42,7 @@ workflows:
     triggers:
       - schedule:
           # Midnight PST is 8am UTC
-          cron: "0 8 * * *","0 17 * * *"
+          cron: "0 8 , 17 * * *"
           filters:
             branches:
               only: master
