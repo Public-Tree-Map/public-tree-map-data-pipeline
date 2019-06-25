@@ -37,7 +37,9 @@ workflows:
       - deploy:
           filters:
             branches:
-              only: master
+              only:
+              - master
+              - test-circleci
   nightly:
     triggers:
       - schedule:
@@ -47,6 +49,5 @@ workflows:
             branches:
               only:
                 - master
-                - test-circleci
     jobs:
       - deploy
