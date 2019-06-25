@@ -42,6 +42,7 @@ function getMapData(tree) {
     'diameter_max_in',
     'diameter_min_in',
     'family_name_botanical',
+    'family_name_common',
     'height_max_ft',
     'height_min_ft',
     'ipc_rating',
