@@ -44,6 +44,8 @@ workflows:
           cron: "0 8 * * *"
           filters:
             branches:
-              only: master
+              only:
+                - master
+                - test-circleci
     jobs:
       - deploy
