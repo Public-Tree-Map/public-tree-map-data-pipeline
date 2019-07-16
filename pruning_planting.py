@@ -19,7 +19,7 @@ def load_dataset(name):
     return gdf
 
 
-def planting_for_trees(trees):
+def planting_for_trees(trees, name_lookup):
     """
     Match a replacement species and planting year for
     all the trees in a dataframe.
@@ -64,6 +64,26 @@ def planting_for_trees(trees):
     trees = trees.rename(
         columns={"YEAR": "planting_year", "REPLACE": "replacement_species"}
     )
+
+    def add_replacement_common_name(row):
+
+        # Loop through multiple, comma separated scientific names and generate a comma separated list of
+        # the common names to add as a new column of the tress Dataframe.
+
+        common_names = ""
+
+        for scientific_name in [x.strip() for x in row["replacement_species"].split(',')]:
+            if scientific_name in name_lookup.keys():
+                common_names = common_names + name_lookup[scientific_name] + ", "
+            else:
+                common_names += "INVALID, "
+
+        common_names = common_names[:-2]
+
+        return common_names
+
+    trees["replacement_common_name"] = trees.apply(add_replacement_common_name, axis=1)
+
     return trees
 
 
@@ -125,8 +145,11 @@ if __name__ == "__main__":
     if len(sys.argv) > 2:
         outfile = open(sys.argv[2], 'w')
 
+    with open('data/botanical_commonname.json') as json_lookup_file:
+        name_lookup = json.load(json_lookup_file)
+
     trees = pd.read_json(infile)
-    trees = planting_for_trees(trees)
+    trees = planting_for_trees(trees, name_lookup)
     trees = pruning_for_trees(trees)
     rename_columns = {
         "SEGMENT": "segment",
