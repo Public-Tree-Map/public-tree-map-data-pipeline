@@ -56,7 +56,8 @@ function getMapData(tree) {
     'shade_production',
     'tree_id',
     'pruning_year',
-    'pruning_zone'
+    'pruning_zone',
+    'heritage'
   ])
 }
 
