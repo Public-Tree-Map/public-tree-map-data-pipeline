@@ -63,6 +63,7 @@ function main() {
 
   const stdinTime = new Date().getTime()
 
+  const heritageTrees = toMap(parseCsv(readFile('data/heritage_trees.csv')), 'tree_id')
   const extraData = toMap(parseCsv(readFile('data/species_attributes.csv')), 'botanical_name')
   const treesRaw  = parseCsv(csvRaw)
 
@@ -93,7 +94,11 @@ function main() {
       'eol_url':                 getOrDefault(extraData, botanical, 'EOL_overview_URL', ''),
       'address':                 t['Address'] + ' ' + t['Street'],
       'city':                    'Santa Monica',
-      'state':                   'CA'
+      'state':                   'CA',
+      'heritage':                !!heritageTrees[t['Tree ID']] ||  false,
+      'heritageYear':            getOrDefault(heritageTrees, t['Tree ID'], 'year_added', null),
+      'heritageNumber':          getOrDefault(heritageTrees, t['Tree ID'], 'heritage_number', null),
+      'heritageText':            getOrDefault(heritageTrees, t['Tree ID'], 'text', null)
     }
   })
 
