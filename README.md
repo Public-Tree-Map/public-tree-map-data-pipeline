@@ -26,6 +26,36 @@ make local-only
 
 See the `Makefile` for other rules that are available.
 
+## Using Docker (the easy way)
+
+Prerequisites:
+- docker
+- docker-compose
+
+```bash
+docker-compose build
+```
+
+This should build two docker images:
+- `public-tree-map-python:latest`
+- `public-tree-map-node:latest`
+
+As above, if you wish to run the full pipeline, which will download the latest tree data and all
+images, then run:
+
+```bash
+make release-docker
+```
+
+To skip the lengthy network requests, you can run a smaller version of the pipeline
+(using docker) with:
+
+```bash
+make local-only-docker
+```
+
+See the `Makefile` for other rules that are available.
+
 ### Viewing the Logs
 
 The various scripts that makeup the pipeline rely on reading/writing to stdin 
