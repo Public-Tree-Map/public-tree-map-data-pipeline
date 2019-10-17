@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "async-parallel": "^1.2.3",
-    "csv-parse": "^4.0.1",
+    "csv-parse": "^4.4.6",
     "got": "^9.5.0",
     "sharp": "^0.21.2"
   }
