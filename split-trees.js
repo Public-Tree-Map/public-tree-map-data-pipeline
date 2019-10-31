@@ -57,7 +57,8 @@ function getMapData(tree) {
     'tree_id',
     'pruning_year',
     'pruning_zone',
-    'heritage'
+    'heritage',
+    'address'
   ])
 }
 
