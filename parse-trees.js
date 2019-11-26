@@ -71,6 +71,7 @@ function main() {
     const botanical = t['Name Botanical']
     return {
       'tree_id':                 t['Tree ID'],
+      'species_id':              getOrDefault(extraData, botanical, 'Species ID', null),
       'name_botanical':          botanical,
       'name_common':             t['Name Common'],
       'family_name_botanical':   getOrDefault(extraData, botanical, 'family_botanical_name', 'Unknown'),
