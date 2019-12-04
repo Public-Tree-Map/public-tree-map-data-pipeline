@@ -3,29 +3,13 @@ version: 2
 jobs:
   deploy:
     docker:
-      - image: google/cloud-sdk:latest
+      - image: docker:stable-git
     steps:
       - checkout
-      - run: apt-get install -y build-essential
-      - run: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-      - run: ./python-env.sh
-      - run: echo 'export NVM_DIR=$HOME/.nvm' >> $BASH_ENV
-      - run: echo 'source $NVM_DIR/nvm.sh' >> $BASH_ENV
-      - run: echo 'export PATH="$HOME/miniconda/bin:$PATH"' >> $BASH_ENV
-      - run: echo 'source activate public-tree-map' >> $BASH_ENV
-      - run: nvm install 9.11.1
-      - run: nvm use 9.11.1
-      - run: npm install
-      - run: make release
-      - run: |
-          echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
-          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-      - run: gsutil cp -Z build/data/map.json gs://public-tree-map/data/
-      - run: gsutil -m cp -Z build/data/trees/*.json gs://public-tree-map/data/trees/
-      - run: gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/map.json
-      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/trees/*.json
-      - run: gsutil -m cp -r build/img gs://public-tree-map/
-
+      - setup_remote_docker
+      - run: docker build -t public-tree-map:latest .
+      - run: docker build -t public-tree-map-prod:latest -f Dockerfile-prod .
+      - run: docker run --rm -t public-tree-map-prod:latest make deploy GOOGLE_PROJECT_ID=${GOOGLE_PROJECT_ID} GCLOUD_SERVICE_KEY=$GCLOUD_SERVICE_KEY
       - store_artifacts:
           path: tmp/log.txt
           destination: log.txt
@@ -51,3 +35,4 @@ workflows:
                 - master
     jobs:
       - deploy
+  

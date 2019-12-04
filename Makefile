@@ -1,6 +1,3 @@
-python-dir=./python/src
-node-dir=./node/src
-
 # Anything that needs to be done before the other rules run
 setup:
 	mkdir -p build/data
@@ -8,19 +5,19 @@ setup:
 # Runs the entire pipeline using real data sources
 release: setup
 	curl 'https://data.smgov.net/resource/w8ue-6cnd.csv?$$limit=50000' \
-	  | node $(node-dir)/parse-trees.js \
-	  | python $(python-dir)/pruning_planting.py \
-	  | node $(node-dir)/download-images.js \
-	  | node $(node-dir)/split-trees.js build/data
+	  | node parse-trees.js \
+	  | python pruning_planting.py \
+	  | node download-images.js \
+	  | node split-trees.js build/data
 
 deploy: release
-	echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
-        gcloud --quiet config set project $(GOOGLE_PROJECT_ID)
+	echo $(GCLOUD_SERVICE_KEY) | gcloud auth activate-service-account --key-file=-
+		gcloud --quiet config set project $(GOOGLE_PROJECT_ID)
 	gsutil cp -Z build/data/map.json gs://public-tree-map/data/
 	gsutil -m cp -Z build/data/trees/*.json gs://public-tree-map/data/trees/
-    gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/map.json
-    gsutil -m setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/trees/*.json
-    gsutil -m cp -r build/img gs://public-tree-map/
+	gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/map.json
+	gsutil -m setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/trees/*.json
+	gsutil -m cp -r build/img gs://public-tree-map/
 
 release-docker: setup
 	curl 'https://data.smgov.net/resource/w8ue-6cnd.csv?$$limit=50000' \
@@ -32,9 +29,9 @@ release-docker: setup
 # Runs the pipeline using local data, but skips the CPU-intensive python tasks
 img-test: setup
 	cat data/trees.csv \
-	  | node $(node-dir)/parse-trees.js \
-	  | node $(node-dir)/download-images.js \
-	  | node $(node-dir)/split-trees.js build/data
+	  | node parse-trees.js \
+	  | node download-images.js \
+	  | node split-trees.js build/data
 
 img-test-docker: setup
 	cat data/trees.csv \
@@ -45,8 +42,8 @@ img-test-docker: setup
 # Runs the pipeline, but skips downloading images
 no-images: setup
 	curl 'https://data.smgov.net/resource/w8ue-6cnd.csv?$$limit=50000' \
-	  | node $(node-dir)/parse-trees.js \
-	  | node $(node-dir)/split-trees.js build/data
+	  | node parse-trees.js \
+	  | node split-trees.js build/data
 
 no-images-docker: setup
 	curl 'https://data.smgov.net/resource/w8ue-6cnd.csv?$$limit=50000' \
@@ -56,9 +53,9 @@ no-images-docker: setup
 # Runs with only local data -- uses a sample trees.csv and skips images
 local-only: setup
 	cat data/trees.csv \
-	  | node $(node-dir)/parse-trees.js \
-	  | python $(python-dir)/pruning_planting.py \
-	  | node $(node-dir)/split-trees.js build/data
+	  | node parse-trees.js \
+	  | python pruning_planting.py \
+	  | node split-trees.js build/data
 
 local-only-docker: setup
 	cat data/trees.csv \
@@ -69,8 +66,8 @@ local-only-docker: setup
 # Runs with only local data and skips python processing
 fast: setup
 	cat data/trees.csv \
-	  | node $(node-dir)/parse-trees.js \
-	  | node $(node-dir)/split-trees.js build/data
+	  | node parse-trees.js \
+	  | node split-trees.js build/data
 
 fast-docker: setup
 	cat data/trees.csv \
