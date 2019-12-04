@@ -1,6 +1,3 @@
-# Anything that needs to be done before the other rules run
-docker_cmd=docker run -i --rm -v $$(pwd):/public-tree-map-local/ --entrypoint=/public-tree-map-local public-tree-map:latest ./local-setup.sh
-
 setup:
 	mkdir -p build/data
 
