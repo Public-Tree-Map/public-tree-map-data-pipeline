@@ -142,4 +142,9 @@ ADD requirements.txt /public-tree-map/requirements.txt
 RUN conda install --file /public-tree-map/requirements.txt
 
 
+ADD local-setup.sh /
+
 WORKDIR /public-tree-map
+
+ENTRYPOINT ["/local-setup.sh"]
+CMD ["/bin/bash"]

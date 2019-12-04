@@ -1,4 +1,6 @@
 # Anything that needs to be done before the other rules run
+docker_cmd=docker run -i --rm -v $$(pwd):/public-tree-map-local/ --entrypoint=/public-tree-map-local public-tree-map:latest ./local-setup.sh
+
 setup:
 	mkdir -p build/data
 
@@ -19,13 +21,6 @@ deploy: release
 	gsutil -m setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/trees/*.json
 	gsutil -m cp -r build/img gs://public-tree-map/
 
-release-docker: setup
-	curl 'https://data.smgov.net/resource/w8ue-6cnd.csv?$$limit=50000' \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data public-tree-map-node:latest node /public-tree-map/parse-trees.js \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data public-tree-map-python:latest python /public-tree-map/pruning_planting.py \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data public-tree-map-node:latest node /public-tree-map/download-images.js \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data -v $$(pwd)/build:/public-tree-map/build public-tree-map-node:latest node /public-tree-map/split-trees.js build/data
-
 # Runs the pipeline using local data, but skips the CPU-intensive python tasks
 img-test: setup
 	cat data/trees.csv \
@@ -33,22 +28,11 @@ img-test: setup
 	  | node download-images.js \
 	  | node split-trees.js build/data
 
-img-test-docker: setup
-	cat data/trees.csv \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data public-tree-map-node:latest node /public-tree-map/parse-trees.js \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data public-tree-map-node:latest node /public-tree-map/download-images.js \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data -v $$(pwd)/build:/public-tree-map/build public-tree-map-node:latest node /public-tree-map/split-trees.js build/data
-
 # Runs the pipeline, but skips downloading images
 no-images: setup
 	curl 'https://data.smgov.net/resource/w8ue-6cnd.csv?$$limit=50000' \
 	  | node parse-trees.js \
 	  | node split-trees.js build/data
-
-no-images-docker: setup
-	curl 'https://data.smgov.net/resource/w8ue-6cnd.csv?$$limit=50000' \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data public-tree-map-node:latest node /public-tree-map/parse-trees.js \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data -v $$(pwd)/build:/public-tree-map/build public-tree-map-node:latest node /public-tree-map/split-trees.js build/data
 
 # Runs with only local data -- uses a sample trees.csv and skips images
 local-only: setup
@@ -57,22 +41,11 @@ local-only: setup
 	  | python pruning_planting.py \
 	  | node split-trees.js build/data
 
-local-only-docker: setup
-	cat data/trees.csv \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data public-tree-map-node:latest node /public-tree-map/parse-trees.js \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data public-tree-map-python:latest python /public-tree-map/pruning_planting.py 2>/dev/null \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data -v $$(pwd)/build:/public-tree-map/build public-tree-map-node:latest node /public-tree-map/split-trees.js build/data
-
 # Runs with only local data and skips python processing
 fast: setup
 	cat data/trees.csv \
 	  | node parse-trees.js \
 	  | node split-trees.js build/data
-
-fast-docker: setup
-	cat data/trees.csv \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data public-tree-map-node:latest node /public-tree-map/parse-trees.js \
-	  | docker run -i --rm -v $$(pwd)/data:/public-tree-map/data -v $$(pwd)/build:/public-tree-map/build public-tree-map-node:latest node /public-tree-map/split-trees.js build/data
 
 # Removes build artifacts
 clean:
