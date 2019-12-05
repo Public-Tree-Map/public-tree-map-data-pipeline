@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  public-tree-map-node:
+    build:
+      context: ./node
+      dockerfile: ./Dockerfile
+    image: public-tree-map-node
+  public-tree-map-python:
+    build:
+      context: ./python
+      dockerfile: ./Dockerfile
+    image: public-tree-map-python

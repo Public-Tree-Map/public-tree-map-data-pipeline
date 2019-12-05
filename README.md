@@ -30,29 +30,28 @@ See the `Makefile` for other rules that are available.
 
 Prerequisites:
 - docker
-- bash (or the windows equivalent)
+- docker-compose
 
 ```bash
-./build_docker.sh
-./run_docker.sh
+docker-compose build
 ```
 
 This should build two docker images:
-- `public-tree-map:latest` (this one just has the environment installed and dependencies)
-- `public-tree-map-prod:latest` (this one also includes code and data for production runs)
+- `public-tree-map-python:latest`
+- `public-tree-map-node:latest`
 
 As above, if you wish to run the full pipeline, which will download the latest tree data and all
-images, then run (after running `./run_docker.sh` above):
+images, then run:
 
 ```bash
-make release
+make release-docker
 ```
 
 To skip the lengthy network requests, you can run a smaller version of the pipeline
 (using docker) with:
 
 ```bash
-make local-only
+make local-only-docker
 ```
 
 See the `Makefile` for other rules that are available.
