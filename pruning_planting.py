@@ -15,8 +15,6 @@ def load_dataset(name):
     """
     # Load the street planting shape data, reprojecting into WGS84
     gdf = gpd.read_file(name, crs='+init=epsg:2229')
-    if gdf.crs == {}:
-        gdf.crs = {'init': 'epsg:2229'}
     gdf = gdf.to_crs({'init': 'epsg:4326', 'no_defs': True})
     return gdf
 
