@@ -8,7 +8,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: sh build_docker.sh
-      - run: docker run --rm -t public-tree-map-prod:latest make deploy GOOGLE_PROJECT_ID="${GOOGLE_PROJECT_ID}" GCLOUD_SERVICE_KEY="${GCLOUD_SERVICE_KEY}"
+      - run: docker run --rm -t public-tree-map-prod:latest ./upload_gcs.sh "${GOOGLE_PROJECT_ID}" "${GCLOUD_SERVICE_KEY}"
       - store_artifacts:
           path: tmp/log.txt
           destination: log.txt

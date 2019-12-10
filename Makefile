@@ -48,11 +48,5 @@ fast: setup
 clean:
 	rm -rf build
 
-
-build-clean: clean
-	rm -f process.yml
-
-build-proj: build-clean
-	circleci config process .circleci/config.yml > process.yml
-	circleci local execute -c process.yml --job deploy
-	make build-clean
+build-proj:
+	circleci build --job deploy
