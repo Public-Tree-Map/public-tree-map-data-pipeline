@@ -9,7 +9,7 @@ release: setup
 	  | node download-images.js \
 	  | node split-trees.js build/data
 
-deploy: release
+deploy:
 	echo $(GCLOUD_SERVICE_KEY) | gcloud auth activate-service-account --key-file=-
 	gcloud --quiet config set project $(GOOGLE_PROJECT_ID)
 	gsutil cp -Z build/data/map.json gs://public-tree-map/data/
