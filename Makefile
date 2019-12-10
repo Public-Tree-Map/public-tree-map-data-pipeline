@@ -71,3 +71,12 @@ fast-docker: setup
 # Removes build artifacts
 clean:
 	rm -rf build
+
+
+build-clean: clean
+	rm process.yml
+
+build-proj: build-clean
+	circleci config process .circleci/config.yml > process.yml
+	circleci local execute -c process.yml --job deploy
+	make build-clean
