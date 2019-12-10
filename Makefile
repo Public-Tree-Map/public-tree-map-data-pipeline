@@ -9,15 +9,6 @@ release: setup
 	  | node download-images.js \
 	  | node split-trees.js build/data
 
-deploy: release
-	echo $(GCLOUD_SERVICE_KEY) | gcloud auth activate-service-account --key-file=-
-		gcloud --quiet config set project $(GOOGLE_PROJECT_ID)
-	gsutil cp -Z build/data/map.json gs://public-tree-map/data/
-	gsutil -m cp -Z build/data/trees/*.json gs://public-tree-map/data/trees/
-	gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/map.json
-	gsutil -m setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/trees/*.json
-	gsutil -m cp -r build/img gs://public-tree-map/
-
 # Runs the pipeline using local data, but skips the CPU-intensive python tasks
 img-test: setup
 	cat data/trees.csv \
@@ -48,11 +39,5 @@ fast: setup
 clean:
 	rm -rf build
 
-
-build-clean: clean
-	rm -f process.yml
-
-build-proj: build-clean
-	circleci config process .circleci/config.yml > process.yml
-	circleci local execute -c process.yml --job deploy
-	make build-clean
+build-proj:
+	circleci build --job deploy

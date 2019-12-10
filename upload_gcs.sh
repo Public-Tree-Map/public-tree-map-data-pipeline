@@ -10,7 +10,7 @@ if ! make release; then
 fi
 
 echo ${GCLOUD_SERVICE_KEY} | gcloud auth activate-service-account --key-file=-
-          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
 gsutil cp -Z build/data/map.json gs://public-tree-map/data/
 gsutil -m cp -Z build/data/trees/*.json gs://public-tree-map/data/trees/
 gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/map.json
