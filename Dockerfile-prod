@@ -1,0 +1,13 @@
+FROM public-tree-map:latest
+
+COPY data /public-tree-map/data
+
+ADD *.py /public-tree-map/
+ADD *.sh /public-tree-map/
+ADD *.js /public-tree-map/
+
+ADD Makefile /public-tree-map/Makefile
+
+WORKDIR /public-tree-map
+
+RUN ./python-env.sh
