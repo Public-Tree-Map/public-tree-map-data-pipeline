@@ -11,4 +11,4 @@ conda env update -f environment.yml
 # As far as I can tell, this needs to be fixed upstream.
 # Here we trigger that error during setup.
 source activate public-tree-map
-PYTHONPATH=$(pwd)/python/src python -c "from pruning_planting import load_dataset; load_dataset('data/planting/TreePlanting_Streets.shp')" || true
+python -c "from pruning_planting import load_dataset; load_dataset('data/planting/TreePlanting_Streets.shp')" || true
