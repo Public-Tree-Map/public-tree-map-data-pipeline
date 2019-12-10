@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 # FIXME: the first time the projection conversion logic is loaded,
 # there seems to be some error around setting up the right paths.
