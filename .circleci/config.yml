@@ -3,12 +3,18 @@ version: 2
 jobs:
   deploy:
     docker:
-      - image: docker:stable-git
+      - image: captainrandom/public-tree-map:0.0.1
     steps:
       - checkout
-      - setup_remote_docker
-      - run: sh build_docker.sh
-      - run: docker run --rm -t public-tree-map-prod:latest ./upload_gcs.sh "${GOOGLE_PROJECT_ID}" "${GCLOUD_SERVICE_KEY}"
+      - run: ln -s /public-tree-map/node_modules ./node_modules
+      - run: make release
+      - run: echo ${GCLOUD_SERVICE_KEY} | gcloud auth activate-service-account --key-file=-
+      - run: gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+      - run: gsutil cp -Z build/data/map.json gs://public-tree-map/data/
+      - run: gsutil -m cp -Z build/data/trees/*.json gs://public-tree-map/data/trees/
+      - run: gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/map.json
+      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/trees/*.json
+      - run: gsutil -m cp -r build/img gs://public-tree-map/
       - store_artifacts:
           path: tmp/log.txt
           destination: log.txt

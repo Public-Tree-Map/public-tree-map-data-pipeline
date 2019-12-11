@@ -1,3 +1,4 @@
 #!/bin/bash
-docker build -t public-tree-map:latest .
-docker build -t public-tree-map-prod:latest -f Dockerfile-prod .
+version=$(cat version.txt)
+docker build -t captainrandom/public-tree-map:${version} .
+docker push captainrandom/public-tree-map:${version}
