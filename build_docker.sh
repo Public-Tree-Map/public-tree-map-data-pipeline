@@ -1,4 +1,4 @@
 #!/bin/bash
 version=$(cat version.txt)
-docker build -t captainrandom/public-tree-map:${version} .
+docker build --no-cache -t captainrandom/public-tree-map:${version} .
 docker push captainrandom/public-tree-map:${version}
