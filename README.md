@@ -26,6 +26,40 @@ make local-only
 
 See the `Makefile` for other rules that are available.
 
+## Using Docker (the easy way)
+
+Prerequisites:
+- docker
+- bash (or the windows equivalent)
+
+```bash
+./build_docker.sh
+./run_docker.sh
+```
+
+This should build two docker images:
+- `public-tree-map:latest` (this one just has the environment installed and dependencies)
+- `public-tree-map-prod:latest` (this one also includes code and data for production runs)
+
+As above, if you wish to run the full pipeline, which will download the latest tree data and all
+images, then run (after running `./run_docker.sh` above):
+
+```bash
+make release
+```
+
+To skip the lengthy network requests, you can run a smaller version of the pipeline
+(using docker) with:
+
+```bash
+make local-only
+```
+
+See the `Makefile` for other rules that are available.
+
+If you are trying to push a new version of the docker environment to dockerhub, follow these steps:
+https://docs.docker.com/docker-hub/access-tokens/
+
 ### Viewing the Logs
 
 The various scripts that makeup the pipeline rely on reading/writing to stdin 

@@ -38,4 +38,7 @@ fast: setup
 
 # Removes build artifacts
 clean:
-	rm -rf build
+	rm -rf build tmp
+
+build-proj:
+	circleci build --job deploy
