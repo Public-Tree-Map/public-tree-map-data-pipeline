@@ -102,6 +102,21 @@ docker-compose build --no-cache
 docker-compose push pipeline
 ```
 
+## Testing Circleci Builds Locally
+
+To install the local circleci local build tool visit this site: https://circleci.com/docs/2.0/local-cli/
+(using windows might be a bit more complicated)
+
+To test the build process locally, you need to commit all of your changes to your feature branch locally. Then, run the following:
+```bash
+circleci build --job deploy
+```
+If the entire build process successfully runs until the google auth section (aka this part):
+```bash
+echo ${GCLOUD_SERVICE_KEY} | gcloud auth activate-service-account --key-file=-
+```
+Then you are good to go! Otherwise you will break the builds.
+
 ### Viewing the Logs
 
 The various scripts that makeup the pipeline rely on reading/writing to stdin 
