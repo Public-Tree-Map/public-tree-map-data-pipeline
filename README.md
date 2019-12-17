@@ -57,6 +57,9 @@ make local-only
 
 See the `Makefile` for other rules that are available.
 
+If you are trying to push a new version of the docker environment to dockerhub, follow these steps:
+https://docs.docker.com/docker-hub/access-tokens/
+
 ### Viewing the Logs
 
 The various scripts that makeup the pipeline rely on reading/writing to stdin 

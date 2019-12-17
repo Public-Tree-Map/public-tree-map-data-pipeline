@@ -3,7 +3,7 @@ version: 2
 jobs:
   deploy:
     docker:
-      - image: captainrandom/public-tree-map:0.0.1
+      - image: publictreemap/public-tree-map:0.0.1
     steps:
       - checkout
       - run: ln -s /public-tree-map/node_modules ./node_modules
