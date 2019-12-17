@@ -32,6 +32,28 @@ Prerequisites:
 - docker
 - docker-compose
 
+### Quick Start
+
+If you have a fast internet connection you want to run this to start pull the docker image from dockerhub and run it:
+```bash
+docker-compose pull
+docker-compose run pipeline
+```
+
+Otherwise just run this to build and run it locally:
+```bash
+docker-compose run pipeline
+```
+
+Once the docker image is running, a bash prompt should appear.
+
+Now you can run this to test that the pipeline works:
+```bash
+make local-only
+```
+
+See `Run the Pipeline` section below for other ways of running the pipeline.
+
 ### Building the Docker Image
 To build the docker image locally run:
 ```bash
@@ -44,25 +66,21 @@ docker-compose build --no-cache
 ```
 This takes longer, but can eliminate reliance on previous build states.
 
-### Pull Docker Image
-Another way is to pull the docker image from dockerhub using:
-```bash
-docker-comopse pull pipeline
-```
-
 This should build a docker image, `publictreemap/public-tree-map-data-pipeline:<version number here>`. It contains all necessary runtimes and dependencies.
+
+### Run the Pipeline
+Run these steps after you have either pulled the docker image from dockerhub or have built it locally.
 
 To start running the pipeilne, we need to run the docker image (which creates a docker container):
 ```bash
-docker-compose run pipeline
+docker-compose run --rm pipeline
 ```
 Once the docker image is running, a bash prompt should appear.
 
 As above, if you wish to run the full pipeline, which will download the latest tree data and all
 images, then run:
-
 ```bash
-docker-compose run
+make release
 ```
 
 To skip the lengthy network requests, you can run a smaller version of the pipeline using the following command:
@@ -73,12 +91,12 @@ make local-only
 See the `Makefile` for other rules that are available.
 
 ### Pushing Docker Images to DockerHub
-Ask an owner of the dockerhub to either give permissions to you so you can push or do these steps this for you.
+Either ask an owner of the dockerhub to either give permissions to you so you can push or get them to do these these steps for you.
 
 If you have write permissions and are trying to push a new version of the docker environment to dockerhub, follow these steps to authorize your account with docker hub:
 https://docs.docker.com/docker-hub/access-tokens/
 
-Then you can just run the following:
+Then you can just run the following. Keep in mind that I'm forcing a clean build here to make sure that the latest is pushed. Please update the version in the `docker-compose.yml` file as well as `.circleci/config.yml` file:
 ```bash
 docker-compose build --no-cache
 docker-compose push pipeline
