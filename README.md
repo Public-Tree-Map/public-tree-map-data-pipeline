@@ -30,35 +30,59 @@ See the `Makefile` for other rules that are available.
 
 Prerequisites:
 - docker
-- bash (or the windows equivalent)
+- docker-compose
 
+### Building the Docker Image
+To build the docker image locally run:
 ```bash
-./build_docker.sh
-./run_docker.sh
+docker-compose build
 ```
 
-This should build two docker images:
-- `public-tree-map:latest` (this one just has the environment installed and dependencies)
-- `public-tree-map-prod:latest` (this one also includes code and data for production runs)
+If this step is giving you trouble try:
+```bash
+docker-compose build --no-cache
+```
+This takes longer, but can eliminate reliance on previous build states.
+
+### Pull Docker Image
+Another way is to pull the docker image from dockerhub using:
+```bash
+docker-comopse pull pipeline
+```
+
+This should build a docker image, `publictreemap/public-tree-map-data-pipeline:<version number here>`. It contains all necessary runtimes and dependencies.
+
+To start running the pipeilne, we need to run the docker image (which creates a docker container):
+```bash
+docker-compose run pipeline
+```
+Once the docker image is running, a bash prompt should appear.
 
 As above, if you wish to run the full pipeline, which will download the latest tree data and all
-images, then run (after running `./run_docker.sh` above):
+images, then run:
 
 ```bash
-make release
+docker-compose run
 ```
 
-To skip the lengthy network requests, you can run a smaller version of the pipeline
-(using docker) with:
-
+To skip the lengthy network requests, you can run a smaller version of the pipeline using the following command:
 ```bash
 make local-only
 ```
 
 See the `Makefile` for other rules that are available.
 
-If you are trying to push a new version of the docker environment to dockerhub, follow these steps:
+### Pushing Docker Images to DockerHub
+Ask an owner of the dockerhub to either give permissions to you so you can push or do these steps this for you.
+
+If you have write permissions and are trying to push a new version of the docker environment to dockerhub, follow these steps to authorize your account with docker hub:
 https://docs.docker.com/docker-hub/access-tokens/
+
+Then you can just run the following:
+```bash
+docker-compose build --no-cache
+docker-compose push pipeline
+```
 
 ### Viewing the Logs
 

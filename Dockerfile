@@ -110,9 +110,9 @@ ADD environment.yml /public-tree-map/environment.yml
 RUN conda env update -f environment.yml --prune
 
 
-ADD local-setup.sh /
+COPY scripts/ /public-tree-map/scripts
 
 WORKDIR /public-tree-map
 
-ENTRYPOINT ["/local-setup.sh"]
+ENTRYPOINT ["/public-tree-map/scripts/local-setup.sh"]
 CMD ["/bin/bash"]

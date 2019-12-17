@@ -3,10 +3,11 @@ version: 2
 jobs:
   deploy:
     docker:
-      - image: publictreemap/public-tree-map:0.0.1
+      - image: publictreemap/public-tree-map-data-pipeline:0.0.1
     steps:
       - checkout
       - run: ln -s /public-tree-map/node_modules ./node_modules
+      - run: ./scripts/python-env.sh
       - run: make release
       - run: echo ${GCLOUD_SERVICE_KEY} | gcloud auth activate-service-account --key-file=-
       - run: gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
