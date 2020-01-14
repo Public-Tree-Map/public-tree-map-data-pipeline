@@ -14,6 +14,7 @@ def parse_args():
     parser.add_argument('-s', '--species-attributes-csv',
         default='data/species_attributes.csv',
         help='file path for species_attributes.csv')
+    parser.add_argument('-o', '--output-file', help='output file as csv. if not specified output csv to stdout')
 
     return parser.parse_args()
 
@@ -50,6 +51,7 @@ def filter_new_species_ids(trees_inventory_df, species_df):
         query('_merge == "left_only"').\
         drop('_merge', 1)
 
+
 if __name__ == '__main__':
     args = parse_args()
 
@@ -65,4 +67,7 @@ if __name__ == '__main__':
 
     # do a left join to find rows with new species ids and print them out
     new_species_tree_inventory_df = filter_new_species_ids(trees_inventory_df, species_df)
-    print(new_species_tree_inventory_df.to_csv(index=False))
+    if args.output_file:
+        new_species_tree_inventory_df.to_csv(args.output_file, index=False)
+    else:
+        print(new_species_tree_inventory_df.to_csv(index=False))
