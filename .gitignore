@@ -1,6 +1,10 @@
 node_modules/
 build/
 tmp/
-.idea/
+
+# python temporary files
 __pycache__/
-public-tree-map.code-workspace
+
+# ide specific files
+.idea/
+*.code-workspace
