@@ -1,8 +1,0 @@
-version: "3.7"
-services:
-  pipeline:
-    image: publictreemap/public-tree-map-data-pipeline:0.0.1
-    build: .
-    volumes:
-      - ./:/public-tree-map-local
-    working_dir: /public-tree-map-local
