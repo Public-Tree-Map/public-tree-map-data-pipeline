@@ -37,6 +37,32 @@ as they happen, simply run:
 tail -f tmp/log.txt
 ```
 
+### Command Documentation
+
+#### find_missing_species.py
+This covers how to run the find_missing_species.py script. Let's start with the command line options and what they do:
+```shell script
+python find_missing_species.py -u <inventory url> -s <known species csv file> -o <output file>
+```
+
+`-u`: This is the url to download the tree inventory csv from santa monica. This data must also contain the column, `Species ID`, which is the species id. If not specified, it defaults to `https://data.smgov.net/resource/w8ue-6cnd.csv?$limit=50000`
+
+`-s`: This specifies the csv file containing all known species ids. This script expects the species id in the column named `Species ID`. If not specified, it defaults to `data/species_attributes.csv`
+
+`-o`: This specifies the name of the output csv file. If not specified it prints the csv file to stdout (aka the command line).
+
+
+Here are some examples:
+```shell script
+ python find_missing_species.py -h # this shows you all the options (and explanations)
+
+# this grabs data from the santa monica trees dataset and saves them to missing_trees.csv
+python find_missing_species.py -o missing_trees.csv
+
+# uses all the defaults and prints the output to the command line
+python find_missing_species.py
+```
+
 ### General Thoughts on the Pipeline
 
 We don't want a server. To avoid this, we serve static data as JSON via a Google 

@@ -36,6 +36,9 @@ fast: setup
 	  | node parse-trees.js \
 	  | node split-trees.js build/data
 
+find-missing-species:
+	python find_missing_species.py
+
 # Removes build artifacts
 clean:
 	rm -rf build
