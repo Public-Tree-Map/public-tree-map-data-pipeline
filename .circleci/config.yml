@@ -18,14 +18,7 @@ jobs:
       - run: nvm use 9.11.1
       - run: npm install
       - run: make release
-      - run: |
-          echo $GCLOUD_SERVICE_KEY | gcloud auth activate-service-account --key-file=-
-          gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-      - run: gsutil cp -Z build/data/map.json gs://public-tree-map/data/
-      - run: gsutil -m cp -Z build/data/trees/*.json gs://public-tree-map/data/trees/
-      - run: gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/map.json
-      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/trees/*.json
-      - run: gsutil -m cp -r build/img gs://public-tree-map/
+      - run: scripts/upload_trees_google_storage.sh "${GCLOUD_SERVICE_KEY}" "${GOOGLE_PROJECT_ID}" "${CIRCLE_BRANCH}"
 
       - store_artifacts:
           path: tmp/log.txt

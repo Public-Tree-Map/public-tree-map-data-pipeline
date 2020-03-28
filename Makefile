@@ -42,3 +42,6 @@ find-missing-species:
 # Removes build artifacts
 clean:
 	rm -rf build
+
+circleci-local: clean
+	circleci local execute --job deploy
