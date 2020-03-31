@@ -10,5 +10,5 @@ __pycache__/
 *.code-workspace
 .vscode/
 
-# mac files
+# tmp mac files
 .DS_Store
