@@ -20,8 +20,12 @@ GCLOUD_SERVICE_KEY="${1:-}"
 GOOGLE_PROJECT_ID="${2:-}"
 BRANCH_NAME="${3}"
 
-if [[ "${BRANCH_NAME}" == 'master' && "${GCLOUD_SERVICE_KEY}" != '' && "${GOOGLE_PROJECT_ID}" != '' ]]; then
-  upload_google_cloud "${GCLOUD_SERVICE_KEY}" "${GOOGLE_PROJECT_ID}"
+if [[ "${BRANCH_NAME}" == 'master' ]]; then
+  if [[ "${GCLOUD_SERVICE_KEY}" != '' && "${GOOGLE_PROJECT_ID}" != '' ]]; then
+    upload_google_cloud "${GCLOUD_SERVICE_KEY}" "${GOOGLE_PROJECT_ID}"
+  else
+    echo either GOOGLE_PROJECT_ID or GCLOUD_SERVICE_KEY has not been specified.
+  fi
 else
   echo "${BRANCH_NAME}" does not support pushing to google storage.
 fi
