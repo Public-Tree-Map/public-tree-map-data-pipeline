@@ -10,7 +10,7 @@ function upload_google_cloud() {
   echo "${gcloud_service_key}" | gcloud auth activate-service-account --key-file=-
   gcloud --quiet config set project "${google_project_id}"
   gsutil cp -Z build/data/map.json gs://public-tree-map/data/
-  gsutil -m cp -Z build/data/trees/*.json gs://public-tree-map/data/trees/
+  gsutil -m rsync -r build/data/trees gs://public-tree-map/data/trees
   gsutil setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/map.json
   gsutil -m setmeta -h "Cache-Control:public, max-age=43200" gs://public-tree-map/data/trees/*.json
   gsutil -m rsync -r build/img gs://public-tree-map/img
