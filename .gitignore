@@ -8,3 +8,7 @@ __pycache__/
 # ide specific files
 .idea/
 *.code-workspace
+.vscode/
+
+# tmp mac files
+.DS_Store
