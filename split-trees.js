@@ -39,24 +39,24 @@ function main() {
 
 function getMapData(tree) {
   return copyFields(tree, [
-    'diameter_max_in',
-    'diameter_min_in',
+    // 'diameter_max_in',
+    // 'diameter_min_in',
     'family_name_botanical',
     'family_name_common',
-    'height_max_ft',
-    'height_min_ft',
-    'ipc_rating',
-    'irrigation_requirements',
+    // 'height_max_ft',
+    // 'height_min_ft',
+    // 'ipc_rating',
+    // 'irrigation_requirements',
     'iucn_status',
     'latitude',
     'longitude',
     'name_botanical',
     'name_common',
     'nativity',
-    'shade_production',
+    // 'shade_production',
     'tree_id',
-    'pruning_year',
-    'pruning_zone',
+    // 'pruning_year',
+    // 'pruning_zone',
     'heritage'
   ])
 }
