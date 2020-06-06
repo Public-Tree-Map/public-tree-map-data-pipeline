@@ -42,6 +42,7 @@ async function main() {
   log('== Starting image downloads...')
 
   let images = {}
+  mkdir('build/img')
 
   trees.filter(t => t.eol_id > 0)
        .forEach(t => images[t.eol_id] = '')
@@ -87,8 +88,6 @@ async function processImage(data, eolId, index) {
     url : `https://eol.org/pages/${eolId}/media`,
   }
 
-  mkdir('build')
-  mkdir('build/img')
 
   await pipeline(
     got.stream(imgUrl),
