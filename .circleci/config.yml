@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 jobs:
   deploy:
@@ -14,8 +14,8 @@ jobs:
       - run: echo 'source $NVM_DIR/nvm.sh' >> $BASH_ENV
       - run: echo 'export PATH="$HOME/miniconda/bin:$PATH"' >> $BASH_ENV
       - run: echo 'source activate public-tree-map' >> $BASH_ENV
-      - run: nvm install 9.11.1
-      - run: nvm use 9.11.1
+      - run: nvm install 10.15.1
+      - run: nvm use 10.15.1
       - run: npm install
       - run: make release
       - run: scripts/upload_trees_google_storage.sh "${GCLOUD_SERVICE_KEY}" "${GOOGLE_PROJECT_ID}" "${CIRCLE_BRANCH}"

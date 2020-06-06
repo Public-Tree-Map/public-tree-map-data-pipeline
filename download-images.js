@@ -32,12 +32,17 @@ const log      = require('./util.js').log
 const mkdir    = require('./util.js').mkdir
 const stdin    = require('./util.js').stdin
 
+const stream      = require('stream')
+const {promisify} = require('util')
+const pipeline    = promisify(stream.pipeline)
+
 async function main() {
   let trees = JSON.parse(stdin())
 
   log('== Starting image downloads...')
 
   let images = {}
+  mkdir('build/img')
 
   trees.filter(t => t.eol_id > 0)
        .forEach(t => images[t.eol_id] = '')
@@ -83,12 +88,11 @@ async function processImage(data, eolId, index) {
     url : `https://eol.org/pages/${eolId}/media`,
   }
 
-  mkdir('build')
-  mkdir('build/img')
 
-  await new Promise(resolve => {
-    got.stream(imgUrl).pipe(fs.createWriteStream(filepath)).on('finish', resolve)
-  })
+  await pipeline(
+    got.stream(imgUrl),
+    fs.createWriteStream(filepath)
+  )
 
   let resizedData = await sharp(filepath).resize(1024, 1024, { fit: 'inside' })
                                          .toBuffer()
