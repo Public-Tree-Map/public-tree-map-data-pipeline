@@ -32,6 +32,10 @@ const log      = require('./util.js').log
 const mkdir    = require('./util.js').mkdir
 const stdin    = require('./util.js').stdin
 
+const stream      = require('stream')
+const {promisify} = require('util')
+const pipeline    = promisify(stream.pipeline)
+
 async function main() {
   let trees = JSON.parse(stdin())
 
@@ -86,9 +90,10 @@ async function processImage(data, eolId, index) {
   mkdir('build')
   mkdir('build/img')
 
-  await new Promise(resolve => {
-    got.stream(imgUrl).pipe(fs.createWriteStream(filepath)).on('finish', resolve)
-  })
+  await pipeline(
+    got.stream(imgUrl),
+    fs.createWriteStream(filepath)
+  )
 
   let resizedData = await sharp(filepath).resize(1024, 1024, { fit: 'inside' })
                                          .toBuffer()
