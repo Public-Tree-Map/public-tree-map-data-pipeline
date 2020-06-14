@@ -43,6 +43,7 @@ Brahea armata,MEXICAN BLUE PALM,74,Arecaceae,Palm,exotic,1121077,http://eol.org/
 Brahea brandegeei,San Jose Hesper Palm,380,Arecaceae,Palm,exotic,47389352,http://eol.org/pages/47389352/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2015-2.RLTS.T55948714A55948834.en,"little, none",palm,evergreen,,,
 Brahea edulis,GUADALUPE PALM,50,Arecaceae,Palm,exotic,1121015,http://eol.org/pages/1121015/overview,Endangered,Endangered C1,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T38455A10120521.en,"little, none",palm,evergreen,,,minimal
 Butia capitata,PINDO PALM,206,Arecaceae,Palm,exotic,1003987,http://eol.org/pages/1003987/overview,not listed,not listed,,"little, none",palm,evergreen,,,moderate
+Callistemon spp.,Bottlebrush,1154,Myrtaceae,Myrtle,exotic,2508463,http://eol.org/pages/2508463/overview,not listed,not listed,,dense,pendulous,,,,minimal
 Calocedrus decurrens,INCENSE CEDAR,30,Cupressaceae,Cypress,native,1061623,http://eol.org/pages/1061623/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42210A2962006.en,dense,conical,evergreen,,,"none, once established"
 Calodendrum capense,CAPE CHESTNUT,153,Rutaceae,Rue,exotic,5623469,http://eol.org/pages/5623469/overview,not listed,not listed,,dense,rounded,,,,moderate
 Carya illinoinensis,Pecan,92,Juglandaceae,Walnut,exotic,594985,https://eol.org/pages/594985/overview,not listed,not listed,,dense,"rounded, spreading",deciduous,,,
@@ -53,11 +54,13 @@ Casuarina cunninghamiana,RIVER SHE-OAK,107,Casuarinaceae,Beefwood,exotic,629957,
 Catalpa hybrida,Hybrid Catalpa,1164,Bignoniaceae,Bignonia,exotic,11888718,https://eol.org/pages/11888718,not listed,not listed,,dense,rounded,,,,
 Cedrus atlantica,ATLAS CEDAR,143,Pinaceae,Pine,exotic,1033602,http://eol.org/pages/1033602/overview,Endangered,Endangered A2cd,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42303A2970716.en,dense,conical,,,,minimal
 Cedrus atlantica 'Glauca',CEDAR BLUE ATLAS,1167,Pinaceae,Pine,exotic,1033602,http://eol.org/pages/1033602/overview,Endangered,Endangered A2cd,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42303A2970716.en,dense,"Conical, Spreading",evergreen,,,minimal
+Cedrus atlantica 'Pendula',Cedar Weeping,1168,Pinaceae,Pine,exotic,1033602,http://eol.org/pages/1033602/overview,Endangered,Endangered A2cd,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42303A2970716.en,dense,"Conical, Spreading",evergreen,,,minimal
 Cedrus deodara,DEODAR CEDAR,40,Pinaceae,Pine,exotic,1033603,http://eol.org/pages/1033603/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42304A2970751.en,dense,"Conical, Spreading",evergreen,,,minimal
 Cedrus libani,CEDAR-OF-LEBANON,1012,Pinaceae,Pine,exotic,1061705,http://eol.org/pages/1061705/overview,Vulnerable,"Vulnerable B2ab(ii,iii,v)",http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T46191675A46192926.en,dense,conical,,,,minimal
 Ceiba speciosa,Silk-Floss Tree,113,Malvaceae,Mallow,exotic,5405972,http://eol.org/pages/5405972/overview,not listed,not listed,,filtered,rounded,,,,
 Ceratonia siliqua,CAROB,27,Fabaceae,Legume,exotic,418096,http://eol.org/pages/418096/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T202951A112823254.en,dense,rounded,evergreen,,,minimal
 Cercidium floridum,Blue Palo Verde,1010,Fabaceae,Legume,native,47378911,https://eol.org/pages/47378911/overview,not listed,not listed,,little,rounded,,,,
+Cercidium spp.,Palo Verde,682,Fabaceae,Legume,exotic,53527,https://eol.org/pages/53527/overview,not listed,not listed,,little,rounded,,,,
 Cercis canadensis,EASTERN REDBUD,166,Fabaceae,Legume,exotic,640323,http://eol.org/pages/640323/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2000.RLTS.T33892A9812587.en,filtered,rounded,deciduous,,,minimal
 Cercis canadensis 'Forest Pansy',FOREST PANSY REDBUD,456,Fabaceae,Legume,exotic,640323,http://eol.org/pages/640323/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
 Cercis canadensis 'Oklahoma',Oklahoma Redbud,394,Fabaceae,Legume,exotic,640323,http://eol.org/pages/640323/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
@@ -72,6 +75,7 @@ Chitalpa tashkentensis,CHITALPA,262,Bignoniaceae,Bignonia,exotic,49307441,https:
 Cinnamomum camphora,CAMPHOR TREE,24,Lauraceae,Laurel,exotic,596902,http://eol.org/pages/596902/overview,not listed,not listed,,dense,"Rounded, Spreading",evergreen,,,minimal
 Citrus aurantifolia,Lime,286,Rutaceae,Rue,exotic,595293,https://eol.org/pages/595293/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
 Citrus limon,LEMON,66,Rutaceae,Rue,exotic,582200,http://eol.org/pages/582200/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
+Citrus reticulata,Tangerine,229,Rutaceae,Rue,exotic,582204,http://eol.org/pages/582204/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
 Citrus sinensis,ORANGE,88,Rutaceae,Rue,exotic,582206,http://eol.org/pages/582206/overview,not listed,not listed,,dense,rounded,evergreen,,,moderate
 Cocculus laurifolius,LAUREL-LEAFED SNAILSEED,336,Menispermaceae,Moonseed,exotic,2886371,http://eol.org/pages/2886371/overview,not listed,not listed,,"filtered, dense",rounded,evergreen,,,
 Cordyline australis,DRACAENA,164,Asparagaceae,Asparagus,limited,1087084,http://eol.org/pages/1087084/overview,not listed,not listed,,"little, none",palm,evergreen,limited,https://www.cal-ipc.org/plants/paf/cordyline-australis-plant-assessment-form/,moderate
@@ -91,6 +95,7 @@ Dodonaea viscosa,HOPSEED,329,Sapindaceae,Soapberry,exotic,582326,http://eol.org/
 Dracaena draco,DRAGON TREE,165,Asparagaceae,Asparagus,exotic,1087629,http://eol.org/pages/1087629/overview,Vulnerable,Vulnerable A1abcde,http://dx.doi.org/10.2305/IUCN.UK.1998.RLTS.T30394A9535771.en,little,rounded,,,,moderate
 Duranta repens,Brazilian Sky Flower,220,Verbenaceae,Verbena,exotic,487855,http://eol.org/pages/487855/overview,not listed,not listed,,filtered,spreading,,,,moderate
 Dypsis decaryi,TRIANGLE PALM,283,Arecaceae,Palm,exotic,1095068,http://eol.org/pages/1095068/overview,Vulnerable,Vulnerable D1,http://dx.doi.org/10.2305/IUCN.UK.2012.RLTS.T38531A2873409.en,"little, none",palm,evergreen,,,
+Elaeocarpus decipiens,Japanese Blueberry Tree,543,Elaeocarpaceae,Elaeocarpaceae,exotic,2889342,http://eol.org/pages/2889342/overview,not listed,not listed,,dense,rounded,evergreen,,,
 Eriobotrya deflexa,BRONZE LOQUAT,16,Rosaceae,Rose,exotic,229674,http://eol.org/pages/229674/overview,not listed,not listed,,"filtered, dense","rounded, vase",evergreen,,,moderate
 Eriobotrya japonica,EDIBLE LOQUAT,43,Rosaceae,Rose,exotic,628975,http://eol.org/pages/628975/overview,not listed,not listed,,dense,"rounded, vase",evergreen,,,
 Erythrina bidwillii,Bidwills Coral Tree,303,Fabaceae,Legume,exotic,49953463,http://eol.org/pages/49953463/overview,not listed,not listed,,dense,spreading,,,,moderate
