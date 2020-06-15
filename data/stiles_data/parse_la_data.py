@@ -32,6 +32,22 @@ class CityParser(object):
             longitude=df['geometry'].apply(lambda p: p.y)
         )
 
+    @staticmethod
+    def cat_parser(df, min_field, max_field, og_field, cats):
+        df[min_field] = -1
+        df[max_field] = -1
+        for cat in cats:
+            mask = df[og_field].str.strip() == cat
+            if len(cat.split('-')) == 2:
+                min_val, max_val = cat.split('-')
+                df.loc[mask, min_field] = int(min_val)
+                df.loc[mask, max_field] = int(max_val)
+            elif cat.endswith('+'):
+                min_val = int(cat[:-1])
+                df.loc[mask, min_field] = int(min_val)
+
+        return df
+
 
 class LosAngelesCityParser(CityParser):
     def __init__(self, path: Path):
@@ -41,7 +57,7 @@ class LosAngelesCityParser(CityParser):
         df = super().get_maximal_df()
         df = df.assign(name_common=df['species'].str.title())
         df = self.lat_lon_from_geometry(df)
-        return df[['name_common', 'latitude', 'longitude']]
+        return df[['name_common', 'latitude', 'longitude', 'city']]
 
 
 class LosAngelesCountyParser(CityParser):
@@ -55,7 +71,7 @@ class LosAngelesCountyParser(CityParser):
             name_common=df['SPECIES'].str.title(),
             diameter_min_in=df['DIAMETER']
         )
-        return df[['name_common', 'latitude', 'longitude', 'diameter_min_in']]
+        return df[['name_common', 'latitude', 'longitude', 'diameter_min_in', 'city']]
 
 
 class AgouraHillsParser(CityParser):
@@ -66,67 +82,167 @@ class AgouraHillsParser(CityParser):
     def get_maximal_df(self):
         df = super().get_maximal_df()
         df = df.assign(
+            tree_id=df['InventoryID'],
             name_common=df['species'].str.title(),
             name_botanical=df['botanical'].str.title(),
-            diameter_min_in=-1,
-            diameter_max_in=-1,
-            diameter=df['DBH'].str.strip(),
-            height=df['height'].str.strip(),
             address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' ')
         )
-        diameter_mask = df['DBH'] == '0-6'
-        df.loc[diameter_mask, 'diameter_min_in'] = 0
-        df.loc[diameter_mask, 'diameter_max_in'] = 6
-        diameter_mask = df['DBH'] == '07-12'
-        df.loc[diameter_mask, 'diameter_min_in'] = 7
-        df.loc[diameter_mask, 'diameter_max_in'] = 12
-        diameter_mask = df['DBH'] == '13-18'
-        df.loc[diameter_mask, 'diameter_min_in'] = 13
-        df.loc[diameter_mask, 'diameter_max_in'] = 18
-        diameter_mask = df['DBH'] == '19-24'
-        df.loc[diameter_mask, 'diameter_min_in'] = 19
-        df.loc[diameter_mask, 'diameter_max_in'] = 24
-        diameter_mask = df['DBH'] == '25-30'
-        df.loc[diameter_mask, 'diameter_min_in'] = 25
-        df.loc[diameter_mask, 'diameter_max_in'] = 30
-        diameter_mask = df['DBH'] == '31+'
-        df.loc[diameter_mask, 'diameter_min_in'] = 31
-
-        height_mask = df['height'] == '01-15'
-        df.loc[height_mask, 'height_min_feet'] = 1
-        df.loc[height_mask, 'height_max_feet'] = 15
-        height_mask = df['height'] == '15-30'
-        df.loc[height_mask, 'height_min_feet'] = 15
-        df.loc[height_mask, 'height_max_feet'] = 30
-        height_mask = df['height'] == '30-45'
-        df.loc[height_mask, 'height_min_feet'] = 30
-        df.loc[height_mask, 'height_max_feet'] = 45
-        height_mask = df['height'] == '45-60'
-        df.loc[height_mask, 'height_min_feet'] = 45
-        df.loc[height_mask, 'height_max_feet'] = 60
-        height_mask = df['height'] == '60+'
-        df.loc[height_mask, 'height_min_feet'] = 60
+        df = self.cat_parser(
+            df,
+            'diameter_min_in',
+            'diameter_max_in',
+            'DBH',
+            ['0-6', '07-12', '13-18', '19-24', '25-30', '31+']
+        )
+        df = self.cat_parser(
+            df,
+            'height_min_feet',
+            'height_max_feet',
+            'height',
+            ['01-15', '15-30', '30-45', '45-60', '60+']
+        )
 
         return df[
             [
+                'tree_id',
                 'name_common',
+                'name_botanical',
+                'address',
+                'height_min_feet',
+                'city',
+                'height_max_feet',
                 'latitude',
                 'longitude',
                 'diameter_min_in',
                 'diameter_max_in',
-                'name_botanical',
-                'address',
-                'height_min_feet',
-                'height_max_feet'
             ]
         ]
+
+
+class AlhambraParser(CityParser):
+
+    def __init__(self, path: Path):
+        super().__init__(path)
+
+    def get_maximal_df(self):
+        df = super().get_maximal_df()
+        df = df.assign(
+            name_common=df['species'].str.title(),
+            name_botanical=df['BotanicalN'].str.title(),
+            tree_id=df['Tree'],
+            address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' ')
+        )
+        df = self.cat_parser(
+            df,
+            'diameter_min_in',
+            'diameter_max_in',
+            'DBH',
+            ['0-6', '07-12', '13-18', '19-24', '25-30', '31+']
+        )
+        df = self.cat_parser(
+            df,
+            'height_min_feet',
+            'height_max_feet',
+            'height',
+            ['01-15', '15-30', '30-45', '45-60', '60+']
+        )
+        return df[
+            [
+                'name_common',
+                'name_botanical',
+                'city',
+                'tree_id',
+                'address',
+                'height_min_feet',
+                'height_max_feet',
+                'latitude',
+                'longitude',
+                'diameter_min_in',
+                'diameter_max_in',
+
+            ]
+        ]
+
+
+class ArcadiaParser(CityParser):
+
+    def __init__(self, path: Path):
+        super().__init__(path)
+
+    def get_maximal_df(self):
+        df = super().get_maximal_df()
+        df = df.assign(
+            tree_id=df['TREE_ID'],
+            name_common=df['COM_NAME'].str.title(),
+            address=df['ADDR'].str.split('ARCADIA').str[0].str.title()
+        )
+        return df[
+            [
+                'name_common',
+                'city',
+                'tree_id',
+                'address',
+                'latitude',
+                'longitude',
+
+            ]
+        ]
+
+
+class ArtesiaParser(CityParser):
+
+    def __init__(self, path: Path):
+        super().__init__(path)
+
+    def get_maximal_df(self):
+        df = super().get_maximal_df()
+        df = df.assign(
+            tree_id=df['INVENTORYI'],
+            address=df['ADDRESS'].astype(str).str.cat(df['STREET'].str.title(), sep=' '),
+            name_botanical=df['BOTANICALN'].str.title(),
+            name_common=df['species'].str.title(),
+        )
+        df = self.cat_parser(
+            df,
+            'diameter_min_in',
+            'diameter_max_in',
+            'DBH',
+            ['0-6', '07-12', '13-18', '19-24', '25-30', '31+']
+        )
+        df = self.cat_parser(
+            df,
+            'height_min_feet',
+            'height_max_feet',
+            'height',
+            ['01-15', '15-30', '30-45', '45-60', '60+']
+        )
+        return df[
+            [
+                'name_common',
+                'name_botanical',
+                'city',
+                'tree_id',
+                'address',
+                'height_min_feet',
+                'height_max_feet',
+                'latitude',
+                'longitude',
+                'diameter_min_in',
+                'diameter_max_in',
+
+            ]
+        ]
+
 
 class StilesDataParser(object):
 
     mapper = {
-        # 'los-angeles-city': LosAngelesCityParser,
-        # 'los-angeles-county': LosAngelesCountyParser,
-        'agoura-hills': AgouraHillsParser
+        'los-angeles-city': LosAngelesCityParser,
+        'los-angeles-county': LosAngelesCountyParser,
+        'agoura-hills': AgouraHillsParser,
+        'alhambra' : AlhambraParser,
+        'arcadia': ArcadiaParser,
+        'artesia': ArtesiaParser
     }
 
     def __init__(self, data_path):
