@@ -118,6 +118,7 @@ Eucalyptus pulverulenta,Silver Mountain Gum,532,Myrtaceae,Myrtle,exotic,301319,h
 Eucalyptus robusta,SWAMP MAHOGONY,226,Myrtaceae,Myrtle,exotic,301423,http://eol.org/pages/301423/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
 Eucalyptus rudis,DESERT GUM,163,Myrtaceae,Myrtle,exotic,633012,http://eol.org/pages/633012/overview,not listed,not listed,,filtered,spreading,evergreen,,,minimal
 Eucalyptus sideroxylon,RED IRONBARK,103,Myrtaceae,Myrtle,exotic,632020,http://eol.org/pages/632020/overview,not listed,not listed,,filtered,columnar,evergreen,,,minimal
+Eucalyptus spp.,Eucalyptus,44,Myrtaceae,Myrtle,exotic,630112,http://eol.org/pages/630112/overview,not listed,not listed,,filtered,columnar,evergreen,,,minimal
 Eucalyptus torquata,CORAL GUM,160,Myrtaceae,Myrtle,exotic,301419,http://eol.org/pages/301419/overview,not listed,not listed,,dense,"vase, rounded",,,,minimal
 Eucalyptus viminalis,MANNA GUM,301,Myrtaceae,Myrtle,exotic,245551,http://eol.org/pages/245551/overview,not listed,not listed,,filtered,vase,evergreen,,,minimal
 Eugenia aggregata,Cherry Of The Rio Grande,1051,Myrtaceae,Myrtle,exotic,48306163,http://eol.org/pages/48306163/overview,not listed,not listed,,filtered,,,,,
@@ -158,8 +159,10 @@ Juniperus chinensis 'Torulosa',HOLLYWOOD JUNIPER,182,Cupressaceae,Cypress,exotic
 Koelreuteria bipinnata,CHINESE FLAME TREE,33,Sapindaceae,Soapberry,exotic,483646,http://eol.org/pages/483646/overview,not listed,not listed,,filtered,"rounded, vase",deciduous,,,moderate
 Koelreuteria paniculata,GOLDENRAIN TREE,49,Sapindaceae,Soapberry,exotic,487245,http://eol.org/pages/487245/overview,not listed,not listed,,filtered,"rounded, vase",deciduous,,,moderate
 Lagerstroemia indica,CRAPE MYRTLE,38,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Lagerstroemia indica 'Dynamite',Dynamite Crape Myrtle,1567,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
 Lagerstroemia indica 'Muskogee',MUSKOGEE CRAPE MYRTLE,1292,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
 Lagerstroemia indica 'Natchez',Natchez Crape Myrtle,1566,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
+Lagerstroemia indica 'Pink',Pink Crape Myrtle,1287,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
 Lagerstroemia indica 'Purple',PURPLE CRAPE MYRTLE,1288,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
 Lagerstroemia indica 'Red',Red Crape Myrtle,1289,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
 Lagerstroemia indica 'Tuscarora',Tuscarora Crape Myrtle,1291,Lythraceae,Loosestrife,exotic,582106,http://eol.org/pages/582106/overview,not listed,not listed,,filtered,rounded,deciduous,,,minimal
@@ -167,10 +170,12 @@ Lagerstroemia indica 'White',White Crape Myrtle,1290,Lythraceae,Loosestrife,exot
 Lagunaria patersonii,PRIMROSE TREE,210,Malvaceae,Mallow,exotic,586694,http://eol.org/pages/586694/overview,not listed,not listed,,dense,rounded,evergreen,,,minimal
 Laurus nobilis,SWEET BAY,121,Lauraceae,Laurel,exotic,486835,http://eol.org/pages/486835/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2018-1.RLTS.T203351A119996864.en,dense,conical,evergreen,,,minimal
 Leptospermum laevigatum,AUSTRALIAN TEA TREE,907,Myrtaceae,Myrtle,watch,2508619,http://eol.org/pages/2508619/overview,not listed,not listed,,dense,rounded,,watch,https://www.cal-ipc.org/plants/risk/leptospermum-laevigatum-risk/,minimal
+Leptospermum petersonii,Lemon Scented Tea Tree,2008,2508618,http://eol.org/pages/2508618/overview,not listed,not listed,,dense,rounded,,,,minimal
 Leptospermum spp.,Tea Tree,255,Myrtaceae,Myrtle,exotic,2508616,http://eol.org/pages/2508616/overview,not listed,not listed,,dense,rounded,,,,minimal
 Ligustrum lucidum,GLOSSY PRIVET,48,Oleaceae,Olive,limited,487035,http://eol.org/pages/487035/overview,not listed,not listed,,dense,rounded,evergreen,limited,https://www.cal-ipc.org/plants/paf/ligustrum-lucidum-plant-assessment-form/,
 Liquidambar formosana,Chinese Sweetgum,158,Altingiaceae,Sweet-gum,exotic,2887420,http://eol.org/pages/2887420/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/61983495/0,dense,columnar,deciduous,,,
 Liquidambar styraciflua,AMERICAN SWEETGUM,5,Altingiaceae,Sweet-gum,exotic,594658,http://eol.org/pages/594658/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/33966/0,dense,"columnar, rounded",deciduous,,,moderate
+Liquidambar styraciflua 'Palo Alto',Palo Alto Sweetgum,459,Altingiaceae,Sweet-gum,exotic,594658,http://eol.org/pages/594658/overview,not listed,not listed,,dense,"columnar, rounded",deciduous,,,moderate
 Liquidambar styraciflua 'Rotundiloba',ROUND-LEAFED SWEETGUM,340,Altingiaceae,Sweet-gum,exotic,594658,http://eol.org/pages/594658/overview,not listed,not listed,,dense,"columnar, rounded",deciduous,,,moderate
 Liriodendron tulipifera,TULIP TREE,123,Magnoliaceae,Magnolia,exotic,1155834,http://eol.org/pages/1155834/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2014-3.RLTS.T194015A2294401.en,dense,"rounded, vase",deciduous,,,moderate
 Livistona chinensis,CHINESE FOUNTAIN PALM,279,Arecaceae,Palm,exotic,1140296,http://eol.org/pages/1140296/overview,not listed,not listed,,"little, none",palm,evergreen,,,
@@ -212,6 +217,7 @@ Parkinsonia X 'Desert Museum',Desert Museum Palo Verde,677,Fabaceae,Legume,exoti
 Persea americana,AVOCADO,8,Lauraceae,Laurel,exotic,596888,http://eol.org/pages/596888/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/96986556/0,filtered,rounded,evergreen,,,moderate
 Persea borbonia,RED BAY,316,Lauraceae,Laurel,exotic,596915,http://eol.org/pages/596915/overview,not listed,not listed,,filtered,rounded,evergreen,,,moderate
 Persea indica,Madeira Bay Fig,911,Lauraceae,Laurel,exotic,5394782,http://eol.org/pages/5394782/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T30329A102153566.en,filtered,rounded,evergreen,,,
+Persea spp.,Avocado Species,1763,Lauraceae,Laurel,exotic,11920963,http://eol.org/pages/11920963/overview,not listed,not listed,,filtered,rounded,evergreen,,,moderate
 Phoenix canariensis,CANARY ISLAND DATE PALM,25,Arecaceae,Palm,limited,1135089,http://eol.org/pages/1135089/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/13416997/0,little,,,limited,https://www.cal-ipc.org/plants/paf/phoenix-canariensis-plant-assessment-form/,minimal
 Phoenix dactylifera,DATE PALM,162,Arecaceae,Palm,exotic,1135088,http://eol.org/pages/1135088/overview,Least Concern,Least Concern,http://www.iucnredlist.org/details/13416997/0,little,,,,,moderate
 Phoenix reclinata,SENEGAL PALM,218,Arecaceae,Palm,exotic,1135083,http://eol.org/pages/1135083/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T67540526A67540546.en,"little, none",palm,evergreen,,,
@@ -287,6 +293,7 @@ Taxodium distichum,BALD CYPRESS,411,Cupressaceae,Cypress,exotic,1061709,http://w
 Taxodium huegelii,Mexican Cypress,319,Cupressaceae,Cypress,exotic,47389708,https://eol.org/pages/47389708,not listed,not listed,,"filtered, dense",,,,,
 Tecoma stans,YELLOW ELDER,518,Bignoniaceae,Bignonia,exotic,578225,http://eol.org/pages/578225/overview,not listed,not listed,,filtered,,,,,
 Thuja occidentalis,American Arborvitae,374,Cupressaceae,Cypress,exotic,1034927,http://eol.org/pages/1034927/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2013-1.RLTS.T42262A2967995.en,little,"conical, rounded",evergreen,,,
+Thuja plicata,Western Red Cedar,375,Cupressaceae,Cypress,native,1034889,http://eol.org/pages/1034889/overview,Least Concern, Least Concern,https://www.iucnredlist.org/species/42263/10684828,dense,conical,evergreen,,,
 Tilia americana,American Linden,139,Malvaceae,Mallow,exotic,584834,http://eol.org/pages/584834/overview,Least Concern,Least Concern,http://dx.doi.org/10.2305/IUCN.UK.2017-3.RLTS.T61788230A61788232.en,filtered,"conical, rounded",deciduous,,,
 Tipuana tipu,TIPU,230,Fabaceae,Legume,exotic,638623,http://www.eol.org/pages/638623/overview,not listed,not listed,,filtered,,,,,moderate
 Trachycarpus fortunei,WINDMILL PALM,133,Arecaceae,Palm,exotic,1128696,http://eol.org/pages/1128696/overview,not listed,not listed,,little/none,palm,evergreen,,,moderate
