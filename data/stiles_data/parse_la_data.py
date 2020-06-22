@@ -34,6 +34,9 @@ class CityParser(object):
 
     @staticmethod
     def cat_parser(df, min_field, max_field, og_field, cats):
+        actual_cats = [cat for cat in df[og_field].unique().tolist() if set(cat.strip()) != {'-'}]
+        if len(actual_cats) > len(cats):
+            raise RuntimeError(f'{len(cats)} categories but categories in df={df[og_field].unique().tolist()}')
         df[min_field] = -1
         df[max_field] = -1
         for cat in cats:
@@ -44,6 +47,9 @@ class CityParser(object):
                 df.loc[mask, max_field] = int(max_val)
             elif cat.endswith('+'):
                 min_val = int(cat[:-1])
+                df.loc[mask, min_field] = int(min_val)
+            elif cat.startswith('>'):
+                min_val = int(cat[1:])
                 df.loc[mask, min_field] = int(min_val)
 
         return df
@@ -201,21 +207,21 @@ class BellflowerParser(CityParser):
             name_common=df['species'].str.title(),
             name_botanical=df['botanical'].str.title(),
             address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' '),
-            tree_id=df['INVENTORYID'],
+            tree_id=df['InventoryID'],
         )
         df = self.cat_parser(
             df,
             'diameter_min_in',
             'diameter_max_in',
             'DBH',
-            ['0-6', '07-12', '13-18', '19-24', '25-30', '31+']
+            ['0-6', '07-12', '13-18', '19-24', '25-30', '31+', '---']
         )
         df = self.cat_parser(
             df,
             'height_min_feet',
             'height_max_feet',
             'height',
-            ['01-15', '15-30', '30-45', '45-60', '60+']
+            ['01-15', '15-30', '30-45', '45-60', '60+', '---']
         )
 
         return df[
@@ -281,7 +287,6 @@ class BellGardensParser(CityParser):
         ]
 
 
-
 class ArtesiaParser(CityParser):
 
     def __init__(self, path: Path):
@@ -327,17 +332,53 @@ class ArtesiaParser(CityParser):
         ]
 
 
+class BeverlyHillsParser(CityParser):
+
+    def __init__(self, path: Path):
+        super().__init__(path)
+
+    def get_maximal_df(self):
+        df = super().get_maximal_df()
+        df = df.assign(
+            tree_id=df['TREEID'],
+            address=df['ADDRESS'].astype(str).str.cat(df['STREET'].str.title(), sep=' '),
+            name_botanical=df['BOTANICAL'].str.title(),
+            name_common=df['species'].str.title(),
+        )
+        df = self.cat_parser(
+            df,
+            'height_min_feet',
+            'height_max_feet',
+            'HEIGHT_RAN',
+            ['1-15', '16-30', '31-45', '46-60', '>60', '------', '']
+        )
+        return df[
+            [
+                'name_common',
+                'name_botanical',
+                'city',
+                'tree_id',
+                'address',
+                'height_min_feet',
+                'height_max_feet',
+                'latitude',
+                'longitude',
+            ]
+        ]
+
+
 class StilesDataParser(object):
 
     mapper = {
-        # 'los-angeles-city': LosAngelesCityParser,
-        # 'los-angeles-county': LosAngelesCountyParser,
-        # 'agoura-hills': AgouraHillsParser,
-        # 'alhambra' : AlhambraParser,
-        # 'arcadia': ArcadiaParser,
-        # 'artesia': ArtesiaParser,
-        # 'bell-gardens': BellGardensParser,
-        'bellflower': BellflowerParser
+        'los-angeles-city': LosAngelesCityParser,
+        'los-angeles-county': LosAngelesCountyParser,
+        'agoura-hills': AgouraHillsParser,
+        'alhambra' : AlhambraParser,
+        'arcadia': ArcadiaParser,
+        'artesia': ArtesiaParser,
+        'bell-gardens': BellGardensParser,
+        'bellflower': BellflowerParser,
+        'beverly-hills': BeverlyHillsParser
     }
 
     def __init__(self, data_path):
