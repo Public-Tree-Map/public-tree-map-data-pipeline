@@ -1,14 +1,17 @@
 """
 Data processing for tree data.
 """
-import json
 
-import numpy as np
+import geohash
 import pandas as pd
 import geopandas as gpd
-from shapely.geometry import Point
+from shapely.geometry import LineString, MultiLineString
 
-def load_dataset(name):
+
+PRECISION = 9
+
+
+def load_dataset(name, line_to_points=False):
     """
     Given a file path, load the data into a geodataframe,
     reproject it into WGS84, and return the geodataframe.
@@ -16,10 +19,31 @@ def load_dataset(name):
     # Load the street planting shape data, reprojecting into WGS84
     gdf = gpd.read_file(name, crs='+init=epsg:2229')
     gdf = gdf.to_crs({'init': 'epsg:4326', 'no_defs': True})
+    if line_to_points:
+        dfs = []
+        for row in gdf.itertuples():
+            if isinstance(row.geometry, LineString):
+                points = list(row.geometry.coords)
+            elif isinstance(row.geometry, MultiLineString):
+                points = []
+                for line in row.geometry.geoms:
+                    points += list(line.coords)
+            else:
+                raise RuntimeError('Geometry is not a Line nor a MultiLine')
+            dfs.append(pd.DataFrame({'point': points}).assign(SEGMENT=row.SEGMENT))
+        exploded_df = pd.concat(dfs, sort=False)
+        return pd.merge(gdf, exploded_df, on='SEGMENT')
     return gdf
 
 
-def planting_for_trees(trees):
+def geohash_series(series, precision=9):
+    hashes = []
+    for point in series:
+        hashes.append(geohash.encode(*point[::-1], precision=precision))
+    return hashes
+
+
+def planting_for_trees(trees: pd.DataFrame):
     """
     Match a replacement species and planting year for
     all the trees in a dataframe.
@@ -33,31 +57,29 @@ def planting_for_trees(trees):
     replacement species.
     """
     # Load the street planting shape data, reprojecting into WGS84
-    planting_street_segments = load_dataset("data/planting/TreePlanting_Streets.shp")
-    planting_median_segments = load_dataset("data/planting/TreePlanting_Medians.shp")
+    planting_street_segments = load_dataset("data/planting/TreePlanting_Streets.shp", True)
+    planting_street_segments = planting_street_segments.assign(
+        geohash=geohash_series(planting_street_segments['point'], precision=PRECISION)
+    )
+    planting_median_segments = load_dataset("data/planting/TreePlanting_Medians.shp", True)
+    planting_median_segments = planting_median_segments.assign(
+        geohash=geohash_series(planting_median_segments['point'], precision=PRECISION)
+    )
 
-    def nearest_planting_segment(tree):
-        """
-        Given a row from the trees dataset, find the planting segment that contains
-        it. Then return that segment id, planting year, and replacement species.
-        """
-        # Construct a shapely point from the tree data
-        pt = Point(tree["longitude"], tree["latitude"])
+    trees['POINTS'] = [(tree.longitude, tree.latitude) for tree in trees.itertuples()]
+    trees['geohash'] = geohash_series(trees['POINTS'], precision=PRECISION)
 
-        # Based on the description of the tree, select which df to search
-        segments = planting_median_segments if str(
-            tree["location_description"]
-        ).lower() == "median" else planting_street_segments
-
-        # Find the row with the minimum distance from the point.
-        row = segments.distance(pt).idxmin()
-        if pd.isna(row):
-            return row
-        segment = segments.iloc[row]
-        return segment["SEGMENT"]
-
-    trees["SEGMENT"] = trees.apply(nearest_planting_segment, axis=1)
-    planting_segments = pd.concat([planting_street_segments, planting_median_segments])
+    median_mask = trees['location_description'].astype(str).str.lower() == 'median'
+    median_trees = match_trees_off_hashes(
+        planting_median_segments, trees[median_mask]
+    )
+    off_median_trees = match_trees_off_hashes(
+        planting_street_segments, trees[~median_mask]
+    )
+    trees = pd.concat([median_trees, off_median_trees], sort=False)
+    planting_segments = pd.concat(
+        [planting_street_segments.drop_duplicates('SEGMENT'), planting_median_segments.drop_duplicates('SEGMENT')]
+    )
     trees = trees.merge(
         planting_segments[["SEGMENT", "YEAR", "REPLACE"]], on="SEGMENT", how="left"
     )
@@ -65,6 +87,22 @@ def planting_for_trees(trees):
         columns={"YEAR": "planting_year", "REPLACE": "replacement_species"}
     )
     return trees
+
+
+def match_trees_off_hashes(candidate_matches, to_match_df):
+    digits = PRECISION
+    og_df = to_match_df.copy()
+    mapper = {}
+    while digits > 0 and len(to_match_df) > 0:
+        candidate_matches = candidate_matches.assign(geohash_digits=candidate_matches['geohash'].str[:digits])
+        to_match_df = to_match_df.assign(geohash_digits=to_match_df['geohash'].str[:digits])
+        merged = pd.merge(candidate_matches, to_match_df, on='geohash_digits')
+        if len(merged):
+            mapper.update(merged.set_index('tree_id').to_dict()['SEGMENT'])
+        to_match_df = to_match_df[~to_match_df['tree_id'].isin(mapper)]
+        digits -= 1
+
+    return og_df.assign(SEGMENT=og_df['tree_id'].map(mapper))
 
 
 def pruning_for_trees(trees):
@@ -93,24 +131,19 @@ def pruning_for_trees(trees):
 
         return tree[year]
 
+    trees = gpd.GeoDataFrame(
+        trees,
+        geometry=gpd.points_from_xy(trees['longitude'], trees['latitude']),
+        crs={'init': 'epsg:4326'}
+    )
+
     trees["pruning_year"] = trees.apply(collapse_years, axis=1)
     trees = trees.drop([y for y in years], axis=1)
 
-
-    pruning_zones = load_dataset("data/pruning/pruning_zones.shp")
-    def get_pruning_zone(tree):
-        """
-        Given a row from the trees dataset, find the pruning zone that contains
-        it. Then return that segment id, planting year, and replacement species.
-        """
-        # Construct a shapely point from the tree data
-        pt = Point(tree["longitude"], tree["latitude"])
-        for zone in pruning_zones.iterrows():
-            if zone[1].geometry.contains(pt):
-                return zone[1]["Id"]
-        return np.nan
-    trees["pruning_zone"] = trees.apply(get_pruning_zone, axis=1)
-
+    pruning_zones = load_dataset("data/pruning/pruning_zones.shp").rename(columns={'Id': 'pruning_zone'})
+    trees = gpd.sjoin(pruning_zones, trees, how='right', op='contains').drop(
+        columns=['index_left', 'Shape_Leng', 'Shape_Area', 'geometry', 'geohash', 'POINTS']
+    )
     return trees
 
 
@@ -132,5 +165,5 @@ if __name__ == "__main__":
         "SEGMENT": "segment",
     }
     trees = trees.rename(columns=rename_columns)
-    tmp = trees.to_json(orient="records")
-    outfile.write(json.dumps(json.loads(tmp), indent=2))
+    tmp = pd.DataFrame(trees).to_json(orient="records", indent=2)
+    outfile.write(tmp)
