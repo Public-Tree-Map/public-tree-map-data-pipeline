@@ -21,7 +21,6 @@ dependencies:
   - freetype=2.9.1=h8a8886c_1
   - freexl=1.0.5=h14c3975_0
   - gdal=2.3.3=py37hbb2a789_0
-  - geopandas=0.4.0=py37_1
   - geos=3.7.1=he6710b0_0
   - giflib=5.1.4=h14c3975_1
   - glib=2.56.2=hd408876_0
@@ -68,8 +67,10 @@ dependencies:
   - openssl=1.1.1a=h7b6447c_0
   - pandas=0.24.1=py37he6710b0_0
   - pcre=8.42=h439df22_0
+  - pip=19.0.1=py37_0
   - pip:
     - python-geohash
+    - geopandas==0.7.0
   - pixman=0.36.0=h7b6447c_0
   - poppler=0.65.0=h581218d_1
   - poppler-data=0.4.9=0
