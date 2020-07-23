@@ -68,7 +68,7 @@ dependencies:
   - pcre=8.42=h439df22_0
   - pip=19.0.1=py37_0
   - pip:
-    - python-geohash
+    - python-geohash==0.8.5
     - geopandas==0.7.0
     - pandas==1.0.4
   - pixman=0.36.0=h7b6447c_0
