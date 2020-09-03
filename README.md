@@ -1,6 +1,6 @@
 # public-tree-data
 
-Public Tree Map uses open datasets to document publicly owned park + street + landmark trees in Santa Monica, California. Please see below for more information about the data sources and project.
+Public Tree Map uses open datasets to document publicly owned park + street trees in Santa Monica, California. We're working to add data about other LA county public trees. Please see below for more information about the data sources and project.
 
 ## Running the Pipeline Locally
 
@@ -85,7 +85,7 @@ The pipeline in general works like this:
 
 - Please review open issues and link your pull request to the relevant issue.
 - Please create new branch!
-- For all **new** changes, please submit your pull request to the test-circleci branch.
+- For all **new** changes, please submit your pull request to the ```test-circleci``` branch.
 - In your pull request, please list and explain all proposed changes to the code base (additions, deletions). If you reuse code from elsewhere, please make sure you've attributed it.
 - Please apply all relevant labels to your pull request.
 - Please request a review (either from a specific person or from the appropriate [slack channel](https://join.slack.com/t/publictreemap/shared_invite/zt-dzhrivk4-m8gaZ3wrZBE_leo_oeepPw)).
