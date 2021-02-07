@@ -7,6 +7,7 @@ Public Tree Map uses open datasets to document publicly owned park + street tree
 Prerequisites:
 - `make`
 - `node`
+- `python 3.x`
 
 After a fresh clone, run `npm install` to install the necessary node modules.
 
