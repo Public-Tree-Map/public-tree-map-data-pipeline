@@ -225,7 +225,7 @@ class SantaClaritaParser(CityParser):
         df = df[df['PROP_ADR'].notnull()]
         df = df.assign(
             address=df['PROP_ADR'].astype(str).str.cat(df['PROPSTREET'].str.title(), sep=' '),
-        ).drop('ADDRESS', axis=1)
+        )
         df = super().get_maximal_df(df=df)
         return self.filter_columns(df)
 
@@ -270,19 +270,19 @@ class PomonaParser(CityParser):
 class StilesDataParser(object):
 
     mapper = {
-        # 'los-angeles-city': CityParser,
-        # 'los-angeles-county': CityParser,
-        # 'agoura-hills': AgouraHillsParser,
-        # 'alhambra' : AlhambraParser,
-        # 'arcadia': ArcadiaParser,
-        # 'artesia': ArtesiaParser,
-        # 'bell-gardens': BellGardensParser,
-        # 'bellflower': BellflowerParser,
-        # 'beverly-hills': BeverlyHillsParser,
-        # 'long-beach': LongBeachParser,
-        # 'santa-clarita': SantaClaritaParser,
-        # 'pasadena': PasadenaParser,
-        # 'glendale': GlendaleParser,
+        'los-angeles-city': CityParser,
+        'los-angeles-county': CityParser,
+        'agoura-hills': AgouraHillsParser,
+        'alhambra' : AlhambraParser,
+        'arcadia': ArcadiaParser,
+        'artesia': ArtesiaParser,
+        'bell-gardens': BellGardensParser,
+        'bellflower': BellflowerParser,
+        'beverly-hills': BeverlyHillsParser,
+        'long-beach': LongBeachParser,
+        'santa-clarita': SantaClaritaParser,
+        'pasadena': PasadenaParser,
+        'glendale': GlendaleParser,
         'pomona': PomonaParser,
     }
 
@@ -293,6 +293,7 @@ class StilesDataParser(object):
         self.geojsons = {geojson_path.name.split('.')[0]: geojson_path for geojson_path in all_path.glob('*.geojson')}
 
     def parse_all(self):
+        dfs = []
         for city in self.mapper:
             if city in self.mapper:
                 city_parser = self.mapper[city](
@@ -302,6 +303,9 @@ class StilesDataParser(object):
                 )
                 if city_parser.geo_json_path:
                     df = city_parser.get_maximal_df()
+                    dfs.append(df)
+
+        print(len(pd.concat(dfs)))
 
 
 if __name__ == "__main__":
