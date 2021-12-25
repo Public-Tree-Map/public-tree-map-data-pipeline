@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+gunicorn
+cloud-sql-python-connector[pymysql]
+pymysql
