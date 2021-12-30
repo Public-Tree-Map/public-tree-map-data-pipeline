@@ -139,7 +139,6 @@ class ImageDownloader(object):
 
 if __name__ == "__main__":
     img_download = ImageDownloader()
-    os.environ['TREE_DB_PASS'] = "hFitnGfIvD1COm24"
     trees_df, hashed_urls = img_download.get_trees_without_images()
     for row in trees_df.itertuples():
         img_download.get_tree_images(row.id, row.eol_id, hashed_urls)
