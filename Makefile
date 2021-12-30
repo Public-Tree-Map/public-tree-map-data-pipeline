@@ -1,4 +1,5 @@
 # Anything that needs to be done before the other rules run
+SHELL := /bin/bash
 setup:
 	mkdir -p build/data
 
@@ -9,6 +10,12 @@ release: setup
 	  | python pruning_planting.py \
 	  | node download-images.js \
 	  | node split-trees.js build/data
+
+release-gc: setup
+    curl 'https://data.smgov.net/resource/w8ue-6cnd.csv?$$limit=200' \
+      | node parse-trees.js \
+      | python3 upload_trees.py
+    python3 download_images.py
 
 # Runs the pipeline using local data, but skips the CPU-intensive python tasks
 img-test: setup

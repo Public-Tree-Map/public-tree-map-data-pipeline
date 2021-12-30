@@ -1,1 +1,8 @@
-geopandas==0.4.0
+python-geohash
+geopandas
+pandas
+rtree
+cloud-sql-python-connector[pymysql]
+pymysql
+Pillow
+google-cloud-storage
