@@ -4,12 +4,11 @@ import json
 from pathlib import Path
 from typing import List, Set
 
-import numpy as np
 import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
 
-from upload_trees import DBTreeUploader, DBCursor
+from upload_trees import DBTreeUploader
 
 
 class CityParser(object):
@@ -391,11 +390,12 @@ class SpeciesMatcher(object):
         df['synonym'] = synonyms
         return df.explode('synonym')
 
-    def match(self):
+    def match(self, how='inner'):
         df = self.df.assign(synonym=self.df['name_botanical'].str.lower())
         return pd.merge(
             df,
             self.synonym_df[['synonym', 'botanical_name']],
+            how=how,
             on='synonym'
         ).drop(['name_botanical', 'synonym'], axis=1)
 
@@ -414,15 +414,18 @@ if __name__ == "__main__":
     df = pd.read_csv('stiles.trees.csv')
     matcher = SpeciesMatcher(df)
     matched_df = matcher.match()
-    uploader = DBTreeUploader(getpass.getpass('Password...?'))
+    uploader = DBTreeUploader()
     uploader.truncate_trees()
-    uploader.delete_species()
-    uploader.upload_species(matcher.species_df)
+    uploader.update_species(
+        matcher.species_df.rename(columns={'Species ID': 'species_id'}).rename(
+            columns={col: col.lower() for col in matcher.species_df.columns}
+        )
+    )
     species_mapper = uploader.get_species_ids_mapper()
     matched_df['species_id'] = matched_df['botanical_name'].map(species_mapper)
     assert matched_df['species_id'].notnull().all()
     uploader.upload_trees(
-        matched_df.assign(state='CA').rename(
+        matched_df.assign(state='CA').rename(columns={'Species ID': 'species_id'}).rename(
             columns={col: col.lower() for col in matched_df.columns}
-        ).rename(columns={'Species ID': 'species_id'})
+        )
     )

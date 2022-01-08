@@ -19,7 +19,6 @@ class TreeImage:
     hashed_url: str
     img_type: str
     description: str
-    stored_url: Optional[str]
     image: Optional
     author: Optional[str]
     author_url: Optional[str]
@@ -33,12 +32,12 @@ class ImageDownloader(object):
         self.bucket = storage.Client().bucket('public-tree-map-images')
 
     def insert_tree_into_db(self, tree: TreeImage):
-        with DBCursor(os.environ['TREE_DB_PASS']) as conn:
+        with DBCursor() as conn:
             cursor = conn.cursor(pymysql.cursors.DictCursor)
             cursor.execute(
                 """
                     INSERT INTO images(
-                        stored_url,
+                        extension,
                         original_url,
                         details,
                         hashed_original_url,
@@ -49,7 +48,7 @@ class ImageDownloader(object):
                     VALUES (%s, %s, %s, %s, %s, %s, %s)
                 """,
                 (
-                    tree.stored_url,
+                    tree.img_type,
                     tree.retrieval_url,
                     tree.description if tree.description else None,
                     tree.hashed_url,
@@ -61,20 +60,22 @@ class ImageDownloader(object):
             conn.commit()
 
     def get_and_upload_image(self, tree_image: TreeImage):
-        r = requests.get(tree_image.retrieval_url)
-        if r.ok:
-            img = Image.open(BytesIO(r.content))
-            img.thumbnail(self.MAX_SIZE)
-            tree_image.image = img
-            image_key = f'{tree_image.hashed_url}.{tree_image.img_type}'
-            blob = self.bucket.blob(image_key)
-            blob.upload_from_string(
-                r.content,
-                content_type=r.headers['Content-Type']
-            )
-            tree_image.stored_url = f'https://storage.googleapis.com/public-tree-map-images/{image_key}'
-            self.insert_tree_into_db(tree_image)
-            return tree_image
+        image_key = f'{tree_image.hashed_url}.{tree_image.img_type}'
+        blob = self.bucket.blob(image_key)
+        if not blob.exists():
+            r = requests.get(tree_image.retrieval_url)
+            if r.ok:
+                img = Image.open(BytesIO(r.content))
+                img.thumbnail(self.MAX_SIZE)
+                tree_image.image = img
+                with BytesIO(img.tobytes()) as f:
+                    blob.upload_from_file(
+                        f,
+                        content_type=r.headers['Content-Type']
+                    )
+
+        self.insert_tree_into_db(tree_image)
+        return tree_image
 
     def get_tree_images(self, tree_id, eol_id, existing_images: Set[str]):
 
@@ -85,7 +86,7 @@ class ImageDownloader(object):
         images_to_retrieve = []
         if r.ok:
             request_body = r.json()
-            data_objects = request_body['taxonConcept']['dataObjects']
+            data_objects = request_body['taxonConcept'].get('dataObjects')
             if data_objects:
                 for data_object in data_objects:
                     hashed_url = hashlib.md5(f"{data_object['eolMediaURL']}{os.environ['TREE_SALT']}".encode('utf-8')).hexdigest()
@@ -96,11 +97,10 @@ class ImageDownloader(object):
                                 data_object['eolMediaURL'],
                                 hashed_url,
                                 data_object['dataSubtype'],
-                                data_object['description'],
+                                data_object['description'] if 'description' in data_object else None,
                                 None,
-                                None,
-                                data_object['rightsHolder'].strip() if data_object['rightsHolder'] else None,
-                                f'https://eol.org/pages/${eol_id}/media'
+                                data_object['rightsHolder'].strip() if 'rightsHolder' in data_object else None,
+                                f'https://eol.org/pages/{int(eol_id)}/media'
                             )
                         )
 
@@ -111,7 +111,7 @@ class ImageDownloader(object):
                             existing_images.add(uploaded_tree.hashed_url)
 
     def get_trees_without_images(self):
-        with DBCursor(os.environ['TREE_DB_PASS']) as conn:
+        with DBCursor() as conn:
             cursor = conn.cursor(pymysql.cursors.DictCursor)
             cursor.execute(
                 """
@@ -140,5 +140,6 @@ class ImageDownloader(object):
 if __name__ == "__main__":
     img_download = ImageDownloader()
     trees_df, hashed_urls = img_download.get_trees_without_images()
-    for row in trees_df.itertuples():
+    for idx, row in enumerate(trees_df.itertuples()):
+        print(f'{idx}/{len(trees_df)}')
         img_download.get_tree_images(row.id, row.eol_id, hashed_urls)

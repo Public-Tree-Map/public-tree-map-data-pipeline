@@ -3,9 +3,7 @@ from typing import Dict
 import json
 import sys
 
-# import pymysql
-# from google.cloud.sql.connector import connector
-# import pandas as pd
+import pymysql
 import geopandas as gpd
 import numpy as np
 import pandas as pd
@@ -13,16 +11,30 @@ import pymysql.cursors
 from google.cloud.sql.connector import connector
 
 
-class DBTreeUploader(object):
+class DBCursor(object):
+    def __init__(self, password=None):
+        self.connection = connector.connect(
+            os.environ['TREE_DB_CONNECTION_STR'],
+            'pymysql',
+            user='root',
+            password=password if password else os.environ['TREE_DB_PASS'],
+            db='publictrees'
+        )
 
-    def __init__(self, password):
-        self.password = password
+    def __enter__(self):
+        return self.connection
+
+    def __exit__(self, type, value, traceback):
+        self.connection.close()
+
+
+class DBTreeUploader(object):
 
     def truncate_trees(self):
         self._truncate_table('trees')
 
     def delete_species(self):
-        with DBCursor(self.password if self.password else os.environ['TREE_DB_PASS']) as conn:
+        with DBCursor() as conn:
             conn.cursor().execute(
                 f"""
                     DELETE FROM species;
@@ -36,7 +48,7 @@ class DBTreeUploader(object):
             conn.commit()
 
     def _truncate_table(self, table):
-        with DBCursor(self.password if self.password else os.environ['TREE_DB_PASS']) as conn:
+        with DBCursor() as conn:
             conn.cursor().execute(
                 f"""
                     TRUNCATE TABLE {table};
@@ -50,7 +62,7 @@ class DBTreeUploader(object):
             conn.commit()
 
     def truncate_sm_trees(self):
-        with DBCursor(self.password if self.password else os.environ['TREE_DB_PASS']) as conn:
+        with DBCursor() as conn:
             conn.cursor().execute(
                 """
                     DELETE FROM trees
@@ -60,7 +72,7 @@ class DBTreeUploader(object):
             conn.commit()
 
     def get_species_ids_mapper(self) -> Dict[str, int]:
-        with DBCursor(self.password if self.password else os.environ['TREE_DB_PASS']) as conn:
+        with DBCursor() as conn:
             cursor = conn.cursor(pymysql.cursors.DictCursor)
             cursor.execute(
                 """
@@ -73,7 +85,7 @@ class DBTreeUploader(object):
         return pd.DataFrame(results).set_index('botanical_name').to_dict()['id']
 
     def upload_trees(self, df: pd.DataFrame, batch_size=100000):
-        with DBCursor(self.password if self.password else os.environ['TREE_DB_PASS']) as conn:
+        with DBCursor() as conn:
             sql = """
                 INSERT INTO trees(
                     tree_id,
@@ -99,7 +111,10 @@ class DBTreeUploader(object):
                     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, ST_GeomFromText(%s, 4269), %s, %s, %s, %s
                 )
             """
-            df['batch'] = np.random.randint(batch_size, size=len(df))
+            if batch_size == 0:
+                df['batch'] = 0
+            else:
+                df['batch'] = np.random.randint(int(len(df) / batch_size), size=len(df))
             df = df.where((pd.notnull(df)), None)
             for _, batch_df in df.groupby('batch'):
                 conn.cursor().executemany(
@@ -129,8 +144,67 @@ class DBTreeUploader(object):
                 )
             conn.commit()
 
-    def upload_species(self, df: pd.DataFrame):
-        with DBCursor(self.password if self.password else os.environ['TREE_DB_PASS']) as conn:
+    def update_species(self, df):
+        with DBCursor() as conn:
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            cursor.execute(
+                """
+                    SELECT botanical_name FROM species
+                """
+            )
+            botanical_names = set([row['botanical_name'] for row in cursor.fetchall()])
+            update_df = df[df['botanical_name'].isin(botanical_names)]
+            cursor.executemany(
+                """
+                    UPDATE species
+                    SET 
+                        common_name = %s,
+                        family_botanical_name = %s,
+                        family_common_name = %s,
+                        native = %s,
+                        eol_id = %s,
+                        eol_overview_url = %s,
+                        simplified_iucn_status = %s,
+                        iucn_status = %s,
+                        iucn_doi_or_url = %s,
+                        shade_production = %s,
+                        form = %s,
+                        type = %s,
+                        cal_ipc_url = %s,
+                        irrigation_requirements = %s,
+                        species_id = %s
+                    WHERE 
+                        botanical_name = %s
+                """,
+                [
+                    (
+                        row.common_name,
+                        row.family_botanical_name,
+                        row.family_common_name,
+                        row.native,
+                        int(row.eol_id) if row.eol_id is not None else None,
+                        row.eol_overview_url,
+                        row.simplified_iucn_status,
+                        row.iucn_status,
+                        row.iucn_doi_or_url,
+                        row.shade_production,
+                        row.form,
+                        row.type,
+                        row.cal_ipc_url,
+                        row.irrigation_requirements,
+                        row.species_id,
+                        row.botanical_name,
+                    ) for row in update_df.itertuples()
+                ]
+
+            )
+
+        write_df = df[~df['botanical_name'].isin(botanical_names)]
+        self.upload_species(write_df)
+
+    @staticmethod
+    def upload_species(df: pd.DataFrame):
+        with DBCursor() as conn:
             sql = """
                     INSERT INTO species(
                         botanical_name,
@@ -185,45 +259,12 @@ class DBTreeUploader(object):
 class SMTreeUploader(DBTreeUploader):
 
     def __init__(self):
-        super().__init__(None)
+        super().__init__()
 
     def prepare_df(self, df):
-        df['location'] = gpd.GeoSeries(gpd.points_from_xy(df['longitude'], df['latitude'])).to_wkt()
+        df['location'] = gpd.GeoSeries(gpd.points_from_xy(df['latitude'], df['longitude'])).to_wkt()
         self.df = df.rename(columns={
             'heritageYear': 'heritage_year',
             'heritageNumber': 'heritage_number',
             'heritageText': 'heritage_text',
         })
-
-
-if __name__ == "__main__":
-
-    # Load the trees dataset.
-    json_lines = []
-    for line in sys.stdin:
-        json_lines.append(json.loads(line))
-
-    df = pd.DataFrame(json_lines)
-    uploader = SMTreeUploader()
-    species_mapper = uploader.get_species_ids_mapper()
-    df['species_id'] = df['botanical_name'].map(species_mapper)
-    assert df['species_id'].notnull().all()
-    print(df, file=sys.stderr)
-    uploader.upload_trees(uploader.df)
-
-
-class DBCursor(object):
-    def __init__(self, password):
-        self.connection = connector.connect(
-            instance_connection_string='total-ensign-336021:us-west1:public-tree-map',
-            driver='pymysql',
-            user='root',
-            password=password,
-            db='publictrees'
-        )
-
-    def __enter__(self):
-        return self.connection
-
-    def __exit__(self, type, value, traceback):
-        self.connection.close()
