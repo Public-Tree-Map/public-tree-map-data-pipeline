@@ -1,64 +1,52 @@
 import os
 import json
 
-import pymysql
-from google.cloud.sql.connector import connector
+import sqlalchemy
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+origins = [
+    "*",
+    "http://localhost",
+    "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
-class DBConn(object):
-    def __init__(self, password, local=False):
-        if local:
-            self.connection = pymysql.connect(
-                host='localhost',
-                password=password,
-                db='publictrees',
-                user='root'
-            )
-        else:
-            self.connection = connector.connect(
-                instance_connection_string=os.environ['TREE_DB_CONNECTION_STR'],
-                driver='pymysql',
-                user='root',
-                password=password,
-                db='publictrees'
-            )
-
-    def __enter__(self):
-        return self.connection
-
-    def __exit__(self, type, value, traceback):
-        self.connection.close()
+def init_connection_engine(local=False):
+    prepend_str = '/home/allen/Downloads' if local else ''
+    return sqlalchemy.create_engine(
+        sqlalchemy.engine.url.URL.create(
+            drivername="mysql+pymysql",
+            username='root',
+            password=os.environ['TREE_DB_PASS'],
+            database="publictrees",
+            query={
+                "unix_socket": f"{prepend_str}/cloudsql/{os.environ['TREE_DB_CONNECTION_STR']}"
+            }
+        ),
+    )
 
 
 @app.get("/random/")
 async def get_random_tree():
     sql = f"""
         SELECT
-            tree_id,
-            name_common,
-            name_botanical,
-            address,
-            city,
-            diameter_min_in,
-            diameter_max_in,
-            exact_diameter,
-            height_min_ft,
-            height_max_ft,
-            exact_height,
-            estimated_value,
-            tree_condition,
-            ST_LATITUDE(location) AS latitude,
-            ST_LONGITUDE(location) AS longitude
+            ST_LATITUDE(location) AS lat,
+            ST_LONGITUDE(location) AS lng
         FROM trees
-        LIMIT 1
+        WHERE rand() <= 0.1
     """
-    with DBConn(os.environ['TREE_DB_PASS']) as conn:
-        cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(sql)
-        return cursor.fetchall()
+    with init_connection_engine().connect() as conn:
+        return conn.execute(sql).mappings().all()
 
 
 @app.get("/tree/{tree_id}")
@@ -111,10 +99,9 @@ async def get_tree(tree_id):
             T.id = %s
         GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27
     """
-    with DBConn(os.environ['TREE_DB_PASS']) as conn:
-        cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(sql, tree_id)
-        result = cursor.fetchone()
+    with init_connection_engine() as conn:
+        resultset = conn.execute(sql, tree_id).mappings()
+        result = resultset.fetchone()
 
     if result:
         result['images'] = json.loads(result['images'])
@@ -150,12 +137,12 @@ async def get_trees(lat1, lng1, lat2, lng2, lat3, lng3, lat4, lng4):
                 location
             )
     """
-    with DBConn(os.environ['TREE_DB_PASS']) as conn:
-        cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(sql, polygon_str)
-        results = cursor.fetchall()
+    with init_connection_engine() as conn:
+        resultset = conn.execute(sql, polygon_str).mappings()
+        results = resultset.fetchall()
 
     if results:
         for tree in results:
             tree['heritage'] = True if tree['heritage'] else False
     return results
+
