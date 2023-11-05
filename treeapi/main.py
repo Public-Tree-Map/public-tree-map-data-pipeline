@@ -2,7 +2,7 @@ import os
 import json
 
 import sqlalchemy
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -12,6 +12,8 @@ origins = [
     "http://localhost:8080",
 ]
 
+LOCAL = True
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -20,13 +22,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+random_tree_cache = {}
 
 def init_connection_engine(local=False):
-    prepend_str = '/home/allen/Downloads' if local else ''
+    prepend_str = '/Users/allent/' if local else ''
     return sqlalchemy.create_engine(
         sqlalchemy.engine.url.URL.create(
             drivername="mysql+pymysql",
-            username='root',
+            username='root' if local else os.environ['TREE_DB_USER'],
             password=os.environ['TREE_DB_PASS'],
             database="publictrees",
             query={
@@ -37,16 +40,25 @@ def init_connection_engine(local=False):
 
 
 @app.get("/random/")
-async def get_random_tree():
-    sql = f"""
-        SELECT
-            ST_LATITUDE(location) AS lat,
-            ST_LONGITUDE(location) AS lng
-        FROM trees
-        WHERE rand() <= 0.1
-    """
-    with init_connection_engine().connect() as conn:
-        return conn.execute(sql).mappings().all()
+async def get_random_tree(request: Request):
+    ip_address = request.client.host
+    ip_hash = sum([int(x) for x in ip_address if x.isdigit()]) % 11
+    if ip_hash in random_tree_cache:
+        return random_tree_cache[ip_hash]
+    else:
+        sql = f"""
+            SELECT
+                ST_LATITUDE(location) AS lat,
+                ST_LONGITUDE(location) AS lng
+            FROM trees
+            WHERE id % 11 = :ip_hash
+        """
+        with init_connection_engine(LOCAL).connect() as conn:
+            random_tree_cache[ip_hash] = conn.execute(
+                sqlalchemy.text(sql),
+                {'ip_hash': ip_hash}
+            ).mappings().all()
+        return random_tree_cache[ip_hash]
 
 
 @app.get("/tree/{tree_id}")
@@ -91,19 +103,21 @@ async def get_tree(tree_id):
                                 'url', author_url
                             )
                     )
-            ) AS images
+            ) AS images,
+            T.id AS tree_id
         FROM trees T
         INNER JOIN species s on T.species_id = s.id
-        INNER JOIN images i on s.id = i.species_id
+        LEFT JOIN images i on s.id = i.species_id
         WHERE
-            T.id = %s
+            T.id = :tree_id
         GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27
     """
-    with init_connection_engine() as conn:
-        resultset = conn.execute(sql, tree_id).mappings()
+    with init_connection_engine(LOCAL).connect() as conn:
+        resultset = conn.execute(sqlalchemy.text(sql), {'tree_id': tree_id}).mappings()
         result = resultset.fetchone()
 
     if result:
+        result = dict(result)
         result['images'] = json.loads(result['images'])
         return result
 
@@ -133,15 +147,21 @@ async def get_trees(lat1, lng1, lat2, lng2, lat3, lng3, lat4, lng4):
         INNER JOIN species s on T.species_id = s.id
         WHERE
             MBRContains(
-                ST_GeomFromText(%s, 4269),
+                ST_GeomFromText(:polygon, 4269),
                 location
-            )
+            ) AND
+            T.id IS NOT NULL
     """
-    with init_connection_engine() as conn:
-        resultset = conn.execute(sql, polygon_str).mappings()
+
+    with init_connection_engine(LOCAL).connect() as conn:
+        resultset = conn.execute(
+            sqlalchemy.text(sql),
+            {'polygon': polygon_str}
+        ).mappings()
         results = resultset.fetchall()
 
     if results:
+        results = [dict(r) for r in results]
         for tree in results:
             tree['heritage'] = True if tree['heritage'] else False
     return results
