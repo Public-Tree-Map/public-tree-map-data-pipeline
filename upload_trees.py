@@ -8,12 +8,12 @@ import geopandas as gpd
 import numpy as np
 import pandas as pd
 import pymysql.cursors
-from google.cloud.sql.connector import connector
+from google.cloud.sql.connector import Connector
 
 
 class DBCursor(object):
     def __init__(self, password=None):
-        self.connection = connector.connect(
+        self.connection = Connector().connect(
             os.environ['TREE_DB_CONNECTION_STR'],
             'pymysql',
             user='root',

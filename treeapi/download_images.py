@@ -8,8 +8,9 @@ from PIL import Image
 from io import BytesIO
 import requests
 import pandas as pd
-import pymysql.cursors
-from upload_trees import DBCursor
+import sqlalchemy
+
+from db_conn import init_connection_engine
 
 
 @dataclasses.dataclass
@@ -27,36 +28,25 @@ class TreeImage:
 class ImageDownloader(object):
     MAX_SIZE = (1024, 1024)
 
-    def __init__(self):
+    def __init__(self, local):
 
         self.bucket = storage.Client().bucket('public-tree-map-images')
+        self.local = local
 
     def insert_tree_into_db(self, tree: TreeImage):
-        with DBCursor() as conn:
-            cursor = conn.cursor(pymysql.cursors.DictCursor)
-            cursor.execute(
-                """
-                    INSERT INTO images(
-                        extension,
-                        original_url,
-                        details,
-                        hashed_original_url,
-                        species_id,
-                        author,
-                        author_url
-                    )
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)
-                """,
-                (
-                    tree.img_type,
-                    tree.retrieval_url,
-                    tree.description if tree.description else None,
-                    tree.hashed_url,
-                    tree.species_id,
-                    tree.author if tree.author else None,
-                    tree.author_url if tree.author_url else None
-                )
+        with init_connection_engine(self.local).connect() as conn:
+            table = sqlalchemy.Table('images', sqlalchemy.MetaData(), autoload_with=conn)
+            stmt = sqlalchemy.insert(table).values(
+                extension=tree.img_type,
+                original_url=tree.retrieval_url,
+                details=tree.description if tree.description else None,
+                hashed_original_url=tree.hashed_url,
+                species_id=tree.species_id,
+                author=tree.author if tree.author else None,
+                author_url=tree.author_url if tree.author_url else None
             )
+
+            conn.execute(stmt)
             conn.commit()
 
     def get_and_upload_image(self, tree_image: TreeImage):
@@ -68,11 +58,13 @@ class ImageDownloader(object):
                 img = Image.open(BytesIO(r.content))
                 img.thumbnail(self.MAX_SIZE)
                 tree_image.image = img
-                with BytesIO(img.tobytes()) as f:
-                    blob.upload_from_file(
-                        f,
-                        content_type=r.headers['Content-Type']
-                    )
+                byte_stream = BytesIO()
+                img.save(byte_stream, format=img.format)
+                byte_stream.seek(0)
+                blob.upload_from_file(
+                    byte_stream,
+                    content_type=r.headers['Content-Type']
+                )
 
         self.insert_tree_into_db(tree_image)
         return tree_image
@@ -111,9 +103,8 @@ class ImageDownloader(object):
                             existing_images.add(uploaded_tree.hashed_url)
 
     def get_trees_without_images(self):
-        with DBCursor() as conn:
-            cursor = conn.cursor(pymysql.cursors.DictCursor)
-            cursor.execute(
+        with init_connection_engine(self.local).connect() as conn:
+            sql = sqlalchemy.text(
                 """
                     SELECT
                         S.id,
@@ -125,20 +116,21 @@ class ImageDownloader(object):
                     HAVING cnt < 3
                 """
             )
-            tree_results = cursor.fetchall()
-            cursor.execute(
+            tree_results = conn.execute(sql).mappings().fetchall()
+            sql = sqlalchemy.text(
                 """
                     SELECT
                         hashed_original_url
                     FROM images
                 """
             )
-            image_results = set([row['hashed_original_url'] for row in cursor.fetchall()])
+            result_set = conn.execute(sql).mappings()
+            image_results = set([row['hashed_original_url'] for row in result_set.fetchall()])
         return pd.DataFrame(tree_results), image_results
 
 
 if __name__ == "__main__":
-    img_download = ImageDownloader()
+    img_download = ImageDownloader(local=True)
     trees_df, hashed_urls = img_download.get_trees_without_images()
     for idx, row in enumerate(trees_df.itertuples()):
         print(f'{idx}/{len(trees_df)}')
