@@ -1,1 +1,9 @@
-geopandas==0.4.0
+geopandas
+pandas==1.1.5
+Flask==2.0.2
+gunicorn==20.1.0
+rtree
+pymysql
+Pillow
+google-cloud-storage
+cloud-sql-python-connector[pymysql]

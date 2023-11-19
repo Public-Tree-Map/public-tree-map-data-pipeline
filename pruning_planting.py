@@ -17,8 +17,8 @@ def load_dataset(name, line_to_points=False):
     reproject it into WGS84, and return the geodataframe.
     """
     # Load the street planting shape data, reprojecting into WGS84
-    gdf = gpd.read_file(name, crs='+init=epsg:2229')
-    gdf = gdf.to_crs({'init': 'epsg:4326', 'no_defs': True})
+    gdf = gpd.read_file(name, crs='2229')
+    gdf = gdf.to_crs(4326)
     if line_to_points:
         dfs = []
         for row in gdf.itertuples():
@@ -134,7 +134,7 @@ def pruning_for_trees(trees):
     trees = gpd.GeoDataFrame(
         trees,
         geometry=gpd.points_from_xy(trees['longitude'], trees['latitude']),
-        crs={'init': 'epsg:4326'}
+        crs=4326
     )
 
     trees["pruning_year"] = trees.apply(collapse_years, axis=1)

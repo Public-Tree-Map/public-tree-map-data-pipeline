@@ -1,4 +1,5 @@
 # Anything that needs to be done before the other rules run
+SHELL := /bin/bash
 setup:
 	mkdir -p build/data
 
@@ -9,6 +10,7 @@ release: setup
 	  | python pruning_planting.py \
 	  | node download-images.js \
 	  | node split-trees.js build/data
+
 
 # Runs the pipeline using local data, but skips the CPU-intensive python tasks
 img-test: setup
