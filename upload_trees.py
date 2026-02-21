@@ -61,6 +61,16 @@ class DBTreeUploader(object):
             )
             conn.commit()
 
+    def delete_non_sm_trees(self):
+        with DBCursor() as conn:
+            conn.cursor().execute(
+                """
+                    DELETE FROM trees
+                    WHERE city != 'Santa Monica'
+                """
+            )
+            conn.commit()
+
     def truncate_sm_trees(self):
         with DBCursor() as conn:
             conn.cursor().execute(
@@ -84,67 +94,76 @@ class DBTreeUploader(object):
 
         return pd.DataFrame(results).set_index('botanical_name').to_dict()['id']
 
-    def upload_trees(self, df: pd.DataFrame, batch_size=100000):
+    def upload_trees(self, df: pd.DataFrame, batch_size=5000):
+        s = self._sanitize
+        i = self._to_int
+        value_template = "(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, ST_GeomFromText(%s, 4269), %s, %s, %s, %s)"
+        insert_prefix = """INSERT INTO trees(
+                    tree_id, species_id, address, state, city, tree_condition,
+                    diameter_min_in, diameter_max_in, exact_diameter,
+                    height_min_ft, height_max_ft, exact_height,
+                    estimated_value, location, heritage,
+                    heritage_year, heritage_number, heritage_text
+                ) VALUES """
         with DBCursor() as conn:
-            sql = """
-                INSERT INTO trees(
-                    tree_id,
-                    species_id,
-                    address,
-                    state,
-                    city,
-                    tree_condition,
-                    diameter_min_in,
-                    diameter_max_in,
-                    exact_diameter,
-                    height_min_ft,
-                    height_max_ft,
-                    exact_height,
-                    estimated_value,
-                    location,
-                    heritage,
-                    heritage_year,
-                    heritage_number,
-                    heritage_text
-                ) 
-                VALUES (
-                    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, ST_GeomFromText(%s, 4269), %s, %s, %s, %s
-                )
-            """
-            if batch_size == 0:
-                df['batch'] = 0
-            else:
-                df['batch'] = np.random.randint(int(len(df) / batch_size), size=len(df))
-            df = df.where((pd.notnull(df)), None)
-            for _, batch_df in df.groupby('batch'):
-                conn.cursor().executemany(
-                    sql,
-                    [
-                        (
-                            int(row.tree_id) if row.tree_id is not None and row.tree_id != np.nan else None,
-                            row.species_id,
-                            row.address,
-                            row.state,
-                            row.city,
-                            row.tree_condition if hasattr(row, 'tree_condition') else None,
-                            row.diameter_min_in,
-                            row.diameter_max_in,
-                            row.exact_diameter if hasattr(row, 'exact_diameter') else None,
-                            row.height_min_ft,
-                            row.height_max_ft,
-                            row.exact_height if hasattr(row, 'exact_height') else None,
-                            row.estimated_value if hasattr(row, 'estimated_value') else None,
-                            row.location,
-                            row.heritage if hasattr(row, 'heritage') else False,
-                            row.heritage_year if hasattr(row, 'heritage_year') else None,
-                            row.heritage_number if hasattr(row, 'heritage_number') else None,
-                            row.heritage_text if hasattr(row, 'heritage_text') else None
-                        ) for row in batch_df.itertuples()
-                    ]
-                )
-            conn.commit()
+            cursor = conn.cursor()
+            total = len(df)
+            uploaded = 0
+            for start in range(0, total, batch_size):
+                chunk = df.iloc[start:start + batch_size]
+                values_parts = []
+                params = []
+                for row in chunk.itertuples():
+                    values_parts.append(value_template)
+                    params.extend([
+                        i(row.tree_id),
+                        i(row.species_id),
+                        s(row.address),
+                        s(row.state),
+                        s(row.city),
+                        s(row.tree_condition) if hasattr(row, 'tree_condition') else None,
+                        i(row.diameter_min_in),
+                        i(row.diameter_max_in),
+                        i(row.exact_diameter) if hasattr(row, 'exact_diameter') else None,
+                        i(row.height_min_ft),
+                        i(row.height_max_ft),
+                        i(row.exact_height) if hasattr(row, 'exact_height') else None,
+                        i(row.estimated_value) if hasattr(row, 'estimated_value') else None,
+                        row.location,
+                        s(row.heritage) if hasattr(row, 'heritage') else False,
+                        i(row.heritage_year) if hasattr(row, 'heritage_year') else None,
+                        i(row.heritage_number) if hasattr(row, 'heritage_number') else None,
+                        s(row.heritage_text) if hasattr(row, 'heritage_text') else None,
+                    ])
+                sql = insert_prefix + ", ".join(values_parts)
+                cursor.execute(sql, params)
+                conn.commit()
+                uploaded += len(chunk)
+                print(f'  Uploaded {uploaded}/{total} rows', flush=True)
+
+    @staticmethod
+    def _sanitize(val):
+        """Convert NaN/NaT to None for MySQL compatibility."""
+        if isinstance(val, float) and np.isnan(val):
+            return None
+        return val
+
+    @staticmethod
+    def _to_int(val):
+        """Safely convert to int, returning None for NaN or unparseable values."""
+        if val is None:
+            return None
+        if isinstance(val, float):
+            if np.isnan(val):
+                return None
+            return int(val)
+        try:
+            return int(val)
+        except (ValueError, TypeError):
+            return None
 
     def update_species(self, df):
+        s = self._sanitize
         with DBCursor() as conn:
             cursor = conn.cursor(pymysql.cursors.DictCursor)
             cursor.execute(
@@ -157,7 +176,7 @@ class DBTreeUploader(object):
             cursor.executemany(
                 """
                     UPDATE species
-                    SET 
+                    SET
                         common_name = %s,
                         family_botanical_name = %s,
                         family_common_name = %s,
@@ -173,26 +192,26 @@ class DBTreeUploader(object):
                         cal_ipc_url = %s,
                         irrigation_requirements = %s,
                         species_id = %s
-                    WHERE 
+                    WHERE
                         botanical_name = %s
                 """,
                 [
                     (
-                        row.common_name,
-                        row.family_botanical_name,
-                        row.family_common_name,
-                        row.native,
-                        int(row.eol_id) if row.eol_id is not None else None,
-                        row.eol_overview_url,
-                        row.simplified_iucn_status,
-                        row.iucn_status,
-                        row.iucn_doi_or_url,
-                        row.shade_production,
-                        row.form,
-                        row.type,
-                        row.cal_ipc_url,
-                        row.irrigation_requirements,
-                        row.species_id,
+                        s(row.common_name),
+                        s(row.family_botanical_name),
+                        s(row.family_common_name),
+                        s(row.native),
+                        int(row.eol_id) if pd.notna(row.eol_id) else None,
+                        s(row.eol_overview_url),
+                        s(row.simplified_iucn_status),
+                        s(row.iucn_status),
+                        s(row.iucn_doi_or_url),
+                        s(row.shade_production),
+                        s(row.form),
+                        s(row.type),
+                        s(row.cal_ipc_url),
+                        s(row.irrigation_requirements),
+                        s(row.species_id),
                         row.botanical_name,
                     ) for row in update_df.itertuples()
                 ]
@@ -204,6 +223,7 @@ class DBTreeUploader(object):
 
     @staticmethod
     def upload_species(df: pd.DataFrame):
+        s = DBTreeUploader._sanitize
         with DBCursor() as conn:
             sql = """
                     INSERT INTO species(
@@ -228,27 +248,26 @@ class DBTreeUploader(object):
                         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
                     )
                 """
-            df = df.where((pd.notnull(df)), None)
             conn.cursor().executemany(
                 sql,
                 [
                     (
                         row.botanical_name,
-                        row.common_name,
-                        row.family_botanical_name,
-                        row.family_common_name,
-                        row.native,
-                        int(row.eol_id) if row.eol_id is not None else None,
-                        row.eol_overview_url,
-                        row.simplified_iucn_status,
-                        row.iucn_status,
-                        row.iucn_doi_or_url,
-                        row.shade_production,
-                        row.form,
-                        row.type,
-                        row.cal_ipc_url,
-                        row.irrigation_requirements,
-                        row.species_id
+                        s(row.common_name),
+                        s(row.family_botanical_name),
+                        s(row.family_common_name),
+                        s(row.native),
+                        int(row.eol_id) if pd.notna(row.eol_id) else None,
+                        s(row.eol_overview_url),
+                        s(row.simplified_iucn_status),
+                        s(row.iucn_status),
+                        s(row.iucn_doi_or_url),
+                        s(row.shade_production),
+                        s(row.form),
+                        s(row.type),
+                        s(row.cal_ipc_url),
+                        s(row.irrigation_requirements),
+                        s(row.species_id)
                     ) for row in df.itertuples()
                 ]
             )

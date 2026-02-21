@@ -5,7 +5,7 @@ from flask import Flask
 from sm_parser import parse_trees
 import upload_trees
 import parse_la_data
-import download_images
+from treeapi import download_images
 
 app = Flask(__name__)
 

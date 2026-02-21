@@ -14,16 +14,16 @@ from upload_trees import DBTreeUploader
 class CityParser(object):
 
     # these are case insensitive
-    name_common_columns = ['name_common', 'species', 'com_name', 'trees_spec']
-    name_botanical_columns = ['name_botanical', 'botanical', 'botanicaln', 'botanicalna', 'trees_bota']
+    name_common_columns = ['name_common', 'species', 'com_name', 'trees_spec', 'commonname', 'common_name']
+    name_botanical_columns = ['name_botanical', 'botanical', 'botanicaln', 'botanicalna', 'trees_bota', 'botanical_', 'botname', 'botanical_name']
     condition = ['condition', 'treecondition', 'treeconditi']
     address_columns = ['address']
     diameter_min_in_columns = ['diameter_min_in']
     diameter_max_in_columns = ['diameter_max_in']
-    exact_diameter_columns = ['exact_diameter', 'diameter', 'exact_dbh', 'trunk_diam', 'actualdbh']
+    exact_diameter_columns = ['exact_diameter', 'diameter', 'exact_dbh', 'trunk_diam', 'actualdbh', 'exactdbh']
     height_min_feet_columns = ['height_min_feet']
     height_max_feet_columns = ['height_max_feet']
-    exact_height_columns = ['exact_height', 'exact_heigh', 'height', 'actualheight']
+    exact_height_columns = ['exact_height', 'exact_heigh', 'height', 'actualheight', 'exact_heig']
     tree_id_columns = ['tree_id', 'inventoryid', 'tree', 'inventoryi', 'treeid', 'objectid', 'trees_ogc_']
     est_value_columns = ['estimated_value', 'est_value', 'estvalue']
 
@@ -100,6 +100,8 @@ class CityParser(object):
             'diameter_max_in',
             'height_min_feet',
             'height_max_feet',
+            'latitude',
+            'longitude',
         }
         actual_columns = potential_columns & set(df.columns)
         return df[list(actual_columns)].rename(
@@ -113,14 +115,26 @@ class CityParser(object):
         assert self.geo_json_path or self.csv_path
         if self.csv_path:
             df = pd.read_csv(self.csv_path.absolute()).assign(city=self.city)
-            if 'longitude' in df.columns:
-                df['geometry'] = gpd.points_from_xy(df['longitude'], df['latitude'])
-            elif 'LONGITUDE' in df.columns:
-                df['geometry'] = gpd.points_from_xy(df['LONGITUDE'], df['LATITUDE'])
-            else:
-                raise RuntimeError(f'CSV: {self.csv_path} has no geometry')
+            df = gpd.GeoDataFrame(df)
         else:
             df = gpd.read_file(str(self.geo_json_path.absolute())).assign(city=self.city)
+
+        if 'geometry' not in df.columns or df['geometry'].isnull().all():
+            lon_cols = ['lon', 'longitude', 'LONGITUDE', 'X']
+            lat_cols = ['lat', 'latitude', 'LATITUDE', 'Y']
+
+            lon_col = next((c for c in lon_cols if c in df.columns), None)
+            lat_col = next((c for c in lat_cols if c in df.columns), None)
+
+            if lon_col and lat_col:
+                # convert to numeric, coercing errors
+                df[lon_col] = pd.to_numeric(df[lon_col], errors='coerce')
+                df[lat_col] = pd.to_numeric(df[lat_col], errors='coerce')
+                # drop rows where conversion failed
+                df.dropna(subset=[lon_col, lat_col], inplace=True)
+
+                df = df.set_geometry(gpd.points_from_xy(df[lon_col], df[lat_col]))
+
         return df
 
     def cleanup_columns(self, df):
@@ -156,6 +170,15 @@ class CityParser(object):
         df = self.get_column(df, self.height_max_feet_columns)
         df = self.get_column(df, self.height_min_feet_columns)
 
+        if 'geometry' in df.columns and not df.geometry.empty:
+            # Ensure CRS is set to WGS84 (EPSG:4326) for lat/lon
+            if df.crs is None:
+                df.set_crs(epsg=4326, inplace=True)
+            else:
+                df.to_crs(epsg=4326, inplace=True)
+            df['longitude'] = df.geometry.x
+            df['latitude'] = df.geometry.y
+
         return self.filter_columns(df).drop_duplicates()
 
     @staticmethod
@@ -166,16 +189,19 @@ class CityParser(object):
         df[max_field] = None
         for cat in cats:
             mask = df[og_field].str.strip() == cat
-            if len(cat.split('-')) == 2:
-                min_val, max_val = cat.split('-')
+            
+            # Use regex to extract numbers, ignoring non-numeric characters
+            import re
+            numbers = re.findall(r'\d+', cat)
+            
+            if len(numbers) == 2:
+                min_val, max_val = numbers
                 df.loc[mask, min_field] = int(min_val)
                 df.loc[mask, max_field] = int(max_val)
-            elif cat.endswith('+'):
-                min_val = int(cat[:-1])
-                df.loc[mask, min_field] = int(min_val)
-            elif cat.startswith('>'):
-                min_val = int(cat[1:])
-                df.loc[mask, min_field] = int(min_val)
+            elif len(numbers) == 1:
+                min_val = numbers[0]
+                if '+' in cat or '>' in cat:
+                    df.loc[mask, min_field] = int(min_val)
 
         return df
 
@@ -244,6 +270,122 @@ class BeverlyHillsParser(CityParser):
         return super().get_maximal_df(df=df)
 
 
+class BurbankParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df.rename(columns={'SPP': 'botanical'})
+        df = df.assign(
+            address=df['ADDRESS'].astype(str).str.cat(df['STREET'].str.title(), sep=' '),
+        ).drop('ADDRESS', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class CarsonParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df.assign(
+            address=df['ADDRESS'].astype(str).str.cat(df['STREET'].str.title(), sep=' '),
+        ).drop('ADDRESS', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class CovinaParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df.assign(
+            address=df['ADDRESS'].astype(str).str.cat(df['STREET'].str.title(), sep=' '),
+        ).drop('ADDRESS', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class CulverCityParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df['Address'] = df['Address'].astype(pd.Int64Dtype())
+        df = df.assign(
+            address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' '),
+        ).drop('Address', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class DiamondBarParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df.assign(
+            address=df['ADDRESS'].astype(str).str.cat(df['STREET'].str.title(), sep=' '),
+        ).drop('ADDRESS', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class DuarteParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df['Address'] = df['Address'].astype(pd.Int64Dtype())
+        df = df.assign(
+            address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' '),
+        ).drop('Address', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class ElMonteParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df.assign(
+            address=df['ADDRESS'].astype(str).str.cat(df['STREET'].str.title(), sep=' '),
+        ).drop('ADDRESS', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class ElSegundoParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df['Address'] = df['Address'].astype(pd.Int64Dtype())
+        df = df.assign(
+            address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' '),
+        ).drop('Address', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class GlendoraParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df['Address'] = df['Address'].astype(pd.Int64Dtype())
+        df = df.assign(
+            address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' '),
+        ).drop('Address', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class LaMiradaParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df['Address'] = df['Address'].astype(pd.Int64Dtype())
+        df = df.assign(
+            address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' '),
+        ).drop('Address', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class LaVerneParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df['Address'] = df['Address'].astype(pd.Int64Dtype())
+        df = df.assign(
+            address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' '),
+        ).drop('Address', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class LomitaParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df['Address'] = df['Address'].astype(pd.Int64Dtype())
+        df = df.assign(
+            address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' '),
+        ).drop('Address', axis=1)
+        return super().get_maximal_df(df=df)
+
+
 class LongBeachParser(CityParser):
     def get_maximal_df(self, df=None):
         df = self.read_df().drop('ADDRESS', axis=1)
@@ -303,29 +445,160 @@ class PomonaParser(CityParser):
         return super().get_maximal_df(df=df)
 
 
+class AddressStreetParser(CityParser):
+    """Shared parser for cities with title-case Address (int) + Street columns."""
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df.assign(
+            address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' '),
+        ).drop('Address', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class DowneyParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df.rename(columns={'SPP': 'botanical'})
+        return super().get_maximal_df(df=df)
+
+
+class LancasterParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df.rename(columns={
+            'btncl_n': 'botanical',
+            'cmmn_nm': 'species',
+            'exct_db': 'exact_diameter',
+        })
+        return super().get_maximal_df(df=df)
+
+
+class LawndaleParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df[df['PROP_ADR'].notnull()]
+        df = df.rename(columns={'BOTANICAL_': 'botanical'}).drop(columns=['BOTANICAL'], errors='ignore')
+        df = df.assign(
+            address=df['PROP_ADR'].astype(int).astype(str).str.cat(
+                df['PROP_STREE'].str.title(), sep=' '
+            ),
+        )
+        return super().get_maximal_df(df=df)
+
+
+class NorwalkParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df.assign(
+            address=df['ADDRESS'].astype(str).str.cat(df['STREET'].str.title(), sep=' '),
+        ).drop('ADDRESS', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class RanchoPalosVerdesParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df.assign(
+            address=df['ADDRESS'].astype(str).str.cat(df['STREET'].str.title(), sep=' '),
+        ).drop('ADDRESS', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class RedondoBeachParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df['Address'] = df['Address'].astype(pd.Int64Dtype())
+        df = df.assign(
+            address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' '),
+        ).drop('Address', axis=1)
+        return super().get_maximal_df(df=df)
+
+
+class SanMarinoParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df = df.rename(columns={'BOTANI8D': 'botanical'})
+        df['PROP_ADR'] = df['PROP_ADR'].astype(pd.Int64Dtype())
+        df = df.assign(
+            address=df['PROP_ADR'].astype(str).str.cat(df['PROPST18'].str.title(), sep=' '),
+        )
+        return super().get_maximal_df(df=df)
+
+
+class WhittierParser(CityParser):
+    def get_maximal_df(self, df=None):
+        df = self.read_df()
+        df['Address'] = df['Address'].astype(pd.Int64Dtype())
+        df = df.assign(
+            address=df['Address'].astype(str).str.cat(df['Street'].str.title(), sep=' '),
+        ).drop('Address', axis=1)
+        return super().get_maximal_df(df=df)
+
+
 class StilesDataParser(object):
 
     mapper = {
         'los-angeles-city': CityParser,
         'los-angeles-county': CityParser,
         'agoura-hills': AgouraHillsParser,
-        # 'alhambra' : AlhambraParser,
-        # 'arcadia': ArcadiaParser,
+        'alhambra': AlhambraParser,
+        'arcadia': ArcadiaParser,
         'artesia': ArtesiaParser,
-        # 'bell-gardens': BellGardensParser,
+        'bell-gardens': BellGardensParser,
         'bellflower': BellflowerParser,
         'beverly-hills': BeverlyHillsParser,
-        'long-beach': LongBeachParser,
-        'santa-clarita-parks': SantaClaritaParksParser,
-        # 'santa-clarita': SantaClaritaParser,
-        'pasadena': PasadenaParser,
+        'burbank': BurbankParser,
+        'carson': CarsonParser,
+        'cerritos': CityParser,
+        'covina': CovinaParser,
+        'culver-city': CulverCityParser,
+        'diamond-bar': DiamondBarParser,
+        'downey': DowneyParser,
+        'duarte': DuarteParser,
+        'el-monte': ElMonteParser,
+        'el-segundo': ElSegundoParser,
         'glendale': GlendaleParser,
+        'glendora': GlendoraParser,
+        'inglewood': CityParser,
+        'la-mirada': LaMiradaParser,
+        'la-verne': LaVerneParser,
+        'lancaster': LancasterParser,
+        'lawndale': LawndaleParser,
+        'lomita': LomitaParser,
+        'long-beach': LongBeachParser,
+        'malibu': CityParser,
+        'norwalk': NorwalkParser,
+        'palmdale': CityParser,
+        'paramount': AddressStreetParser,
+        'pasadena': PasadenaParser,
         'pomona': PomonaParser,
+        'rancho-palos-verdes': RanchoPalosVerdesParser,
+        'redondo-beach': RedondoBeachParser,
+        'san-dimas': AddressStreetParser,
+        'san-fernando': AddressStreetParser,
+        'san-gabriel': AddressStreetParser,
+        'san-marino': SanMarinoParser,
+        'santa-clarita': SantaClaritaParser,
+        'santa-clarita-parks': SantaClaritaParksParser,
+        'santa-fe-springs': AddressStreetParser,
+        'simi-valley': CityParser,
+        'south-gate': AddressStreetParser,
+        'south-pasadena': AddressStreetParser,
+        'temple-city': AddressStreetParser,
+        'walnut': AddressStreetParser,
+        'west-hollywood': CityParser,
+        'whittier': WhittierParser,
     }
 
     def __init__(self, data_path):
         root_path = Path(data_path)
         self.data_dirs = {x.name: x for x in root_path.iterdir() if x.is_dir()}
+        for county_dir in ['ventura-county']:
+            county_path = root_path / county_dir
+            if county_path.exists():
+                for x in county_path.iterdir():
+                    if x.is_dir():
+                        self.data_dirs[x.name] = x
         all_path = Path(f'{data_path}/all')
         self.geojsons = {geojson_path.name.split('.')[0]: geojson_path for geojson_path in all_path.glob('*.geojson')}
 
@@ -341,6 +614,8 @@ class StilesDataParser(object):
                 if city_parser.geo_json_path:
                     df = city_parser.get_maximal_df()
                     dfs.append(df)
+            else:
+                assert False
 
         df = pd.concat(dfs)
         str_cols = [
@@ -351,9 +626,8 @@ class StilesDataParser(object):
             'condition',
         ]
         for col in str_cols:
-            df[col] = df[col].astype(str, skipna=True)
             mask = df[col].notnull()
-            df.loc[mask, col] = df.loc[mask, col].str.strip()
+            df.loc[mask, col] = df.loc[mask, col].astype(str).str.strip()
 
         return df
 
@@ -407,15 +681,19 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     data_parser = StilesDataParser(args.datapath)
-    # df = data_parser.parse_all()
-    # df['location'] = gpd.GeoSeries(df['geometry']).apply(lambda x: Point(x.y, x.x)).to_wkt()
-    # df.to_csv('stiles.trees.csv', index=False)
-    # assert False
+    df = data_parser.parse_all()
+
+    # Drop rows with coordinates outside LA area bounding box
+    geom = gpd.GeoSeries(df['geometry'])
+    df = df[(geom.y >= 32) & (geom.y <= 36) & (geom.x >= -119) & (geom.x <= -117)]
+
+    df['location'] = gpd.GeoSeries(df['geometry']).apply(lambda x: Point(x.y, x.x)).to_wkt()
+    df.to_csv('stiles.trees.csv', index=False)
     df = pd.read_csv('stiles.trees.csv')
     matcher = SpeciesMatcher(df)
     matched_df = matcher.match()
     uploader = DBTreeUploader()
-    uploader.truncate_trees()
+    uploader.delete_non_sm_trees()
     uploader.update_species(
         matcher.species_df.rename(columns={'Species ID': 'species_id'}).rename(
             columns={col: col.lower() for col in matcher.species_df.columns}

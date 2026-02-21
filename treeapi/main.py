@@ -1,10 +1,13 @@
 import json
+from typing import List
 
 import sqlalchemy
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Depends, Query
+from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 
-from db_conn import init_connection_engine
+from database import SessionLocal
 
 app = FastAPI()
 origins = [
@@ -22,34 +25,92 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(
+    GZipMiddleware,
+    minimum_size=500
+)
 
-random_tree_cache = {}
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+# Async engine setup for SQLAlchemy 1.4+
+
+@app.get("/species/all")
+async def get_species(db: Session = Depends(get_db)):
+    import time
+    sql = f"""
+        SELECT
+            LOWER(species.common_name) AS common_name,
+            LOWER(species.botanical_name) AS botanical_name,
+            species.id,
+            COUNT(*) AS cnt
+        FROM trees
+        INNER JOIN species ON trees.species_id = species.id
+        WHERE LOWER(common_name) != 'vacant site'
+        GROUP BY 1, 2, 3
+    """
+    result_set = db.execute(sqlalchemy.text(sql)).mappings().all()
+
+    result_dicts = []
+    for result in result_set:
+        result = dict(result)
+        result['botanical_name'] = str.title(result['botanical_name'])
+        result['common_name'] = str.title(result['common_name'])
+        result_dicts.append(result)
+
+    return sorted(result_dicts, key=lambda x: x['common_name'])
+
+
+@app.get("/species/{species_id}")
+async def get_trees(species_id, db: Session = Depends(get_db)):
+    sql = f"""
+        SELECT 
+            ST_LATITUDE(location) AS latitude,
+            ST_LONGITUDE(location) AS longitude
+        FROM trees T
+        WHERE
+            species_id = :species_id
+    """
+
+    return db.execute(
+        sqlalchemy.text(sql),
+        {'species_id': species_id}
+    ).mappings().fetchall()
 
 
 @app.get("/random/")
-async def get_random_tree(request: Request):
-    ip_address = request.client.host
-    ip_hash = sum([int(x) for x in ip_address if x.isdigit()]) % 11
-    if ip_hash in random_tree_cache:
-        return random_tree_cache[ip_hash]
-    else:
-        sql = f"""
-            SELECT
-                ST_LATITUDE(location) AS lat,
-                ST_LONGITUDE(location) AS lng
-            FROM trees
-            WHERE id % 11 = :ip_hash
+async def get_random_tree(species_id: List[int] | None = Query(default=None), db: Session = Depends(get_db)):
+    where_str = ""
+    args = None
+    if species_id is not None:
+        where_str = f"""
+            AND species_id IN :species_ids
         """
-        with init_connection_engine(LOCAL).connect() as conn:
-            random_tree_cache[ip_hash] = conn.execute(
-                sqlalchemy.text(sql),
-                {'ip_hash': ip_hash}
-            ).mappings().all()
-        return random_tree_cache[ip_hash]
+        args = {'species_ids': tuple(species_id)}
+    sql = f"""
+        SELECT
+            ROUND(ST_LATITUDE(location), 3) AS lat,
+            ROUND(ST_LONGITUDE(location), 3) AS lng,
+            COUNT(*) / MAX(COUNT(*)) OVER () AS intensity
+        FROM
+            trees
+        WHERE 1 = 1 {where_str}
+        GROUP BY 1, 2
+    """
+    return db.execute(
+        sqlalchemy.text(sql),
+        args
+    ).mappings().all()
 
 
 @app.get("/tree/{tree_id}")
-async def get_tree(tree_id):
+async def get_tree(tree_id, db: Session = Depends(get_db)):
     sql = f"""
             SELECT
             botanical_name AS name_botanical,
@@ -82,9 +143,7 @@ async def get_tree(tree_id):
             heritage_year AS heritageYear,
             JSON_ARRAYAGG(
                 JSON_OBJECT(
-                        'url',
-                        CONCAT('https://storage.googleapis.com/public-tree-map-images/', hashed_original_url, '.',
-                               extension),
+                        'url', original_url,
                         'author', JSON_OBJECT(
                                 'name', author,
                                 'url', author_url
@@ -99,9 +158,9 @@ async def get_tree(tree_id):
             T.id = :tree_id
         GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27
     """
-    with init_connection_engine(LOCAL).connect() as conn:
-        resultset = conn.execute(sqlalchemy.text(sql), {'tree_id': tree_id}).mappings()
-        result = resultset.fetchone()
+
+    resultset = db.execute(sqlalchemy.text(sql), {'tree_id': tree_id}).mappings()
+    result = resultset.fetchone()
 
     if result:
         result = dict(result)
@@ -110,7 +169,7 @@ async def get_tree(tree_id):
 
 
 @app.get("/trees/")
-async def get_trees(lat1, lng1, lat2, lng2, lat3, lng3, lat4, lng4):
+async def get_trees(lat1, lng1, lat2, lng2, lat3, lng3, lat4, lng4, db: Session = Depends(get_db)):
     lats = [lat1, lat2, lat3, lat4]
     lngs = [lng1, lng2, lng3, lng4]
     lat_lngs = []
@@ -140,12 +199,11 @@ async def get_trees(lat1, lng1, lat2, lng2, lat3, lng3, lat4, lng4):
             T.id IS NOT NULL
     """
 
-    with init_connection_engine(LOCAL).connect() as conn:
-        resultset = conn.execute(
-            sqlalchemy.text(sql),
-            {'polygon': polygon_str}
-        ).mappings()
-        results = resultset.fetchall()
+    resultset = db.execute(
+        sqlalchemy.text(sql),
+        {'polygon': polygon_str}
+    ).mappings()
+    results = resultset.fetchall()
 
     if results:
         results = [dict(r) for r in results]
