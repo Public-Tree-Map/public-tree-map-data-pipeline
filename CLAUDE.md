@@ -1,33 +1,41 @@
 # Public Tree Map Data Pipeline
 
-## Running the TreeAPI locally
+## Building the database
 
 ### Prerequisites
 - `uv` installed
-- `cloud-sql-proxy` binary in project root
-- GCP credentials file: `lively-sentry-336718-fc01c1868439.json` in project root
-- `TREE_DB_PASS` environment variable set (not stored here)
+- `stiles.trees.csv` in project root (pre-generated LA tree data)
+- `data/trees.csv` (Santa Monica trees)
+- `data/species_attributes.csv`
+- `data/images.csv` (one-time export — see below)
 
-### 1. Start the Cloud SQL Proxy
+### Build trees.db
 
 ```bash
-# Remove stale socket if needed
-rm -f /tmp/lively-sentry-336718:us-west1:public-tree-map-db
-
-# Start the proxy
-./cloud-sql-proxy --unix-socket /tmp \
-  --credentials-file lively-sentry-336718-fc01c1868439.json \
-  lively-sentry-336718:us-west1:public-tree-map-db
+uv run --with pandas --with geopandas --with shapely build_sqlite.py
 ```
 
-### 2. Start the FastAPI server
+This produces `trees.db` (~300-500 MB) with all tables, R-tree index, and caches.
+
+### One-time: export images from MySQL
+
+Only needed once to create `data/images.csv`:
+
+```bash
+# Start cloud-sql-proxy first
+TREE_DB_PASS="$TREE_DB_PASS" \
+  TREE_DB_CONNECTION_STR="lively-sentry-336718:us-west1:public-tree-map-db" \
+  uv run --with pymysql export_images.py
+```
+
+## Running the TreeAPI locally
+
+### Start the FastAPI server
 
 ```bash
 cd treeapi
-LOCAL=1 \
-  TREE_DB_PASS="$TREE_DB_PASS" \
-  TREE_DB_CONNECTION_STR="lively-sentry-336718:us-west1:public-tree-map-db" \
-  uv run --with fastapi --with "uvicorn[standard]" --with pymysql --with sqlalchemy \
+TREE_DB_PATH=../trees.db \
+  uv run --with fastapi --with "uvicorn[standard]" \
   uvicorn main:app --reload --port 8080
 ```
 
@@ -37,5 +45,6 @@ The API will be available at http://127.0.0.1:8080.
 - `GET /species/all` - all species with tree counts
 - `GET /species/{species_id}` - tree locations for a species
 - `GET /tree/{tree_id}` - single tree details
-- `GET /trees/?lat1=&lng1=&lat2=&lng2=&lat3=&lng3=&lat4=&lng4=` - trees in a bounding polygon
+- `GET /trees/?lat1=&lng1=&lat2=&lng2=&lat3=&lng3=&lat4=&lng4=` - trees in a bounding box
 - `GET /random/?species_id=` - heatmap intensity data
+- `GET /cities/` - tree counts per city with centroid lat/lng

@@ -178,6 +178,32 @@ class DBTreeUploader(object):
             """)
             conn.commit()
             print(f'  Refreshed heatmap_cache ({cursor.rowcount} rows)')
+        self.refresh_cities_cache()
+
+    def refresh_cities_cache(self):
+        with DBCursor() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS cities_cache (
+                    city VARCHAR(100) NOT NULL PRIMARY KEY,
+                    tree_count INT NOT NULL,
+                    lat DOUBLE NOT NULL,
+                    lng DOUBLE NOT NULL
+                )
+            """)
+            cursor.execute("TRUNCATE TABLE cities_cache")
+            cursor.execute("""
+                INSERT INTO cities_cache (city, tree_count, lat, lng)
+                SELECT
+                    city,
+                    COUNT(*) AS tree_count,
+                    AVG(CASE WHEN ST_LATITUDE(location) != 0 THEN ST_LATITUDE(location) END) AS lat,
+                    AVG(CASE WHEN ST_LONGITUDE(location) != 0 THEN ST_LONGITUDE(location) END) AS lng
+                FROM trees
+                GROUP BY city
+            """)
+            conn.commit()
+            print(f'  Refreshed cities_cache ({cursor.rowcount} rows)')
 
     def update_species(self, df):
         s = self._sanitize
