@@ -16,8 +16,6 @@ origins = [
     "http://localhost:8080",
 ]
 
-LOCAL = True
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -43,7 +41,6 @@ def get_db():
 
 @app.get("/species/all")
 async def get_species(db: Session = Depends(get_db)):
-    import time
     sql = f"""
         SELECT
             LOWER(species.common_name) AS common_name,

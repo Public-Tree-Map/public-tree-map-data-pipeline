@@ -5,9 +5,9 @@ from sqlalchemy.orm import sessionmaker
 import sqlalchemy
 from sqlalchemy import create_engine
 
-LOCAL = True
+LOCAL = os.environ.get('LOCAL', '')
 
-prepend_str = '/Users/allent/' if LOCAL else ''
+socket_dir = '/tmp' if LOCAL else '/cloudsql'
 engine = create_engine(
     sqlalchemy.engine.url.URL.create(
         drivername="mysql+pymysql",
@@ -15,7 +15,7 @@ engine = create_engine(
         password=os.environ['TREE_DB_PASS'],
         database="publictrees",
         query={
-            "unix_socket": f"{prepend_str}/cloudsql/{os.environ['TREE_DB_CONNECTION_STR']}"
+            "unix_socket": f"{socket_dir}/{os.environ['TREE_DB_CONNECTION_STR']}"
         }
     ),
 )

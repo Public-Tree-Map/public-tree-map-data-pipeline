@@ -1,7 +1,7 @@
 
 # Use the official lightweight Python image.
 # https://hub.docker.com/_/python
-FROM python:3.8.2-slim
+FROM python:3.12-slim
 
 # Allow statements and log messages to immediately appear in the Knative logs
 ENV PYTHONUNBUFFERED True
@@ -11,11 +11,9 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-RUN apt-get update -y \
-    && apt-get install -y gcc libpq-dev
-
-# Install production dependencies.
-RUN pip3 install --no-cache-dir -r requirements.txt
+# Install uv and production dependencies.
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+RUN uv pip install --system --no-cache -r requirements.txt
 
 # Run the web service on container startup. Here we use the gunicorn
 # webserver, with one worker process and 8 threads.
