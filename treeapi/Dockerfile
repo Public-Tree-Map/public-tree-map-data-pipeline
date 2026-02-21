@@ -10,6 +10,8 @@ ENV PYTHONUNBUFFERED True
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
+COPY trees.db .
+ENV TREE_DB_PATH=/app/trees.db
 
 # Install uv and production dependencies.
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
