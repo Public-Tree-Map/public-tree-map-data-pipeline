@@ -1,13 +1,20 @@
 import json
+import time
 from typing import List
 
 import sqlalchemy
 from fastapi import FastAPI, Depends, Query
+from fastapi.responses import Response
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 
 from database import SessionLocal
+
+# In-memory cache for unfiltered heatmap (pre-serialized JSON bytes)
+_heatmap_json: bytes | None = None
+_heatmap_cache_time: float = 0
+_HEATMAP_TTL = 3600  # 1 hour
 
 app = FastAPI()
 origins = [
@@ -83,27 +90,34 @@ async def get_trees(species_id, db: Session = Depends(get_db)):
 
 @app.get("/random/")
 async def get_random_tree(species_id: List[int] | None = Query(default=None), db: Session = Depends(get_db)):
-    where_str = ""
-    args = None
     if species_id is not None:
-        where_str = f"""
-            AND species_id IN :species_ids
+        # Filtered: live query (fast enough per-species)
+        sql = """
+            SELECT
+                ROUND(ST_LATITUDE(location), 3) AS lat,
+                ROUND(ST_LONGITUDE(location), 3) AS lng,
+                COUNT(*) / MAX(COUNT(*)) OVER () AS intensity
+            FROM trees
+            WHERE species_id IN :species_ids
+            GROUP BY 1, 2
         """
-        args = {'species_ids': tuple(species_id)}
-    sql = f"""
-        SELECT
-            ROUND(ST_LATITUDE(location), 3) AS lat,
-            ROUND(ST_LONGITUDE(location), 3) AS lng,
-            COUNT(*) / MAX(COUNT(*)) OVER () AS intensity
-        FROM
-            trees
-        WHERE 1 = 1 {where_str}
-        GROUP BY 1, 2
-    """
-    return db.execute(
-        sqlalchemy.text(sql),
-        args
+        return db.execute(
+            sqlalchemy.text(sql),
+            {'species_ids': tuple(species_id)}
+        ).mappings().all()
+
+    # Unfiltered: use precomputed heatmap_cache table with in-memory TTL
+    global _heatmap_json, _heatmap_cache_time
+    now = time.monotonic()
+    if _heatmap_json is not None and (now - _heatmap_cache_time) < _HEATMAP_TTL:
+        return Response(content=_heatmap_json, media_type="application/json")
+
+    rows = db.execute(
+        sqlalchemy.text("SELECT lat, lng, intensity FROM heatmap_cache")
     ).mappings().all()
+    _heatmap_json = json.dumps([dict(r) for r in rows]).encode()
+    _heatmap_cache_time = now
+    return Response(content=_heatmap_json, media_type="application/json")
 
 
 @app.get("/tree/{tree_id}")

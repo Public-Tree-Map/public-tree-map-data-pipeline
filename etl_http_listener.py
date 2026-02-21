@@ -29,6 +29,7 @@ def upload_sm_trees():
     uploader.truncate_sm_trees()
     uploader.prepare_df(matched_df)
     uploader.upload_trees(uploader.df, batch_size=0)
+    uploader.refresh_heatmap_cache()
 
     download_tree_images()
 

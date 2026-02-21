@@ -707,3 +707,4 @@ if __name__ == "__main__":
             columns={col: col.lower() for col in matched_df.columns}
         )
     )
+    uploader.refresh_heatmap_cache()

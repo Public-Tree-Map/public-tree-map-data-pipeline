@@ -162,6 +162,23 @@ class DBTreeUploader(object):
         except (ValueError, TypeError):
             return None
 
+    def refresh_heatmap_cache(self):
+        with DBCursor() as conn:
+            cursor = conn.cursor()
+            cursor.execute("CREATE TABLE IF NOT EXISTS heatmap_cache (lat DOUBLE NOT NULL, lng DOUBLE NOT NULL, intensity DOUBLE NOT NULL, PRIMARY KEY (lat, lng))")
+            cursor.execute("TRUNCATE TABLE heatmap_cache")
+            cursor.execute("""
+                INSERT INTO heatmap_cache (lat, lng, intensity)
+                SELECT
+                    ROUND(ST_LATITUDE(location), 3) AS lat,
+                    ROUND(ST_LONGITUDE(location), 3) AS lng,
+                    COUNT(*) / MAX(COUNT(*)) OVER () AS intensity
+                FROM trees
+                GROUP BY 1, 2
+            """)
+            conn.commit()
+            print(f'  Refreshed heatmap_cache ({cursor.rowcount} rows)')
+
     def update_species(self, df):
         s = self._sanitize
         with DBCursor() as conn:
