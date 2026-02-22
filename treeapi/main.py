@@ -176,7 +176,7 @@ async def get_tree(tree_id, db: sqlite3.Connection = Depends(get_db)):
 
 
 @app.get("/trees/")
-async def get_trees(lat1, lng1, lat2, lng2, lat3, lng3, lat4, lng4, db: sqlite3.Connection = Depends(get_db)):
+async def get_trees(lat1, lng1, lat2, lng2, lat3, lng3, lat4, lng4, exclude_vacant: bool = True, db: sqlite3.Connection = Depends(get_db)):
     lats = [float(lat1), float(lat2), float(lat3), float(lat4)]
     lngs = [float(lng1), float(lng2), float(lng3), float(lng4)]
 
@@ -204,7 +204,10 @@ async def get_trees(lat1, lng1, lat2, lng2, lat3, lng3, lat4, lng4, db: sqlite3.
             sp.min_lat >= ? AND sp.max_lat <= ?
             AND sp.min_lng >= ? AND sp.max_lng <= ?
     """
-    rows = db.execute(sql, (min_lat, max_lat, min_lng, max_lng)).fetchall()
+    params = [min_lat, max_lat, min_lng, max_lng]
+    if exclude_vacant:
+        sql += "            AND LOWER(s.common_name) != 'vacant site'\n"
+    rows = db.execute(sql, params).fetchall()
 
     results = [dict(r) for r in rows]
     for tree in results:
