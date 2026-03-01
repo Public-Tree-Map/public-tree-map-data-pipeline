@@ -8,10 +8,11 @@ Data sources:
     - stiles.trees.csv (or fresh parse via --la-datapath) → LA trees
     - data/trees.csv                  → Santa Monica trees (via sm_parser)
     - data/images.csv                 → images table
+    - data/la_neighborhoods.geojson   → neighborhood spatial join for LA trees
 
 Outputs:
     trees.db with tables: species, trees, trees_spatial (R-tree),
-    images, heatmap_cache, cities_cache
+    images, heatmap_cache, cities_cache, neighborhoods_cache
 """
 
 import argparse
@@ -175,6 +176,7 @@ def build_trees_table(conn, la_df, sm_df, species_id_map):
             heritage_year INTEGER,
             heritage_number INTEGER,
             heritage_text TEXT,
+            neighborhood TEXT,
             FOREIGN KEY (species_id) REFERENCES species(id)
         )
     """)
@@ -186,6 +188,30 @@ def build_trees_table(conn, la_df, sm_df, species_id_map):
     la_matched['species_id'] = la_matched['botanical_name'].map(species_id_map)
     la_matched = la_matched.dropna(subset=['species_id'])
     la_matched['species_id'] = la_matched['species_id'].astype(int)
+
+    # Spatial join: assign LA Times neighborhood to each LA tree
+    import geopandas as gpd
+    from shapely.geometry import Point
+
+    neighborhoods_path = "data/la_neighborhoods.geojson"
+    if os.path.exists(neighborhoods_path):
+        print("  Spatial join: assigning neighborhoods...")
+        neighborhoods_gdf = gpd.read_file(neighborhoods_path)
+        valid = la_matched['latitude'].notna() & la_matched['longitude'].notna()
+        geometry = [Point(lng, lat) if v else None
+                    for lng, lat, v in zip(la_matched['longitude'], la_matched['latitude'], valid)]
+        trees_gdf = gpd.GeoDataFrame(la_matched, geometry=geometry, crs="EPSG:4326")
+        trees_gdf = trees_gdf[trees_gdf.geometry.notna()]
+        joined = gpd.sjoin(trees_gdf, neighborhoods_gdf[['name', 'geometry']], how='left', predicate='within')
+        # Drop the index_right column added by sjoin
+        joined = joined.drop(columns=['index_right'], errors='ignore')
+        la_matched = pd.DataFrame(joined.drop(columns='geometry'))
+        la_matched = la_matched.rename(columns={'name': 'neighborhood'})
+        n_assigned = la_matched['neighborhood'].notna().sum()
+        print(f"  {n_assigned} LA trees assigned to {la_matched['neighborhood'].nunique()} neighborhoods")
+    else:
+        print(f"  WARNING: {neighborhoods_path} not found — skipping neighborhood assignment")
+        la_matched['neighborhood'] = None
 
     la_rows = []
     for row in la_matched.itertuples():
@@ -207,6 +233,7 @@ def build_trees_table(conn, la_df, sm_df, species_id_map):
             float(row.longitude) if pd.notna(getattr(row, 'longitude', None)) else None,
             0,   # heritage
             None, None, None,
+            sanitize(getattr(row, 'neighborhood', None)),
         ))
 
     print(f"  Inserting {len(la_rows)} LA trees...")
@@ -216,8 +243,8 @@ def build_trees_table(conn, la_df, sm_df, species_id_map):
             diameter_min_in, diameter_max_in, exact_diameter,
             height_min_ft, height_max_ft, exact_height,
             estimated_value, lat, lng, heritage,
-            heritage_year, heritage_number, heritage_text
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            heritage_year, heritage_number, heritage_text, neighborhood
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, la_rows)
     conn.commit()
 
@@ -393,6 +420,34 @@ def build_cities_cache(conn):
     print(f"  {count} cities")
 
 
+def build_neighborhoods_cache(conn):
+    """Precompute neighborhood tree counts and centroids."""
+    print("Building neighborhoods_cache...")
+    conn.execute("DROP TABLE IF EXISTS neighborhoods_cache")
+    conn.execute("""
+        CREATE TABLE neighborhoods_cache (
+            neighborhood TEXT NOT NULL PRIMARY KEY,
+            tree_count INTEGER NOT NULL,
+            lat REAL NOT NULL,
+            lng REAL NOT NULL
+        )
+    """)
+    conn.execute("""
+        INSERT INTO neighborhoods_cache (neighborhood, tree_count, lat, lng)
+        SELECT
+            neighborhood,
+            COUNT(*) AS tree_count,
+            AVG(CASE WHEN lat != 0 THEN lat END) AS lat,
+            AVG(CASE WHEN lng != 0 THEN lng END) AS lng
+        FROM trees
+        WHERE neighborhood IS NOT NULL
+        GROUP BY neighborhood
+    """)
+    conn.commit()
+    count = conn.execute("SELECT COUNT(*) FROM neighborhoods_cache").fetchone()[0]
+    print(f"  {count} neighborhoods")
+
+
 def build_indexes(conn):
     """Create secondary indexes."""
     print("Creating indexes...")
@@ -440,6 +495,7 @@ def main():
     # 9. Caches
     build_heatmap_cache(conn)
     build_cities_cache(conn)
+    build_neighborhoods_cache(conn)
 
     # 10. Indexes
     build_indexes(conn)

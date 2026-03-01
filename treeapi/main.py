@@ -20,6 +20,11 @@ _cities_json: bytes | None = None
 _cities_cache_time: float = 0
 _CITIES_TTL = 3600  # 1 hour
 
+# In-memory cache for neighborhoods (pre-serialized JSON bytes)
+_neighborhoods_json: bytes | None = None
+_neighborhoods_cache_time: float = 0
+_NEIGHBORHOODS_TTL = 3600  # 1 hour
+
 app = FastAPI()
 origins = [
     "*",
@@ -115,6 +120,19 @@ async def get_cities(db: sqlite3.Connection = Depends(get_db)):
     _cities_json = json.dumps([dict(r) for r in rows]).encode()
     _cities_cache_time = now
     return Response(content=_cities_json, media_type="application/json")
+
+
+@app.get("/neighborhoods/")
+async def get_neighborhoods(db: sqlite3.Connection = Depends(get_db)):
+    global _neighborhoods_json, _neighborhoods_cache_time
+    now = time.monotonic()
+    if _neighborhoods_json is not None and (now - _neighborhoods_cache_time) < _NEIGHBORHOODS_TTL:
+        return Response(content=_neighborhoods_json, media_type="application/json")
+
+    rows = db.execute("SELECT neighborhood, tree_count, lat, lng FROM neighborhoods_cache ORDER BY tree_count DESC").fetchall()
+    _neighborhoods_json = json.dumps([dict(r) for r in rows]).encode()
+    _neighborhoods_cache_time = now
+    return Response(content=_neighborhoods_json, media_type="application/json")
 
 
 @app.get("/tree/{tree_id}")

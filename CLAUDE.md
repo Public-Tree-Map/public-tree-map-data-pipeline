@@ -8,6 +8,7 @@
 - `data/trees.csv` (Santa Monica trees)
 - `data/species_attributes.csv`
 - `data/images.csv` (one-time export — see below)
+- `data/la_neighborhoods.geojson` (LA Times neighborhood boundaries, checked in)
 
 ### Build trees.db
 
@@ -48,3 +49,4 @@ The API will be available at http://127.0.0.1:8080.
 - `GET /trees/?lat1=&lng1=&lat2=&lng2=&lat3=&lng3=&lat4=&lng4=` - trees in a bounding box
 - `GET /random/?species_id=` - heatmap intensity data
 - `GET /cities/` - tree counts per city with centroid lat/lng
+- `GET /neighborhoods/` - LA neighborhood tree counts with centroid lat/lng
