@@ -1,0 +1,15 @@
+README.md
+trees.csv
+.git/
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+.pytest_cache
+*.pdf
+*.jpg
+stiles.trees.csv
+node_modules/
+build/
+tmp/
+cloud_sql_proxy

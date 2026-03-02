@@ -1,0 +1,4 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker build -t us-west1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/etl-image:prod .']

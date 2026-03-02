@@ -12,3 +12,18 @@ __pycache__/
 
 # tmp mac files
 .DS_Store
+
+# credentials and binaries
+lively-sentry-*.json
+cloud-sql-proxy
+
+# python environment
+.python-version
+.venv/
+treeapi/treemapvenv/
+pyproject.toml
+uv.lock
+
+# data artifacts
+stiles.trees.csv
+trees.db
